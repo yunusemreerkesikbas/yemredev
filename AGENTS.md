@@ -115,7 +115,7 @@ npm run typecheck
 npm run build
 ```
 
-CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the same trio on every push/PR to `main`.
+CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the same trio on every push/PR to `master`.
 
 ## 12. Phase Roadmap
 

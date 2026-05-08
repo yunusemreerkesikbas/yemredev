@@ -41,7 +41,7 @@ In rough order of weight:
 
 1. Connect the GitHub repo via the Vercel dashboard.
 2. Add env vars (eventually `OPENAI_API_KEY` etc.) in the Vercel project settings.
-3. Vercel deploys on every push to `main`; PRs get auto-previews — no GitHub Actions deploy step required.
+3. Vercel deploys on every push to `master`; PRs get auto-previews — no GitHub Actions deploy step required.
 4. Point `yemredev.com` DNS to Vercel.
 5. Verify `proxy.ts` reads `x-vercel-ip-country` correctly with a TR-located test.
 

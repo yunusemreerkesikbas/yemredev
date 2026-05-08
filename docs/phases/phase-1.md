@@ -18,7 +18,7 @@ Stand up the project skeleton so all subsequent phases (landing, home, portfolio
 | Icons | `lucide-react` (no emoji) | Consistent vector set, theme-aware |
 | Style helper | `clsx` + `tailwind-merge` (`cn()`) | Standard Tailwind composition pattern |
 | Package manager | `npm` | Existing lockfile |
-| CI | GitHub Actions: `lint` → `typecheck` → `build` on push / PR to `main` | Per spec |
+| CI | GitHub Actions: `lint` → `typecheck` → `build` on push / PR to `master` | Per spec |
 
 ## Decisions deferred
 

@@ -2,7 +2,7 @@
 
 ## What it is / why it exists
 
-A single GitHub Actions workflow runs on every push and pull request targeting `main`. It enforces lint, type, and build cleanliness — nothing else. Deployment is **not** wired yet (see [3rd-party/hosting.md](../3rd-party/hosting.md)); a `deploy` job will be appended once the host is chosen.
+A single GitHub Actions workflow runs on every push and pull request targeting `master`. It enforces lint, type, and build cleanliness — nothing else. Deployment is **not** wired yet (see [3rd-party/hosting.md](../3rd-party/hosting.md)); a `deploy` job will be appended once the host is chosen.
 
 ## Source of truth
 
@@ -23,8 +23,8 @@ A single GitHub Actions workflow runs on every push and pull request targeting `
 
 Triggers:
 
-- `push` to `main`
-- `pull_request` to `main`
+- `push` to `master`
+- `pull_request` to `master`
 
 `concurrency: cancel-in-progress` cancels superseded runs on the same branch / PR.
 

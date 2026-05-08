@@ -33,7 +33,7 @@ Open [http://localhost:3000](http://localhost:3000). The middleware redirects `/
 | `npm run lint` | ESLint via `eslint-config-next` |
 | `npm run typecheck` | `tsc --noEmit` |
 
-CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs `lint` → `typecheck` → `build` on push and pull requests targeting `main`.
+CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs `lint` → `typecheck` → `build` on push and pull requests targeting `master`.
 
 ## Project Layout
 
