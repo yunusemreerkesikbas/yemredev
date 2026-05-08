@@ -1,0 +1,62 @@
+{
+  "name": "Yemre Dev",
+  "title": "Frontend Developer",
+  "tagline": "Building thoughtful, accessible interfaces with modern web tech.",
+  "bio": "TBD - real bio will be added before Phase 3.",
+  "location": "Istanbul, Turkey",
+  "social": [
+    {
+      "platform": "github",
+      "label": "GitHub",
+      "url": "https://github.com/yemredev"
+    },
+    {
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/yemredev"
+    },
+    {
+      "platform": "email",
+      "label": "Email",
+      "url": "mailto:hello@yemredev.com"
+    }
+  ],
+  "education": [
+    {
+      "school": "TBD University",
+      "degree": "B.Sc.",
+      "field": "Computer Engineering",
+      "start": "2018",
+      "end": "2022",
+      "location": "Istanbul, Turkey"
+    }
+  ],
+  "experience": [
+    {
+      "company": "TBD Company",
+      "role": "Frontend Developer",
+      "start": "2023",
+      "end": "present",
+      "location": "Remote",
+      "highlights": [
+        "Placeholder highlight 1 - real content in Phase 3",
+        "Placeholder highlight 2"
+      ],
+      "stack": ["Angular", "TypeScript", "RxJS"]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Languages",
+      "items": ["TypeScript", "JavaScript", "Java"]
+    },
+    {
+      "group": "Frameworks",
+      "items": ["Angular", "Next.js", "Spring Boot"]
+    },
+    {
+      "group": "Tools",
+      "items": ["Git", "Docker", "Figma"]
+    }
+  ]
+}

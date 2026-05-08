@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "yemredev-portfolio",
+    "title": "yemredev.com",
+    "summary": "Çok dilli destek ile yapay zeka destekli kişisel portfolyo.",
+    "description": "TBD - gerçek açıklama Faz 4'te.",
+    "year": 2026,
+    "role": "Tasarımcı & Geliştirici",
+    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "next-intl"],
+    "links": [
+      {
+        "label": "Canlı",
+        "url": "https://yemredev.com",
+        "type": "live"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "slug": "placeholder-project",
+    "title": "Yer Tutucu Proje",
+    "summary": "Faz 4 yayınlanmadan önce gerçek bir projeyle değiştirilecek.",
+    "description": "TBD",
+    "year": 2025,
+    "role": "Frontend Geliştirici",
+    "stack": ["Angular", "TypeScript"],
+    "links": [],
+    "featured": false
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "title": "yemre.dev - AI-Powered Portfolio",
+    "description": "Frontend developer portfolio with an AI assistant that knows me."
+  },
+  "header": {
+    "logo": "yemre.dev",
+    "nav": {
+      "assistant": "Assistant",
+      "home": "Home",
+      "portfolio": "Portfolio",
+      "contact": "Contact"
+    },
+    "language": {
+      "label": "Language",
+      "tr": "Turkish",
+      "en": "English"
+    },
+    "theme": {
+      "label": "Toggle theme",
+      "dark": "Dark",
+      "light": "Light"
+    }
+  },
+  "landing": {
+    "title": "yemre's AI Assistant",
+    "subtitle": "Ask me anything about Yemre's experience, skills and projects.",
+    "skip": "Skip portfolio",
+    "placeholder": "Type your question...",
+    "send": "Send",
+    "comingSoon": "Coming in Phase 2"
+  },
+  "home": {
+    "title": "Home",
+    "comingSoon": "Coming in Phase 3"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "comingSoon": "Coming in Phase 4"
+  },
+  "contact": {
+    "title": "Contact",
+    "comingSoon": "Coming in Phase 5"
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry"
+  }
+}

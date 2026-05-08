@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "title": "yemre.dev - Yapay Zeka Destekli Portfolyo",
+    "description": "Frontend geliştirici portfolyosu - beni tanıyan bir yapay zeka asistanıyla."
+  },
+  "header": {
+    "logo": "yemre.dev",
+    "nav": {
+      "assistant": "Asistan",
+      "home": "Ana Sayfa",
+      "portfolio": "Portfolyo",
+      "contact": "İletişim"
+    },
+    "language": {
+      "label": "Dil",
+      "tr": "Türkçe",
+      "en": "İngilizce"
+    },
+    "theme": {
+      "label": "Temayı değiştir",
+      "dark": "Koyu",
+      "light": "Açık"
+    }
+  },
+  "landing": {
+    "title": "yemre'nin Yapay Zeka Asistanı",
+    "subtitle": "Yemre'nin deneyimi, yetkinlikleri ve projeleri hakkında her şeyi sorabilirsin.",
+    "skip": "Portfolyoya geç",
+    "placeholder": "Sorunu yaz...",
+    "send": "Gönder",
+    "comingSoon": "Faz 2'de geliyor"
+  },
+  "home": {
+    "title": "Ana Sayfa",
+    "comingSoon": "Faz 3'te geliyor"
+  },
+  "portfolio": {
+    "title": "Portfolyo",
+    "comingSoon": "Faz 4'te geliyor"
+  },
+  "contact": {
+    "title": "İletişim",
+    "comingSoon": "Faz 5'te geliyor"
+  },
+  "common": {
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki",
+    "loading": "Yükleniyor...",
+    "error": "Bir şeyler ters gitti",
+    "retry": "Tekrar dene"
+  }
+}

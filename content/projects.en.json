@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "yemredev-portfolio",
+    "title": "yemredev.com",
+    "summary": "AI-powered personal portfolio with multi-language support.",
+    "description": "TBD - real description in Phase 4.",
+    "year": 2026,
+    "role": "Designer & Developer",
+    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "next-intl"],
+    "links": [
+      {
+        "label": "Live",
+        "url": "https://yemredev.com",
+        "type": "live"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "slug": "placeholder-project",
+    "title": "Placeholder Project",
+    "summary": "Replace with a real project before Phase 4 ships.",
+    "description": "TBD",
+    "year": 2025,
+    "role": "Frontend Developer",
+    "stack": ["Angular", "TypeScript"],
+    "links": [],
+    "featured": false
+  }
+]

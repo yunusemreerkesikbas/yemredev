@@ -1,0 +1,62 @@
+{
+  "name": "Yemre Dev",
+  "title": "Frontend Geliştirici",
+  "tagline": "Modern web teknolojileriyle özenli ve erişilebilir arayüzler kuruyorum.",
+  "bio": "TBD - gerçek biyografi Faz 3'ten önce eklenecek.",
+  "location": "İstanbul, Türkiye",
+  "social": [
+    {
+      "platform": "github",
+      "label": "GitHub",
+      "url": "https://github.com/yemredev"
+    },
+    {
+      "platform": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/yemredev"
+    },
+    {
+      "platform": "email",
+      "label": "E-posta",
+      "url": "mailto:hello@yemredev.com"
+    }
+  ],
+  "education": [
+    {
+      "school": "TBD Üniversitesi",
+      "degree": "Lisans",
+      "field": "Bilgisayar Mühendisliği",
+      "start": "2018",
+      "end": "2022",
+      "location": "İstanbul, Türkiye"
+    }
+  ],
+  "experience": [
+    {
+      "company": "TBD Şirketi",
+      "role": "Frontend Geliştirici",
+      "start": "2023",
+      "end": "present",
+      "location": "Uzaktan",
+      "highlights": [
+        "Yer tutucu öne çıkan 1 - gerçek içerik Faz 3'te",
+        "Yer tutucu öne çıkan 2"
+      ],
+      "stack": ["Angular", "TypeScript", "RxJS"]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Diller",
+      "items": ["TypeScript", "JavaScript", "Java"]
+    },
+    {
+      "group": "Framework'ler",
+      "items": ["Angular", "Next.js", "Spring Boot"]
+    },
+    {
+      "group": "Araçlar",
+      "items": ["Git", "Docker", "Figma"]
+    }
+  ]
+}
