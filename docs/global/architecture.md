@@ -6,7 +6,7 @@
 
 1. **AI Assistant landing** (`/[locale]`) — a chat front door that answers questions about the developer using a streaming LLM (Phase 6).
 2. **Home overview** (`/[locale]/home`) — single-screen, no-scroll summary of education / experience / skills.
-3. **Portfolio carousel** (`/[locale]/portfolio`) — slider of project detail cards.
+3. **Projects carousel** (`/[locale]/projects`) — horizontal snap carousel of project detail slides (Phase 4 shipped). Route renamed from `/portfolio` in Phase 3.
 4. **Contact form** (`/[locale]/contact`) — form posting to `/api/contact`.
 5. **API surface** (`/api/chat`, `/api/contact`) — Next.js route handlers; currently `501` placeholders.
 
@@ -54,7 +54,7 @@ API requests bypass the proxy via the matcher and hit the route handlers directl
 | [app/[locale]/layout.tsx](../../app/[locale]/layout.tsx) | platform | `<html lang>`, providers, header |
 | [app/[locale]/page.tsx](../../app/[locale]/page.tsx) | landing | Phase 2 — AI Assistant landing |
 | [app/[locale]/home/page.tsx](../../app/[locale]/home/page.tsx) | home | Phase 3 — single-screen overview |
-| [app/[locale]/portfolio/page.tsx](../../app/[locale]/portfolio/page.tsx) | portfolio | Phase 4 — carousel detail |
+| [app/[locale]/projects/page.tsx](../../app/[locale]/projects/page.tsx) | projects | Phase 4 — horizontal carousel (shipped) |
 | [app/[locale]/contact/page.tsx](../../app/[locale]/contact/page.tsx) | contact | Phase 5 — contact form |
 | [app/api/chat/route.ts](../../app/api/chat/route.ts) | landing | Phase 6 — streaming AI endpoint (`501`) |
 | [app/api/contact/route.ts](../../app/api/contact/route.ts) | contact | Phase 5 — contact submission (`501`) |

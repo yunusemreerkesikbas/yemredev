@@ -1,16 +1,10 @@
 {
   "metadata": {
-    "title": "yemre.dev - Yapay Zeka Destekli Portfolyo",
-    "description": "Frontend geliştirici portfolyosu - beni tanıyan bir yapay zeka asistanıyla."
+    "title": "yemre.dev — Yapay Zeka Destekli Portfolyo",
+    "description": "Frontend geliştirici portfolyosu — beni tanıyan bir yapay zeka asistanıyla."
   },
   "header": {
     "logo": "yemre.dev",
-    "nav": {
-      "assistant": "Asistan",
-      "home": "Ana Sayfa",
-      "portfolio": "Portfolyo",
-      "contact": "İletişim"
-    },
     "language": {
       "label": "Dil",
       "tr": "Türkçe",
@@ -22,31 +16,166 @@
       "light": "Açık"
     }
   },
+  "appHeader": {
+    "nav": {
+      "label": "Ana navigasyon",
+      "home": "Ana Sayfa",
+      "projects": "Projeler",
+      "contact": "İletişim"
+    },
+    "resume": "Özgeçmiş"
+  },
   "landing": {
-    "title": "yemre'nin Yapay Zeka Asistanı",
-    "subtitle": "Yemre'nin deneyimi, yetkinlikleri ve projeleri hakkında her şeyi sorabilirsin.",
-    "skip": "Portfolyoya geç",
-    "placeholder": "Sorunu yaz...",
-    "send": "Gönder",
-    "comingSoon": "Faz 2'de geliyor"
+    "header": {
+      "skip": "Girişi atla",
+      "cmdkHint": "⌘K"
+    },
+    "hero": {
+      "avatarAlt": "Yemre'nin yapay zeka asistanı avatarı",
+      "title": "Merhaba. Ben Yemre'nin Yapay Zeka Asistanıyım.",
+      "subtitle": "Frontend zanaatı, Angular signal'ları, Spring Boot ya da seçilmiş vaka çalışmaları hakkında soruları yanıtlayabilirim."
+    },
+    "chips": {
+      "listLabel": "Önerilen sorular",
+      "items": {
+        "skills": "En güçlü yetkinliklerin neler?",
+        "github": "GitHub'ını göster",
+        "experience": "Deneyim öne çıkanları",
+        "resume": "Özgeçmişi gör"
+      }
+    },
+    "input": {
+      "ariaLabel": "Yapay zeka asistanına sor",
+      "placeholder": "Stack hakkında istediğini sor…",
+      "micLabel": "Sesle giriş (Faz 6'da geliyor)",
+      "sendLabel": "Gönder (Faz 6'da geliyor)",
+      "modelLabel": "AI Modeli: Faz 6'da geliyor",
+      "enterHintBefore": "Göndermek için",
+      "enterKey": "Enter",
+      "enterHintAfter": "tuşuna bas (Faz 6)"
+    },
+    "footer": {
+      "ready": "SISTEM_HAZIR",
+      "latency": "GECIKME: --",
+      "version": "VERSIYON 0.1.0",
+      "copyright": "© {year} YEMRE.DEV"
+    }
   },
   "home": {
-    "title": "Ana Sayfa",
-    "comingSoon": "Faz 3'te geliyor"
+    "title": "Genel Bakış",
+    "status": {
+      "locationLabel": "Konum",
+      "socialLabel": "Sosyal bağlantılar"
+    },
+    "featured": {
+      "eyebrow": "Öne Çıkan Proje",
+      "viewProject": "Projeyi Gör",
+      "viewAll": "Tüm projeleri gör",
+      "mockupAlt": "Dekoratif ürün maketi",
+      "statusLive": "Yayında",
+      "statusWip": "Devam ediyor",
+      "statusArchived": "Arşivde"
+    },
+    "techStack": {
+      "title": "Teknoloji Yığını",
+      "groups": {
+        "languages": "Diller",
+        "frameworks": "Framework'ler",
+        "tools": "Araçlar"
+      }
+    },
+    "experience": {
+      "title": "Deneyim",
+      "presentLabel": "Şu an",
+      "scrollHint": "Daha fazlası için kaydır"
+    },
+    "openSource": {
+      "eyebrow": "Açık Kaynak",
+      "viewRepo": "Depoyu gör",
+      "starsLabel": "Yıldız",
+      "forksLabel": "Fork",
+      "emptyState": "Açık kaynak öne çıkanları yakında."
+    },
+    "education": {
+      "title": "Eğitim"
+    },
+    "cta": {
+      "title": "Birlikte bir şey kuralım",
+      "subtitle": "Yeni iş birlikleri için açığım.",
+      "button": "İletişime Geç"
+    },
+    "fab": {
+      "ariaLabel": "Yapay zeka asistanıyla konuş",
+      "tooltip": "Yapay zeka asistanına sor"
+    }
   },
-  "portfolio": {
-    "title": "Portfolyo",
-    "comingSoon": "Faz 4'te geliyor"
+  "projects": {
+    "title": "Projeler",
+    "subtitle": "Vaka çalışmaları ve yayına alınan işler — kaydırın veya oklarla gezinin.",
+    "empty": {
+      "title": "Henüz gösterilecek proje yok",
+      "body": "Hazır olduğunda content/projects.{locale}.json dosyasına kayıt ekleyin."
+    },
+    "carousel": {
+      "prev": "Önceki proje",
+      "next": "Sonraki proje",
+      "goToSlide": "{index}. projeye git",
+      "slideStatus": "Slayt {current} / {total}",
+      "trackLabel": "Proje slaytları",
+      "dotsLabel": "Bir proje seçin"
+    },
+    "media": {
+      "prev": "Önceki görsel",
+      "next": "Sonraki görsel",
+      "goToSlide": "{index}. görsele git",
+      "slideStatus": "Görsel {current} / {total}",
+      "trackLabel": "Proje ekran görüntüleri",
+      "dotsLabel": "Bir ekran görüntüsü seçin"
+    },
+    "slide": {
+      "statusLive": "Yayında",
+      "statusWip": "Devam ediyor",
+      "statusArchived": "Arşivde",
+      "category": {
+        "saas": "SaaS",
+        "tool": "Araç",
+        "open-source": "Açık kaynak",
+        "client": "Müşteri"
+      },
+      "roleLabel": "Rol",
+      "clientLabel": "Müşteri",
+      "stackTitle": "Yığın",
+      "linksTitle": "Bağlantılar",
+      "coverAlt": "{title} için kapak görseli",
+      "galleryAlt": "{title} için ekran görüntüsü {slide}",
+      "previewPlaceholder": "Görsel önizleme",
+      "detailTitle": "Vaka çalışması"
+    }
   },
   "contact": {
     "title": "İletişim",
-    "comingSoon": "Faz 5'te geliyor"
+    "headlineBefore": "Birlikte ",
+    "headlineAccent": "olağanüstü",
+    "headlineAfter": " bir şey kuralım.",
+    "subtitle": "Aklında belirli bir proje olsun ya da olmasın, yeni fırsatları konuşmaya her zaman açığım.",
+    "emailLabel": "E-posta",
+    "locationLabel": "Konum",
+    "socialPanelTitle": "Çevrimiçi ulaşım",
+    "opensInNewTab": "Yeni sekme",
+    "channelDescriptions": {
+      "email": "Detaylı brief, zaman çizelgesi ve ekler için en uygunu.",
+      "github": "Repolar, açık kaynak ve kod odaklı sohbet.",
+      "linkedin": "Profesyonel geçmiş ve doğrudan mesajlar.",
+      "twitter": "Kısa sorular ve herkese açık mention’lar.",
+      "website": "Yayımladığım diğer bağlantılar ve kaynaklar.",
+      "default": "Varsayılan uygulama veya tarayıcını açar."
+    }
   },
   "common": {
     "back": "Geri",
     "next": "İleri",
     "previous": "Önceki",
-    "loading": "Yükleniyor...",
+    "loading": "Yükleniyor…",
     "error": "Bir şeyler ters gitti",
     "retry": "Tekrar dene"
   }

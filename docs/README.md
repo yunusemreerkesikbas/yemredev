@@ -25,6 +25,7 @@ This folder is the source of truth for how the **yemredev.com** portfolio is bui
 
 - [Routing & Layout](modules/routing-and-layout.md) — `app/` structure, `[locale]` segment, root vs locale layout, `proxy.ts`
 - [Content Data Layer](modules/content-data-layer.md) — JSON content, types, server-only loaders
+- [Projects page](modules/projects-page.md) — `/projects` horizontal carousel (Phase 4)
 - [Header Navigation](modules/header-navigation.md) — `Header`, `LanguageSwitcher`, `ThemeToggle`
 - [API Placeholders](modules/api-placeholders.md) — `/api/chat`, `/api/contact` (501 stubs)
 

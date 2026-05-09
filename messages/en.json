@@ -1,16 +1,10 @@
 {
   "metadata": {
-    "title": "yemre.dev - AI-Powered Portfolio",
+    "title": "yemre.dev — AI-Powered Portfolio",
     "description": "Frontend developer portfolio with an AI assistant that knows me."
   },
   "header": {
     "logo": "yemre.dev",
-    "nav": {
-      "assistant": "Assistant",
-      "home": "Home",
-      "portfolio": "Portfolio",
-      "contact": "Contact"
-    },
     "language": {
       "label": "Language",
       "tr": "Turkish",
@@ -22,31 +16,166 @@
       "light": "Light"
     }
   },
+  "appHeader": {
+    "nav": {
+      "label": "Primary navigation",
+      "home": "Home",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "resume": "Resume"
+  },
   "landing": {
-    "title": "yemre's AI Assistant",
-    "subtitle": "Ask me anything about Yemre's experience, skills and projects.",
-    "skip": "Skip portfolio",
-    "placeholder": "Type your question...",
-    "send": "Send",
-    "comingSoon": "Coming in Phase 2"
+    "header": {
+      "skip": "Skip Intro",
+      "cmdkHint": "⌘K"
+    },
+    "hero": {
+      "avatarAlt": "Yemre's AI Assistant avatar",
+      "title": "Hello. I'm Yemre's AI Assistant.",
+      "subtitle": "I can answer questions about frontend craft, Angular signals, Spring Boot, or guide you through selected case studies."
+    },
+    "chips": {
+      "listLabel": "Suggested questions",
+      "items": {
+        "skills": "What are your top skills?",
+        "github": "Show me your GitHub",
+        "experience": "Experience highlights",
+        "resume": "View Resume"
+      }
+    },
+    "input": {
+      "ariaLabel": "Ask the AI assistant",
+      "placeholder": "Ask anything about my stack…",
+      "micLabel": "Voice input (coming in Phase 6)",
+      "sendLabel": "Send (coming in Phase 6)",
+      "modelLabel": "AI Model: Coming in Phase 6",
+      "enterHintBefore": "Press",
+      "enterKey": "Enter",
+      "enterHintAfter": "to send (Phase 6)"
+    },
+    "footer": {
+      "ready": "SYSTEM_READY",
+      "latency": "LATENCY: --",
+      "version": "VERSION 0.1.0",
+      "copyright": "© {year} YEMRE.DEV"
+    }
   },
   "home": {
-    "title": "Home",
-    "comingSoon": "Coming in Phase 3"
+    "title": "Overview",
+    "status": {
+      "locationLabel": "Based in",
+      "socialLabel": "Social links"
+    },
+    "featured": {
+      "eyebrow": "Featured Project",
+      "viewProject": "View Project",
+      "viewAll": "View all projects",
+      "mockupAlt": "Decorative product mockup",
+      "statusLive": "Live",
+      "statusWip": "In progress",
+      "statusArchived": "Archived"
+    },
+    "techStack": {
+      "title": "Tech Stack",
+      "groups": {
+        "languages": "Languages",
+        "frameworks": "Frameworks",
+        "tools": "Tools"
+      }
+    },
+    "experience": {
+      "title": "Experience",
+      "presentLabel": "Present",
+      "scrollHint": "Scroll for more"
+    },
+    "openSource": {
+      "eyebrow": "Open Source",
+      "viewRepo": "View repo",
+      "starsLabel": "Stars",
+      "forksLabel": "Forks",
+      "emptyState": "Open-source highlights coming soon."
+    },
+    "education": {
+      "title": "Education"
+    },
+    "cta": {
+      "title": "Let's build something",
+      "subtitle": "Available for new collaborations.",
+      "button": "Get in Touch"
+    },
+    "fab": {
+      "ariaLabel": "Talk to the AI Assistant",
+      "tooltip": "Ask the AI assistant"
+    }
   },
-  "portfolio": {
-    "title": "Portfolio",
-    "comingSoon": "Coming in Phase 4"
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Case studies and shipped work — swipe or use the arrows to explore.",
+    "empty": {
+      "title": "No projects to show yet",
+      "body": "Add entries to content/projects.{locale}.json when you are ready."
+    },
+    "carousel": {
+      "prev": "Previous project",
+      "next": "Next project",
+      "goToSlide": "Go to project {index}",
+      "slideStatus": "Slide {current} of {total}",
+      "trackLabel": "Project slides",
+      "dotsLabel": "Choose a project"
+    },
+    "media": {
+      "prev": "Previous image",
+      "next": "Next image",
+      "goToSlide": "Go to image {index}",
+      "slideStatus": "Image {current} of {total}",
+      "trackLabel": "Project screenshots",
+      "dotsLabel": "Choose a screenshot"
+    },
+    "slide": {
+      "statusLive": "Live",
+      "statusWip": "In progress",
+      "statusArchived": "Archived",
+      "category": {
+        "saas": "SaaS",
+        "tool": "Tool",
+        "open-source": "Open source",
+        "client": "Client"
+      },
+      "roleLabel": "Role",
+      "clientLabel": "Client",
+      "stackTitle": "Stack",
+      "linksTitle": "Links",
+      "coverAlt": "Cover image for {title}",
+      "galleryAlt": "Screenshot {slide} for {title}",
+      "previewPlaceholder": "Visual preview",
+      "detailTitle": "Case study"
+    }
   },
   "contact": {
     "title": "Contact",
-    "comingSoon": "Coming in Phase 5"
+    "headlineBefore": "Let's build something ",
+    "headlineAccent": "extraordinary.",
+    "headlineAfter": "",
+    "subtitle": "Whether you have a specific project in mind or just want to explore possibilities, I'm always open to discussing new opportunities.",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "socialPanelTitle": "Find me online",
+    "opensInNewTab": "New tab",
+    "channelDescriptions": {
+      "email": "Best for detailed briefs, timelines, and attachments.",
+      "github": "Repos, OSS activity, and code-centric conversation.",
+      "linkedin": "Professional background and direct messages.",
+      "twitter": "Short questions and public shout-outs.",
+      "website": "Other links and resources I publish.",
+      "default": "Opens your default app or browser."
+    }
   },
   "common": {
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "loading": "Loading...",
+    "loading": "Loading…",
     "error": "Something went wrong",
     "retry": "Retry"
   }

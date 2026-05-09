@@ -2,6 +2,7 @@ import "server-only";
 
 import { cache } from "react";
 import type { AppLocale } from "@/i18n/routing";
+import type { OpenSourceProject } from "@/types/open-source";
 import type { Profile } from "@/types/profile";
 import type { Project } from "@/types/project";
 import profileEn from "@/content/profile.en.json";
@@ -30,5 +31,28 @@ export const getProjects = cache((locale: AppLocale): Project[] => {
 export const getProject = cache(
   (locale: AppLocale, slug: string): Project | undefined => {
     return projectsByLocale[locale].find((project) => project.slug === slug);
+  },
+);
+
+/**
+ * Returns the project flagged `featured: true`, falling back to the first
+ * entry, or null when the locale's project list is empty. Used by the
+ * home bento `FeaturedProject` card.
+ */
+export const getFeaturedProject = cache(
+  (locale: AppLocale): Project | null => {
+    const list = projectsByLocale[locale];
+    if (list.length === 0) return null;
+    return list.find((p) => p.featured) ?? list[0];
+  },
+);
+
+/**
+ * Returns the OSS contributions list for the given locale. Always an array
+ * (never undefined) so the home bento can render an empty state safely.
+ */
+export const getOpenSource = cache(
+  (locale: AppLocale): OpenSourceProject[] => {
+    return profileByLocale[locale].openSource ?? [];
   },
 );

@@ -64,10 +64,10 @@ const [profile, projects] = await Promise.all([
 
 ```ts
 import dynamic from "next/dynamic";
-const PortfolioCarousel = dynamic(() => import("./portfolio-carousel"));
+const ProjectsCarousel = dynamic(() => import("./projects-carousel"));
 ```
 
-(Phase 4 will use this for the carousel once a library is chosen.)
+(Phase 4 will use this for the carousel at `/{locale}/projects` once a library is chosen.)
 
 ### Streaming with Suspense
 

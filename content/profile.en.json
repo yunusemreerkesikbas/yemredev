@@ -1,9 +1,14 @@
 {
   "name": "Yemre Dev",
+  "initials": "YE",
   "title": "Frontend Developer",
   "tagline": "Building thoughtful, accessible interfaces with modern web tech.",
   "bio": "TBD - real bio will be added before Phase 3.",
   "location": "Istanbul, Turkey",
+  "availability": {
+    "available": true,
+    "label": "Available for new projects"
+  },
   "social": [
     {
       "platform": "github",
@@ -43,6 +48,18 @@
         "Placeholder highlight 2"
       ],
       "stack": ["Angular", "TypeScript", "RxJS"]
+    },
+    {
+      "company": "Earlier Company",
+      "role": "Junior Frontend Developer",
+      "start": "2022",
+      "end": "2023",
+      "location": "Istanbul, Turkey",
+      "highlights": [
+        "Shipped the customer-facing dashboard with Angular signals.",
+        "Migrated legacy RxJS streams to a typed signal-based store."
+      ],
+      "stack": ["Angular", "TypeScript", "Spring Boot"]
     }
   ],
   "skills": [
@@ -57,6 +74,17 @@
     {
       "group": "Tools",
       "items": ["Git", "Docker", "Figma"]
+    }
+  ],
+  "openSource": [
+    {
+      "name": "react-mesh-gradient",
+      "description": "A small React utility for layered radial-gradient mesh backgrounds. Built around the same atmospheric pattern this site uses.",
+      "repo": "https://github.com/yemredev/react-mesh-gradient",
+      "stars": 248,
+      "forks": 17,
+      "language": "TypeScript",
+      "primaryColor": "primary"
     }
   ]
 }

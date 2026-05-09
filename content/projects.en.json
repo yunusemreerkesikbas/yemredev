@@ -1,5 +1,42 @@
 [
   {
+    "slug": "nebula-analytics",
+    "title": "Nebula Analytics",
+    "summary": "Real-time data dashboard with predictive AI and a custom signal-based query layer.",
+    "description": "TBD - real description in Phase 4.",
+    "year": 2026,
+    "role": "Lead Frontend Developer",
+    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Recharts"],
+    "cover": "/next.svg",
+    "gallery": ["/vercel.svg", "/globe.svg"],
+    "detail": "Nebula Analytics is a reference case study tile. In production this block would summarize discovery, architecture trade-offs, performance budgets, and rollout metrics. The in-card gallery demonstrates multiple root-relative screenshots while keeping the outer projects carousel on a single viewport at desktop widths.",
+    "links": [
+      {
+        "label": "Live",
+        "url": "https://example.com/nebula",
+        "type": "live"
+      }
+    ],
+    "featured": true,
+    "status": "live",
+    "category": "saas"
+  },
+  {
+    "slug": "chronos-ai",
+    "title": "Chronos AI",
+    "summary": "AI scheduling assistant that turns plain-language requests into calendar holds.",
+    "description": "TBD",
+    "year": 2025,
+    "role": "Frontend Developer",
+    "stack": ["Angular", "TypeScript", "RxJS"],
+    "cover": "/file.svg",
+    "gallery": ["/window.svg"],
+    "links": [],
+    "featured": false,
+    "status": "live",
+    "category": "tool"
+  },
+  {
     "slug": "yemredev-portfolio",
     "title": "yemredev.com",
     "summary": "AI-powered personal portfolio with multi-language support.",
@@ -14,17 +51,8 @@
         "type": "live"
       }
     ],
-    "featured": true
-  },
-  {
-    "slug": "placeholder-project",
-    "title": "Placeholder Project",
-    "summary": "Replace with a real project before Phase 4 ships.",
-    "description": "TBD",
-    "year": 2025,
-    "role": "Frontend Developer",
-    "stack": ["Angular", "TypeScript"],
-    "links": [],
-    "featured": false
+    "featured": false,
+    "status": "wip",
+    "category": "client"
   }
 ]

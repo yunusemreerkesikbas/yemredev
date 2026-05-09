@@ -24,7 +24,7 @@ import { cn } from "../../../lib/utils";       // bad
 | Asset | Convention | Example |
 | --- | --- | --- |
 | Routes | `page.tsx`, `layout.tsx`, `route.ts`, `not-found.tsx` (Next.js convention) | [app/[locale]/home/page.tsx](../../app/[locale]/home/page.tsx) |
-| Components | kebab-case file, PascalCase export | [components/layout/header.tsx](../../components/layout/header.tsx) |
+| Components | kebab-case file, PascalCase export | [components/layout/app-header.tsx](../../components/layout/app-header.tsx) |
 | Hooks | `use-*.ts`, exporting a `useX` function | (none yet) |
 | Types | kebab-case, one domain per file | [types/profile.ts](../../types/profile.ts) |
 | Content | `<entity>.<locale>.json` | [content/profile.en.json](../../content/profile.en.json) |
@@ -77,11 +77,16 @@ npm run build
 
 CI runs the same trio — see [ci-cd.md](ci-cd.md).
 
+## Route names
+
+`/{locale}/projects` is the canonical route for the projects detail surface. The Phase 2 placeholder at `/{locale}/portfolio` was retired in Phase 3 — see [phase-3.md](../phases/phase-3.md). Don't reintroduce `/portfolio`; if you need a redirect, add it to [proxy.ts](../../proxy.ts) instead of resurrecting the route.
+
 ## Don'ts
 
 - Don't add a backend service (Postgres, Express, …). Content stays in [content/](../../content/).
 - Don't bypass [i18n/navigation.ts](../../i18n/navigation.ts) for in-app links.
 - Don't import server-only modules from any `"use client"` file.
-- Don't add new fonts before [DESIGN.md](../../DESIGN.md) is filled in.
+- Don't add a third display font without updating [DESIGN.md](../../DESIGN.md) — Space Grotesk (sans) + JetBrains Mono (mono) is the locked pair.
+- Don't reintroduce the retired `/portfolio` route — `/projects` is canonical.
 - Don't commit `.env.local`.
-- Don't render emojis as UI icons — use `lucide-react`.
+- Don't render emojis as UI icons — use `lucide-react`. Material Symbols and other icon fonts are intentionally not loaded.

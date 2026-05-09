@@ -1,5 +1,42 @@
 [
   {
+    "slug": "nebula-analytics",
+    "title": "Nebula Analytics",
+    "summary": "Tahminleyici yapay zekâ ve özel signal tabanlı sorgu katmanıyla gerçek zamanlı veri panosu.",
+    "description": "TBD - gerçek açıklama Faz 4'te.",
+    "year": 2026,
+    "role": "Baş Frontend Geliştirici",
+    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Recharts"],
+    "cover": "/next.svg",
+    "gallery": ["/vercel.svg", "/globe.svg"],
+    "detail": "Nebula Analytics örnek bir vaka çalışması metnidir. Canlıda bu alan keşif sürecini, mimari kararları ve ölçümleri özetler. Galeri, kök-yoldan birden fazla ekran görüntüsünü aynı kart içinde kaydırmalı gösterir; masaüstünde sayfa dikey kaydırmadan tek görünüm korunur.",
+    "links": [
+      {
+        "label": "Canlı",
+        "url": "https://example.com/nebula",
+        "type": "live"
+      }
+    ],
+    "featured": true,
+    "status": "live",
+    "category": "saas"
+  },
+  {
+    "slug": "chronos-ai",
+    "title": "Chronos AI",
+    "summary": "Doğal dil isteklerini takvim engellerine çeviren yapay zekâ destekli planlayıcı.",
+    "description": "TBD",
+    "year": 2025,
+    "role": "Frontend Geliştirici",
+    "stack": ["Angular", "TypeScript", "RxJS"],
+    "cover": "/file.svg",
+    "gallery": ["/window.svg"],
+    "links": [],
+    "featured": false,
+    "status": "live",
+    "category": "tool"
+  },
+  {
     "slug": "yemredev-portfolio",
     "title": "yemredev.com",
     "summary": "Çok dilli destek ile yapay zeka destekli kişisel portfolyo.",
@@ -14,17 +51,8 @@
         "type": "live"
       }
     ],
-    "featured": true
-  },
-  {
-    "slug": "placeholder-project",
-    "title": "Yer Tutucu Proje",
-    "summary": "Faz 4 yayınlanmadan önce gerçek bir projeyle değiştirilecek.",
-    "description": "TBD",
-    "year": 2025,
-    "role": "Frontend Geliştirici",
-    "stack": ["Angular", "TypeScript"],
-    "links": [],
-    "featured": false
+    "featured": false,
+    "status": "wip",
+    "category": "client"
   }
 ]

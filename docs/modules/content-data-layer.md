@@ -12,6 +12,7 @@ There is no database, no CMS, and no API. Editing content == editing JSON + a re
 - Types:
   - [types/profile.ts](../../types/profile.ts)
   - [types/project.ts](../../types/project.ts)
+  - [types/open-source.ts](../../types/open-source.ts)
 - Content files:
   - [content/profile.en.json](../../content/profile.en.json)
   - [content/profile.tr.json](../../content/profile.tr.json)
@@ -24,12 +25,14 @@ There is no database, no CMS, and no API. Editing content == editing JSON + a re
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `name`, `title`, `tagline`, `bio`, `location` | `string` | Free text |
+| `name`, `initials`, `title`, `tagline`, `bio`, `location` | `string` | Free text. `initials` powers `AppHeader` + `StatusBlock`. |
 | `avatar` | `string?` | Public asset path |
+| `availability` | `Availability?` | `{ available, label }`. Drives the home `StatusBlock` availability dot. |
 | `social` | `SocialLink[]` | `platform` is a closed union |
 | `education` | `Education[]` | `end` may be `"present"` |
 | `experience` | `Experience[]` | `highlights` is bullet list, `stack` optional |
 | `skills` | `SkillGroup[]` | grouped lists |
+| `openSource` | `OpenSourceProject[]?` | One-shot OSS contribution list, surfaced by the home `OpenSourceHighlight` card. |
 
 `Project` ([types/project.ts](../../types/project.ts)):
 
@@ -41,18 +44,37 @@ There is no database, no CMS, and no API. Editing content == editing JSON + a re
 | `client`, `cover`, `gallery` | optional | |
 | `stack` | `string[]` | Tech labels |
 | `links` | `ProjectLink[]` | `type` is `"live" \| "repo" \| "case-study" \| "demo"` |
-| `featured` | `boolean` | Drives ordering |
+| `featured` | `boolean` | Drives `getFeaturedProject`. |
+| `status` | `ProjectStatus?` | `"live" \| "wip" \| "archived"`. Drives the home `FeaturedProject` status dot. |
+| `category` | `ProjectCategory?` | `"saas" \| "tool" \| "open-source" \| "client"`. Tints the featured tile's hover wash. |
+
+`OpenSourceProject` ([types/open-source.ts](../../types/open-source.ts)):
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `name`, `description`, `language` | `string` | Localized text |
+| `repo` | `string` | External repo URL |
+| `stars`, `forks` | `number` | Static numbers — no runtime fetch (deferred) |
+| `primaryColor` | `"primary" \| "emerald" \| "purple" \| "amber"` (optional) | Tints the OSS card's corner blur orb. |
 
 ## Loader API
 
 All loaders are wrapped in `react.cache` so a single request reads each JSON only once even if multiple components ask.
 
 ```ts
-import { getProfile, getProjects, getProject } from "@/lib/data";
+import {
+  getProfile,
+  getProjects,
+  getProject,
+  getFeaturedProject,
+  getOpenSource,
+} from "@/lib/data";
 
-const profile = getProfile(locale);                  // Profile
-const projects = getProjects(locale);                // Project[]
+const profile = getProfile(locale);                       // Profile
+const projects = getProjects(locale);                     // Project[]
 const project = getProject(locale, "yemredev-portfolio"); // Project | undefined
+const featured = getFeaturedProject(locale);              // Project | null
+const oss = getOpenSource(locale);                        // OpenSourceProject[]
 ```
 
 The loaders are **synchronous** — JSON is bundled at build time, not fetched.
@@ -79,6 +101,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: A
 ```
 
 For client components that need a slice of profile data, **fetch it in the parent server component and pass the slice as a prop**. Don't try to import the loader from a client file.
+
+The projects carousel follows the same rule: [`app/[locale]/projects/page.tsx`](../../app/%5Blocale%5D/projects/page.tsx) calls `getProjects(locale)` and passes serializable project data into server `ProjectSlide` children; only [`ProjectsCarousel`](../../components/projects/projects-carousel.tsx) is client-side for scroll controls.
 
 ## Implementation guide
 

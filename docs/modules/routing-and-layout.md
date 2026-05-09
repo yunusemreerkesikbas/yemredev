@@ -9,11 +9,11 @@ Defines the App Router shape, the locale-scoped layout, and the proxy that perfo
 - Proxy + matcher: [proxy.ts](../../proxy.ts)
 - Root layout (passthrough): [app/layout.tsx](../../app/layout.tsx)
 - Locale layout (`<html>`, providers, header): [app/[locale]/layout.tsx](../../app/[locale]/layout.tsx)
-- Page placeholders:
+- Page routes:
   - [app/[locale]/page.tsx](../../app/[locale]/page.tsx)
   - [app/[locale]/home/page.tsx](../../app/[locale]/home/page.tsx)
-  - [app/[locale]/portfolio/page.tsx](../../app/[locale]/portfolio/page.tsx)
-  - [app/[locale]/contact/page.tsx](../../app/[locale]/contact/page.tsx)
+  - [app/[locale]/projects/page.tsx](../../app/[locale]/projects/page.tsx)
+  - [app/[locale]/contact/page.tsx](../../app/[locale]/contact/page.tsx) — see [contact-page.md](contact-page.md)
   - [app/[locale]/not-found.tsx](../../app/[locale]/not-found.tsx)
 
 ## Routing surface
@@ -23,8 +23,8 @@ Defines the App Router shape, the locale-scoped layout, and the proxy that perfo
 | `/` | (proxied) | 1 | 302 redirect to `/<locale>` |
 | `/{locale}` | [app/[locale]/page.tsx](../../app/[locale]/page.tsx) | 2 | Static (SSG) |
 | `/{locale}/home` | [app/[locale]/home/page.tsx](../../app/[locale]/home/page.tsx) | 3 | Static (SSG) |
-| `/{locale}/portfolio` | [app/[locale]/portfolio/page.tsx](../../app/[locale]/portfolio/page.tsx) | 4 | Static (SSG) |
-| `/{locale}/contact` | [app/[locale]/contact/page.tsx](../../app/[locale]/contact/page.tsx) | 5 | Static (SSG) |
+| `/{locale}/projects` | [app/[locale]/projects/page.tsx](../../app/[locale]/projects/page.tsx) | 4 | Static (SSG) — carousel shipped |
+| `/{locale}/contact` | [app/[locale]/contact/page.tsx](../../app/[locale]/contact/page.tsx) | 5 | Static (SSG) — formless social cards |
 | `/api/chat` | [app/api/chat/route.ts](../../app/api/chat/route.ts) | 6 | Dynamic (`runtime = "edge"`) |
 | `/api/contact` | [app/api/contact/route.ts](../../app/api/contact/route.ts) | 5 | Dynamic (Node) |
 
