@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { MapPin } from "lucide-react";
 import type { Profile } from "@/types/profile";
@@ -11,9 +12,8 @@ type StatusBlockProps = {
 };
 
 /**
- * Top-left bento cell. Personal anchor: avatar block + name + role +
- * tagline + availability dot + location + social shortcuts. Static
- * server component.
+ * Top-left bento cell (taller). Identity header + footer stay fixed; tagline and
+ * availability scroll when vertical space is tight (`lg` dashboard viewport).
  */
 export function StatusBlock({ profile, className }: StatusBlockProps) {
   const t = useTranslations("home.status");
@@ -21,50 +21,59 @@ export function StatusBlock({ profile, className }: StatusBlockProps) {
   return (
     <BentoCard
       className={cn(
-        "lg:col-start-1 lg:col-span-1 lg:row-start-1 lg:row-span-2",
+        "min-h-0 lg:min-h-0 lg:col-start-1 lg:col-span-1 lg:row-start-1 lg:row-span-3",
         className,
       )}
     >
-      <div className="flex items-start gap-4">
-        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/14 bg-gradient-to-br from-zinc-800 to-black shadow-[0_6px_24px_-8px_rgba(59,184,247,0.4),inset_0_1px_0_rgba(255,255,255,0.08)]">
-          <span className="text-base font-bold tracking-tighter text-white">
-            {profile.initials}
-          </span>
+      <div className="flex shrink-0 items-start gap-4 border-b border-border pb-4 dark:border-white/10">
+        <div className="relative flex h-[4.25rem] w-[4.25rem] shrink-0 overflow-hidden rounded-xl border border-black/[0.08] bg-[#fff] shadow-[0_6px_24px_-8px_rgba(59,184,247,0.35)] sm:h-[4.5rem] sm:w-[4.5rem]">
+          <Image
+            src="/brand/head.png"
+            alt={profile.name}
+            fill
+            sizes="(max-width: 640px) 68px, 72px"
+            quality={100}
+            className="object-contain object-center"
+            priority
+            unoptimized
+          />
           <span
             aria-hidden
-            className="animate-pulse-slow absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-[rgba(12,12,14,0.95)] bg-accent-emerald shadow-[0_0_10px_rgba(16,185,129,0.75)]"
+            className="animate-pulse-slow pointer-events-none absolute -bottom-2 -right-2 z-10 h-2 w-2 rounded-full bg-accent-emerald shadow-[0_0_10px_rgba(16,185,129,0.75)]"
           />
         </div>
 
         <div className="min-w-0 flex-1">
-          <h2 className="truncate text-lg font-bold tracking-tight text-white">
+          <h2 className="text-pretty text-xl font-bold tracking-tight text-foreground sm:text-[1.35rem]">
             {profile.name}
           </h2>
-          <p className="truncate text-xs font-semibold uppercase tracking-wider text-white/60">
+          <p className="mt-0.5 text-pretty text-[11px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-xs">
             {profile.title}
           </p>
         </div>
       </div>
 
-      <p className="text-pretty mt-4 text-sm font-medium leading-relaxed text-white/80">
-        {profile.tagline}
-      </p>
+      <div className="no-scrollbar flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto py-4">
+        <p className="text-pretty max-w-prose text-[15px] font-medium leading-relaxed text-foreground/85 sm:text-base">
+          {profile.tagline}
+        </p>
 
-      {profile.availability ? (
-        <div
-          className="mt-4 inline-flex w-fit items-center gap-2 rounded-full border border-accent-emerald/35 bg-accent-emerald/18 px-2.5 py-1 text-[11px] font-semibold text-emerald-200"
-          role="status"
-        >
-          <span
-            aria-hidden
-            className="animate-pulse-slow h-1.5 w-1.5 rounded-full bg-accent-emerald shadow-[0_0_6px_rgba(16,185,129,0.7)]"
-          />
-          <span>{profile.availability.label}</span>
-        </div>
-      ) : null}
+        {profile.availability ? (
+          <div
+            className="inline-flex w-fit max-w-full items-center gap-1.5 rounded-full border border-accent-emerald/40 bg-accent-emerald/15 px-3 py-1.5 text-[11px] font-semibold text-emerald-900 dark:border-accent-emerald/35 dark:bg-accent-emerald/18 dark:text-emerald-200 sm:gap-2 sm:text-xs"
+            role="status"
+          >
+            <span
+              aria-hidden
+              className="relative top-px size-1.5 shrink-0 animate-pulse-slow rounded-full bg-accent-emerald shadow-[0_0_6px_rgba(16,185,129,0.7)]"
+            />
+            <span className="min-w-0 leading-none">{profile.availability.label}</span>
+          </div>
+        ) : null}
+      </div>
 
-      <div className="mt-auto flex items-center justify-between gap-3 pt-4">
-        <div className="flex min-w-0 items-center gap-1.5 text-xs font-medium text-white/65">
+      <div className="flex shrink-0 items-center justify-between gap-3 border-t border-border pt-4 dark:border-white/10">
+        <div className="flex min-w-0 items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <MapPin aria-hidden className="h-3.5 w-3.5 shrink-0 text-primary/80" strokeWidth={1.75} />
           <span className="truncate">
             <span className="sr-only">{t("locationLabel")}: </span>
@@ -87,7 +96,7 @@ export function StatusBlock({ profile, className }: StatusBlockProps) {
                     social.platform === "email" ? undefined : "noopener noreferrer"
                   }
                   aria-label={social.label}
-                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] text-white/75 transition-all duration-200 hover:border-primary/35 hover:bg-white/[0.12] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-foreground/[0.05] text-foreground/75 transition-all duration-200 hover:border-primary/35 hover:bg-foreground/[0.1] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 dark:border-white/10 dark:bg-white/[0.05] dark:text-white/75 dark:hover:bg-white/[0.12] dark:hover:text-white"
                 >
                   <Icon aria-hidden className="h-4 w-4" strokeWidth={1.75} />
                 </a>

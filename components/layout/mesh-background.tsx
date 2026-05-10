@@ -38,10 +38,10 @@ type MeshBackgroundProps = {
  *   3. sparkles (landing only)
  *   4. noise overlay (Atmospheric+ grain, blends via soft-light)
  *
+ * Placement: routed behind page content from `LocaleShell` (landing vs app variant).
  * Variants:
- *  - landing: <MeshBackground withCenterPulse withSparkles />
- *  - bento (Phase 3): <MeshBackground withCornerAccents />
- *  - contact (Phase 5): <MeshBackground withCornerAccents />
+ *  - landing: `withCenterPulse` + `withSparkles`
+ *  - app routes: `withCornerAccents`
  */
 export function MeshBackground({
   withCenterPulse = false,

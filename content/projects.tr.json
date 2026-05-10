@@ -1,58 +1,45 @@
 [
   {
-    "slug": "nebula-analytics",
-    "title": "Nebula Analytics",
-    "summary": "Tahminleyici yapay zekâ ve özel signal tabanlı sorgu katmanıyla gerçek zamanlı veri panosu.",
-    "description": "TBD - gerçek açıklama Faz 4'te.",
-    "year": 2026,
-    "role": "Baş Frontend Geliştirici",
-    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Recharts"],
-    "cover": "/next.svg",
-    "gallery": ["/vercel.svg", "/globe.svg"],
-    "detail": "Nebula Analytics örnek bir vaka çalışması metnidir. Canlıda bu alan keşif sürecini, mimari kararları ve ölçümleri özetler. Galeri, kök-yoldan birden fazla ekran görüntüsünü aynı kart içinde kaydırmalı gösterir; masaüstünde sayfa dikey kaydırmadan tek görünüm korunur.",
+    "slug": "craftive",
+    "title": "Craftive",
+    "summary": "Tek platform. Her yapılandırma. Blog, İK portalı, e-ticaret veya kurumsal site — hepsi tek bir altyapıyla.",
+    "description": "Craftive, her fikri dijital ürüne dönüştüren yapılandırılabilir çok kiracılı bir platformdur. Clean Architecture ile inşa edilmiş Spring Boot 3 backend (Flyway migration, JWT kimlik doğrulama, OWASP girdi sanitasyonu), Angular Signals ve RxJS ile güçlendirilmiş Angular 19 admin paneli ve headless Next.js App Router mağaza arayüzü içermektedir. Tenant mağazaları referans Next.js uygulaması fork edilerek oluşturulur — yalnızca tema katmanı değişirken paylaşılan CMS ve çalışma zamanı sözleşmesi sabit kalır. Dağıtım pipeline'ı GitHub Actions CI/CD üzerinde çalışır, Cloudflare üzerinden sunulur ve DigitalOcean'da barındırılır.",
+    "year": 2025,
+    "role": "Full-Stack Developer & DevOps",
+    "stack": ["Spring Boot", "Java 21", "Angular 19", "Next.js", "TypeScript", "MySQL", "Docker", "GitHub Actions", "Cloudflare", "DigitalOcean"],
+    "featured": true,
+    "status": "live",
+    "category": "saas",
     "links": [
       {
         "label": "Canlı",
-        "url": "https://example.com/nebula",
+        "url": "https://craftive.io/en/",
         "type": "live"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/yunusemreerkesikbas/Craftive",
+        "type": "repo"
       }
-    ],
-    "featured": true,
-    "status": "live",
-    "category": "saas"
+    ]
   },
   {
-    "slug": "chronos-ai",
-    "title": "Chronos AI",
-    "summary": "Doğal dil isteklerini takvim engellerine çeviren yapay zekâ destekli planlayıcı.",
-    "description": "TBD",
-    "year": 2025,
-    "role": "Frontend Geliştirici",
-    "stack": ["Angular", "TypeScript", "RxJS"],
-    "cover": "/file.svg",
-    "gallery": ["/window.svg"],
-    "links": [],
-    "featured": false,
-    "status": "live",
-    "category": "tool"
-  },
-  {
-    "slug": "yemredev-portfolio",
+    "slug": "yemredev-com",
     "title": "yemredev.com",
-    "summary": "Çok dilli destek ile yapay zeka destekli kişisel portfolyo.",
-    "description": "TBD - gerçek açıklama Faz 4'te.",
+    "summary": "Next.js App Router ve canlı bir sohbet asistanıyla geliştirilmiş yapay zeka destekli çok dilli portfolyo.",
+    "description": "Next.js 16 App Router ile inşa edilmiş kişisel portfolyo sitesi. Tam EN/TR çoklu dil desteği, karanlık/aydınlık tema ve Vercel AI SDK aracılığıyla GPT-4o mini ile güçlendirilmiş yapay zeka sohbet asistanı içermektedir.",
     "year": 2026,
     "role": "Tasarımcı & Geliştirici",
-    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "next-intl"],
+    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "next-intl", "Vercel AI SDK"],
+    "featured": false,
+    "status": "wip",
+    "category": "tool",
     "links": [
       {
         "label": "Canlı",
         "url": "https://yemredev.com",
         "type": "live"
       }
-    ],
-    "featured": false,
-    "status": "wip",
-    "category": "client"
+    ]
   }
 ]

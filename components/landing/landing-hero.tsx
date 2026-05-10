@@ -39,7 +39,7 @@ export function LandingHero() {
         >
           {t("title")}
         </h1>
-        <p className="text-pretty mx-auto max-w-lg text-base font-normal leading-relaxed tracking-tight text-white/55 sm:text-lg">
+        <p className="text-pretty mx-auto max-w-lg text-base font-normal leading-relaxed tracking-tight text-muted-foreground sm:text-lg">
           {t("subtitle")}
         </p>
       </div>

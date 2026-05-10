@@ -8,7 +8,7 @@ Phase 3 ships **placeholder content** (Nebula Analytics-style fake projects, TBD
 
 ## Source of truth
 
-- Page composition: [app/[locale]/home/page.tsx](../../app/%5Blocale%5D/home/page.tsx)
+- Shared iris overlay (client): [components/layout/iris-transition-portal.tsx](../../components/layout/iris-transition-portal.tsx) — used by Skip Intro (`toFab`) and `FloatingAssistantFab` (`toLanding`).
 - Header variant: [components/layout/app-header.tsx](../../components/layout/app-header.tsx)
 - Background atmosphere: [components/layout/mesh-background.tsx](../../components/layout/mesh-background.tsx) (with `withCornerAccents`)
 - Bento wrapper: [components/home/bento-grid.tsx](../../components/home/bento-grid.tsx)
@@ -58,14 +58,14 @@ Phase 3 ships **placeholder content** (Nebula Analytics-style fake projects, TBD
 | `ExperienceTimeline` | `experience: Experience[]` | Sticky inner header + `overflow-y-auto no-scrollbar`. **Only card with internal scroll.** |
 | `OpenSourceHighlight` | `project: OpenSourceProject \| null` | Decorative blur orb tinted by `project.primaryColor` token. Stars/forks via lucide. |
 | `EducationCTA` | `education: Education[]` | Education list above the **single primary "Get in Touch" CTA → `/contact`**. |
-| `FloatingAssistantFab` | _none_ | Routes to `/{locale}` (landing). Hidden on `<sm`. |
+| `FloatingAssistantFab` | _none_ | Client `Link` to `/{locale}` (landing). Primary click plays iris **`toLanding`** (inverse of Skip Intro), then `router.push`; modifiers / reduced-motion behave like `SkipIntroTransitionLink`. Hidden on `<sm`. |
 
 ## Rules
 
 - **Single primary CTA.** "Get in Touch" inside `EducationCTA` is the home page's only conversion target. The featured tile's "View Project" is a navigation aid (it goes to `/projects`, not a conversion).
 - **Only the experience card scrolls.** Every other card must fit its content at default desktop heights. If a future card grows past its cell on a typical viewport, the answer is to redesign the card, not to add `overflow-y-auto` elsewhere.
 - **Mobile collapse to single column.** Below `lg` the grid is `grid-cols-1` and the page regains scroll. The desktop "no scroll" rule is desktop-only by design (DESIGN.md §7.2).
-- **Server components only.** No card needs client state. The page's only client islands are inherited from `AppHeader` (`LanguageSwitcher`, `ThemeToggle`).
+- **Server components for cards.** No card needs client state. Client chrome on this route: `AppHeader` (`LanguageSwitcher`, `ThemeToggle`) plus **`FloatingAssistantFab`** (`iris-transition-portal`, variant `toLanding`).
 - **Position classes live in the card, not the grid.** Each card root carries its own `lg:col-start-* / lg:row-start-*` classes so the JSX order can stay mobile-natural without extra wrapper divs in [`BentoGrid`](../../components/home/bento-grid.tsx).
 - **Empty-state friendly.** `FeaturedProject` + `OpenSourceHighlight` handle `null` data — the bento always renders, even with sparse JSON.
 - **No new keyframes.** Reuses `animate-pulse-slow` (status dots) and the existing skeleton pulse from the landing's input bar's emerald dot pattern. Hover lifts use `transform`/`opacity` only (compositor-safe).

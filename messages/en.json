@@ -1,10 +1,30 @@
 {
   "metadata": {
-    "title": "yemre.dev — AI-Powered Portfolio",
-    "description": "Frontend developer portfolio with an AI assistant that knows me."
+    "title": "yemredev.com — AI-Powered Portfolio",
+    "description": "Frontend developer portfolio with an AI assistant that knows me.",
+    "siteName": "yemredev.com",
+    "twitterHandle": "@yunusemre_dev",
+    "pages": {
+      "landing": {
+        "title": "yemredev.com — AI Portfolio Assistant & Developer Showcase",
+        "description": "Chat with an AI assistant that knows Yemre's full profile — projects, skills, experience, and open-source work. The fastest way to explore a developer portfolio."
+      },
+      "home": {
+        "title": "Portfolio Overview — Yunus Emre Erkesikbaş | yemredev.com",
+        "description": "Explore Yunus Emre Erkesikbaş's professional background, featured projects, and tech expertise. Frontend developer specializing in SAP CX, Angular, and Next.js."
+      },
+      "projects": {
+        "title": "Projects & Case Studies — Yunus Emre Erkesikbaş | yemredev.com",
+        "description": "Delivered work by Yunus Emre Erkesikbaş — multi-tenant SaaS platforms, SAP Commerce storefronts, Angular dashboards, and Next.js applications."
+      },
+      "contact": {
+        "title": "Contact Yunus Emre Erkesikbaş — yemredev.com",
+        "description": "Get in touch with Yunus Emre Erkesikbaş for frontend development, SAP CX consulting, or collaboration. Available for freelance from Istanbul, Turkey."
+      }
+    }
   },
   "header": {
-    "logo": "yemre.dev",
+    "logo": "yemredev.com",
     "language": {
       "label": "Language",
       "tr": "Turkish",
@@ -42,23 +62,44 @@
         "github": "Show me your GitHub",
         "experience": "Experience highlights",
         "resume": "View Resume"
+      },
+      "prompts": {
+        "skills": "What are Yemre's top technical skills?",
+        "github": "Where can I find Yemre's GitHub profile?",
+        "experience": "Walk me through Yemre's professional experience.",
+        "resume": "Where can I download Yemre's resume?"
       }
     },
     "input": {
       "ariaLabel": "Ask the AI assistant",
       "placeholder": "Ask anything about my stack…",
-      "micLabel": "Voice input (coming in Phase 6)",
-      "sendLabel": "Send (coming in Phase 6)",
-      "modelLabel": "AI Model: Coming in Phase 6",
+      "micLabel": "Voice input (coming soon)",
+      "sendLabel": "Send message",
+      "modelLabel": "Model: gpt-4o-mini",
       "enterHintBefore": "Press",
       "enterKey": "Enter",
-      "enterHintAfter": "to send (Phase 6)"
+      "enterHintAfter": "to send"
     },
     "footer": {
       "ready": "SYSTEM_READY",
       "latency": "LATENCY: --",
       "version": "VERSION 0.1.0",
-      "copyright": "© {year} YEMRE.DEV"
+      "copyright": "© {year} YEMREDEV.COM"
+    }
+  },
+  "chat": {
+    "ariaListLabel": "Conversation history",
+    "userRoleLabel": "You",
+    "assistantRoleLabel": "Assistant",
+    "typing": "Thinking…",
+    "stopLabel": "Stop generating",
+    "retryLabel": "Try again",
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "rate_limited": "Too many messages too quickly. Please wait a moment and try again.",
+      "provider_unavailable": "The assistant is temporarily unavailable. Please try again in a minute.",
+      "bad_request": "That message couldn't be sent. Please rephrase and try again.",
+      "server_error": "An unexpected error occurred. Please try again."
     }
   },
   "home": {

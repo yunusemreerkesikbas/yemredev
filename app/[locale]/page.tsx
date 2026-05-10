@@ -1,13 +1,42 @@
-import { setRequestLocale } from "next-intl/server";
-import { ChatInputBar } from "@/components/landing/chat-input-bar";
-import { LandingFooter } from "@/components/landing/landing-footer";
-import { LandingHero } from "@/components/landing/landing-hero";
-import { QuickActionChips } from "@/components/landing/quick-action-chips";
-import { LandingHeader } from "@/components/layout/landing-header";
-import { MeshBackground } from "@/components/layout/mesh-background";
-import { getProfile } from "@/lib/data";
-import { isAppLocale } from "@/i18n/routing";
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ChatIsland } from "@/components/chat/chat-island";
+import { LandingFooter } from "@/components/landing/landing-footer";
+import { isAppLocale } from "@/i18n/routing";
+import { canonicalUrl, hreflangAlternates, OG_IMAGE_URL } from "@/lib/seo";
+import type { ChipKey } from "@/components/landing/quick-action-chips";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+  const path = "";
+  const canonical = canonicalUrl(locale, path);
+  return {
+    title: { absolute: t("pages.landing.title") },
+    description: t("pages.landing.description"),
+    alternates: {
+      canonical,
+      languages: hreflangAlternates(path),
+    },
+    openGraph: {
+      title: { absolute: t("pages.landing.title") },
+      description: t("pages.landing.description"),
+      url: canonical,
+      images: [{ url: OG_IMAGE_URL, width: 1200, height: 630 }],
+    },
+    twitter: {
+      title: { absolute: t("pages.landing.title") },
+      description: t("pages.landing.description"),
+    },
+  };
+}
+
+const CHIP_KEYS: ChipKey[] = ["skills", "github", "experience", "resume"];
 
 export default async function LandingPage({
   params,
@@ -18,19 +47,17 @@ export default async function LandingPage({
   if (!isAppLocale(locale)) notFound();
   setRequestLocale(locale);
 
-  const profile = getProfile(locale);
+  const tPrompts = await getTranslations("landing.chips.prompts");
+
+  const prompts = Object.fromEntries(
+    CHIP_KEYS.map((key) => [key, tPrompts(key)]),
+  ) as Record<ChipKey, string>;
 
   return (
-    <div className="relative flex min-h-dvh w-full flex-col overflow-hidden bg-background-dark text-white selection:bg-primary/30">
-      <MeshBackground withCenterPulse withSparkles />
-
-      <LandingHeader profile={profile} />
-
-      <main className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-4 sm:px-6">
-        <div className="flex w-full flex-col items-center gap-10 py-10">
-          <LandingHero />
-          <QuickActionChips />
-          <ChatInputBar />
+    <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden text-foreground selection:bg-primary/30">
+      <main className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 min-h-0 flex-col overflow-hidden px-4 sm:px-6">
+        <div className="flex w-full flex-1 min-h-0 flex-col">
+          <ChatIsland locale={locale} prompts={prompts} />
         </div>
       </main>
 

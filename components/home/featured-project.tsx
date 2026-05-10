@@ -12,7 +12,7 @@ type FeaturedProjectProps = {
 const STATUS_DOT_TONE = {
   live: "bg-accent-emerald shadow-[0_0_8px_rgba(16,185,129,0.6)]",
   wip: "bg-accent-amber shadow-[0_0_8px_rgba(251,191,36,0.6)]",
-  archived: "bg-white/40",
+  archived: "bg-foreground/35 dark:bg-white/40",
 } as const;
 
 const CATEGORY_TINT = {
@@ -41,7 +41,7 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
     return (
       <section
         className={cn(
-          "glass-bento-surface relative flex min-h-[280px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-white/20 p-6 text-center text-white/55",
+          "glass-bento-surface relative flex min-h-[280px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-border p-6 text-center text-muted-foreground",
           positionClasses,
           className,
         )}
@@ -82,10 +82,10 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
       />
 
       <header className="relative z-10 flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-wider text-white/65">
+        <div className="flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
           <span>{t("eyebrow")}</span>
           <span aria-hidden>·</span>
-          <span className="inline-flex items-center gap-1.5 text-white/70">
+          <span className="inline-flex items-center gap-1.5 text-foreground/75">
             <span
               aria-hidden
               className={cn("h-1.5 w-1.5 rounded-full", STATUS_DOT_TONE[status])}
@@ -93,7 +93,7 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
             {statusLabel}
           </span>
         </div>
-        <span className="font-mono text-[11px] font-semibold tabular-nums text-white/45">
+        <span className="font-mono text-[11px] font-semibold tabular-nums text-foreground/45">
           {project.year}
         </span>
       </header>
@@ -103,10 +103,10 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
       </div>
 
       <div className="relative z-10 mt-5 space-y-2">
-        <h3 className="text-balance text-2xl font-bold tracking-tight text-white sm:text-[28px] sm:leading-[1.15]">
+        <h3 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-[28px] sm:leading-[1.15]">
           {project.title}
         </h3>
-        <p className="text-pretty line-clamp-2 text-sm font-medium leading-relaxed text-white/78 sm:text-base">
+        <p className="text-pretty line-clamp-2 text-sm font-medium leading-relaxed text-foreground/78 sm:text-base">
           {project.summary}
         </p>
       </div>
@@ -116,14 +116,14 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
           {project.stack.slice(0, 5).map((item) => (
             <li
               key={item}
-              className="rounded-full border border-white/14 bg-white/[0.09] px-2.5 py-0.5 text-[11px] font-semibold text-white/88"
+              className="rounded-full border border-border bg-foreground/[0.07] px-2.5 py-0.5 text-[11px] font-semibold text-foreground/88 dark:border-white/14 dark:bg-white/[0.09] dark:text-white/88"
             >
               {item}
             </li>
           ))}
         </ul>
 
-        <span className="inline-flex items-center gap-1.5 text-sm font-bold tracking-tight text-white transition-transform duration-200 group-hover:translate-x-0.5">
+        <span className="inline-flex items-center gap-1.5 text-sm font-bold tracking-tight text-foreground transition-transform duration-200 group-hover:translate-x-0.5">
           {t("viewProject")}
           <ArrowUpRight
             aria-hidden

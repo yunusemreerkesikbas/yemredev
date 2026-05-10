@@ -35,7 +35,7 @@ export function OpenSourceHighlight({
     return (
       <BentoCard
         className={cn(
-          "items-center justify-center text-center text-white/55",
+          "items-center justify-center text-center text-muted-foreground",
           positionClasses,
           className,
         )}
@@ -43,7 +43,7 @@ export function OpenSourceHighlight({
         <span className="font-mono text-xs uppercase tracking-wider">
           {t("eyebrow")}
         </span>
-        <p className="mt-2 text-sm font-medium text-white/70">{t("emptyState")}</p>
+        <p className="mt-2 text-sm font-medium text-foreground/70">{t("emptyState")}</p>
       </BentoCard>
     );
   }
@@ -69,23 +69,23 @@ export function OpenSourceHighlight({
       <div className="relative z-10 flex h-full flex-col gap-3">
         <header className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-wider text-white/60">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
               {t("eyebrow")}
             </p>
-            <h2 className="mt-1 truncate text-xl font-bold tracking-tight text-white sm:text-2xl">
+            <h2 className="mt-1 truncate text-xl font-bold tracking-tight text-foreground sm:text-2xl">
               {project.name}
             </h2>
           </div>
-          <span className="shrink-0 rounded-md border border-white/14 bg-white/[0.08] px-2 py-1 font-mono text-[10px] font-semibold text-white/80">
+          <span className="shrink-0 rounded-md border border-border bg-foreground/[0.06] px-2 py-1 font-mono text-[10px] font-semibold text-foreground/80 dark:border-white/14 dark:bg-white/[0.08] dark:text-white/80">
             {project.language}
           </span>
         </header>
 
-        <p className="text-pretty line-clamp-3 text-sm font-medium leading-relaxed text-white/78">
+        <p className="text-pretty line-clamp-3 text-sm font-medium leading-relaxed text-foreground/78">
           {project.description}
         </p>
 
-        <footer className="font-tabular mt-auto flex flex-wrap items-center gap-4 pt-2 text-xs font-medium text-white/70">
+        <footer className="font-tabular mt-auto flex flex-wrap items-center gap-4 pt-2 text-xs font-medium text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
             <Star
               aria-hidden
@@ -99,7 +99,7 @@ export function OpenSourceHighlight({
           <span className="inline-flex items-center gap-1.5">
             <GitFork
               aria-hidden
-              className="h-3.5 w-3.5 text-white/60"
+              className="h-3.5 w-3.5 text-muted-foreground"
               strokeWidth={1.75}
             />
             <span aria-label={t("forksLabel")}>
@@ -111,7 +111,7 @@ export function OpenSourceHighlight({
             href={project.repo}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-white/14 bg-white/[0.08] px-3 py-1.5 text-xs font-semibold text-white/90 transition-all duration-200 hover:-translate-y-px hover:border-primary/45 hover:bg-white/[0.14] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-border bg-foreground/[0.06] px-3 py-1.5 text-xs font-semibold text-foreground/90 transition-all duration-200 hover:-translate-y-px hover:border-primary/45 hover:bg-foreground/[0.1] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 dark:border-white/14 dark:bg-white/[0.08] dark:text-white/90 dark:hover:bg-white/[0.14] dark:hover:text-white"
           >
             {t("viewRepo")}
             <ArrowUpRight

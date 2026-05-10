@@ -148,7 +148,7 @@ export function ProjectsCarousel({
             {title}
           </h1>
           {subtitle ? (
-            <p className="mt-1 max-w-2xl text-sm font-medium text-white/72 sm:text-base">
+            <p className="mt-1 max-w-2xl text-sm font-medium text-foreground/72 sm:text-base">
               {subtitle}
             </p>
           ) : null}
@@ -160,7 +160,7 @@ export function ProjectsCarousel({
             disabled={activeIndex <= 0}
             aria-label={t("prev")}
             className={cn(
-              "group/prev glass-card relative inline-flex size-11 min-h-11 min-w-11 items-center justify-center overflow-hidden rounded-full text-white/90",
+              "group/prev glass-card relative inline-flex size-11 min-h-11 min-w-11 items-center justify-center overflow-hidden rounded-full text-foreground/90 dark:text-white/90",
               "transition-[transform,box-shadow,background-color,border-color,opacity] duration-200 ease-out",
               "hover:-translate-y-0.5 hover:border-primary/40 hover:bg-white/[0.08] hover:shadow-[0_10px_36px_-10px_rgba(59,184,247,0.35)]",
               "active:translate-y-0 active:scale-[0.97]",
@@ -180,7 +180,7 @@ export function ProjectsCarousel({
             disabled={activeIndex >= total - 1}
             aria-label={t("next")}
             className={cn(
-              "group/next glass-card relative inline-flex size-11 min-h-11 min-w-11 items-center justify-center overflow-hidden rounded-full text-white/90",
+              "group/next glass-card relative inline-flex size-11 min-h-11 min-w-11 items-center justify-center overflow-hidden rounded-full text-foreground/90 dark:text-white/90",
               "transition-[transform,box-shadow,background-color,border-color,opacity] duration-200 ease-out",
               "hover:-translate-y-0.5 hover:border-primary/40 hover:bg-white/[0.08] hover:shadow-[0_10px_36px_-10px_rgba(59,184,247,0.35)]",
               "active:translate-y-0 active:scale-[0.97]",

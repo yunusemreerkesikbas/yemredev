@@ -1,10 +1,30 @@
 {
   "metadata": {
-    "title": "yemre.dev — Yapay Zeka Destekli Portfolyo",
-    "description": "Frontend geliştirici portfolyosu — beni tanıyan bir yapay zeka asistanıyla."
+    "title": "yemredev.com — Yapay Zeka Destekli Portfolyo",
+    "description": "Frontend geliştirici portfolyosu — beni tanıyan bir yapay zeka asistanıyla.",
+    "siteName": "yemredev.com",
+    "twitterHandle": "@yunusemre_dev",
+    "pages": {
+      "landing": {
+        "title": "yemredev.com — Yapay Zeka Destekli Portfolyo Asistanı",
+        "description": "Yemre'nin tam profilini tanıyan bir yapay zeka asistanıyla sohbet edin — projeler, yetkinlikler, deneyim ve açık kaynak katkıları. Portfolyoyu keşfetmenin en hızlı yolu."
+      },
+      "home": {
+        "title": "Portfolyo Genel Bakışı — Yunus Emre Erkesikbaş | yemredev.com",
+        "description": "Yunus Emre Erkesikbaş'ın profesyonel geçmişini, öne çıkan projelerini ve teknoloji uzmanlığını keşfedin. SAP CX, Angular ve Next.js uzmanı frontend geliştirici."
+      },
+      "projects": {
+        "title": "Projeler ve Vaka Çalışmaları — Yunus Emre Erkesikbaş | yemredev.com",
+        "description": "Yunus Emre Erkesikbaş'ın teslim ettiği işler — çok kiracılı SaaS platformları, SAP Commerce mağazacık frontendleri ve Next.js uygulamaları."
+      },
+      "contact": {
+        "title": "Yunus Emre Erkesikbaş ile İletişim — yemredev.com",
+        "description": "Frontend geliştirme, SAP CX danışmanlığı veya iş birliği için Yunus Emre Erkesikbaş ile iletişime geçin. İstanbul, Türkiye'den freelance ve yan projelere açık."
+      }
+    }
   },
   "header": {
-    "logo": "yemre.dev",
+    "logo": "yemredev.com",
     "language": {
       "label": "Dil",
       "tr": "Türkçe",
@@ -42,23 +62,44 @@
         "github": "GitHub'ını göster",
         "experience": "Deneyim öne çıkanları",
         "resume": "Özgeçmişi gör"
+      },
+      "prompts": {
+        "skills": "Yemre'nin en güçlü teknik yetkinlikleri neler?",
+        "github": "Yemre'nin GitHub profilini nerede bulabilirim?",
+        "experience": "Yemre'nin profesyonel deneyimini anlatır mısın?",
+        "resume": "Yemre'nin özgeçmişini nereden indirebilirim?"
       }
     },
     "input": {
       "ariaLabel": "Yapay zeka asistanına sor",
       "placeholder": "Stack hakkında istediğini sor…",
-      "micLabel": "Sesle giriş (Faz 6'da geliyor)",
-      "sendLabel": "Gönder (Faz 6'da geliyor)",
-      "modelLabel": "AI Modeli: Faz 6'da geliyor",
+      "micLabel": "Sesle giriş (yakında)",
+      "sendLabel": "Mesaj gönder",
+      "modelLabel": "Model: gpt-4o-mini",
       "enterHintBefore": "Göndermek için",
       "enterKey": "Enter",
-      "enterHintAfter": "tuşuna bas (Faz 6)"
+      "enterHintAfter": "tuşuna bas"
     },
     "footer": {
       "ready": "SISTEM_HAZIR",
       "latency": "GECIKME: --",
       "version": "VERSIYON 0.1.0",
-      "copyright": "© {year} YEMRE.DEV"
+      "copyright": "© {year} YEMREDEV.COM"
+    }
+  },
+  "chat": {
+    "ariaListLabel": "Sohbet geçmişi",
+    "userRoleLabel": "Sen",
+    "assistantRoleLabel": "Asistan",
+    "typing": "Düşünüyor…",
+    "stopLabel": "Üretmeyi durdur",
+    "retryLabel": "Tekrar dene",
+    "errors": {
+      "generic": "Bir şeyler ters gitti. Lütfen tekrar dene.",
+      "rate_limited": "Çok kısa sürede çok fazla mesaj gönderildi. Lütfen biraz bekle ve tekrar dene.",
+      "provider_unavailable": "Asistan şu anda geçici olarak kullanılamıyor. Lütfen bir dakika sonra tekrar dene.",
+      "bad_request": "Bu mesaj gönderilemedi. Lütfen yeniden ifade edip tekrar dene.",
+      "server_error": "Beklenmeyen bir hata oluştu. Lütfen tekrar dene."
     }
   },
   "home": {
@@ -101,7 +142,7 @@
     },
     "cta": {
       "title": "Birlikte bir şey kuralım",
-      "subtitle": "Yeni iş birlikleri için açığım.",
+      "subtitle": "Aklında belirli bir proje olsun ya da olmasın, yeni fırsatları konuşmaya her zaman açığım.",
       "button": "İletişime Geç"
     },
     "fab": {
@@ -166,7 +207,7 @@
       "email": "Detaylı brief, zaman çizelgesi ve ekler için en uygunu.",
       "github": "Repolar, açık kaynak ve kod odaklı sohbet.",
       "linkedin": "Profesyonel geçmiş ve doğrudan mesajlar.",
-      "twitter": "Kısa sorular ve herkese açık mention’lar.",
+      "twitter": "Kısa sorular ve herkese açık mention'lar.",
       "website": "Yayımladığım diğer bağlantılar ve kaynaklar.",
       "default": "Varsayılan uygulama veya tarayıcını açar."
     }

@@ -13,6 +13,7 @@ Conventions for AI coding agents working on **yemredev.com**. Read this fully be
 - **i18n**: [next-intl](https://next-intl.dev) with URL prefix routing (`/tr`, `/en`)
 - **Theme**: [next-themes](https://github.com/pacocoursey/next-themes), `class` strategy, dark default
 - **Icons**: [lucide-react](https://lucide.dev) — never emoji as UI icons
+- **AI**: Vercel AI SDK (`ai@^6` + `@ai-sdk/openai@^3` + `@ai-sdk/react@^3`) with OpenAI `gpt-4o-mini`; rate limiting via `@upstash/ratelimit`
 - **Package manager**: npm (lockfile committed)
 
 No backend service. All portfolio content lives in [content/](content/) as JSON.
@@ -27,17 +28,20 @@ No backend service. All portfolio content lives in [content/](content/) as JSON.
 | [app/[locale]/home/page.tsx](app/[locale]/home/page.tsx) | Phase 3 — single-screen portfolio overview |
 | [app/[locale]/portfolio/page.tsx](app/[locale]/portfolio/page.tsx) | Phase 4 — carousel detail |
 | [app/[locale]/contact/page.tsx](app/[locale]/contact/page.tsx) | Phase 5 — contact form |
-| [app/api/chat/route.ts](app/api/chat/route.ts) | Phase 6 — AI streaming endpoint (currently `501`) |
+| [app/api/chat/route.ts](app/api/chat/route.ts) | Phase 6 — Vercel AI SDK streaming endpoint (Node.js runtime, active) |
 | [app/api/contact/route.ts](app/api/contact/route.ts) | Phase 5 — contact submission (currently `501`) |
+| [components/chat/](components/chat/) | `ChatIsland`, `MessageList`, `ChatMessage`, `TypingIndicator` — chat orchestration |
 | [components/layout/](components/layout/) | Header, ThemeToggle, LanguageSwitcher |
 | [components/providers/](components/providers/) | Client-only context providers |
 | [components/ui/](components/ui/) | Primitive UI building blocks (Button, Card, Input — added when needed) |
 | [content/](content/) | Per-locale JSON content (`profile.{en,tr}.json`, `projects.{en,tr}.json`) |
 | [i18n/](i18n/) | next-intl routing, request config, typed navigation helpers |
 | [messages/](messages/) | UI string catalogs (`en.json`, `tr.json`) |
+| [lib/ai/](lib/ai/) | System prompt builder, OpenAI model wiring, error mapper (server-only) |
+| [lib/ratelimit.ts](lib/ratelimit.ts) | Upstash sliding window for `/api/chat` |
 | [lib/data.ts](lib/data.ts) | Server-only data loaders, wrapped in `react.cache` |
 | [lib/utils.ts](lib/utils.ts) | `cn()` helper (clsx + tailwind-merge) |
-| [proxy.ts](proxy.ts) | Locale detection (cookie → country → Accept-Language → fallback) — Next.js 16 file convention (formerly `middleware.ts`) |
+| [middleware.ts](middleware.ts) | Locale detection (cookie → country → Accept-Language → fallback) — Edge middleware (Next.js convention; `proxy.ts` is a different Next.js 16 Node.js-only feature) |
 | [types/](types/) | Shared TS types for content shapes |
 
 ## 3. Path Aliases
@@ -127,11 +131,10 @@ CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the same trio on 
 | 3 | Single-screen portfolio overview (no scroll) | pending |
 | 4 | Portfolio detail carousel | pending |
 | 5 | Contact form + delivery provider decision | pending |
-| 6 | AI provider decision + Vercel AI SDK streaming | pending |
+| 6 | AI provider decision + Vercel AI SDK streaming | **done** (OpenAI gpt-4o-mini) |
 
 ## 13. Decisions Pending
 
-- **AI provider** (Phase 6): OpenAI / Anthropic / Google / Groq. `.env.example` lists all four commented out.
 - **Contact delivery** (Phase 5): Resend / Formspree / EmailJS / mailto.
 - **Deploy target**: Vercel / DigitalOcean / Cloudflare / self-host. CI runs lint+build only; deploy job will be appended to [.github/workflows/ci.yml](.github/workflows/ci.yml) after the choice.
 - **Final visual tokens & font**: blocked on user-supplied design example.

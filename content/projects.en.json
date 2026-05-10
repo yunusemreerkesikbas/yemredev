@@ -1,58 +1,45 @@
 [
   {
-    "slug": "nebula-analytics",
-    "title": "Nebula Analytics",
-    "summary": "Real-time data dashboard with predictive AI and a custom signal-based query layer.",
-    "description": "TBD - real description in Phase 4.",
-    "year": 2026,
-    "role": "Lead Frontend Developer",
-    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Recharts"],
-    "cover": "/next.svg",
-    "gallery": ["/vercel.svg", "/globe.svg"],
-    "detail": "Nebula Analytics is a reference case study tile. In production this block would summarize discovery, architecture trade-offs, performance budgets, and rollout metrics. The in-card gallery demonstrates multiple root-relative screenshots while keeping the outer projects carousel on a single viewport at desktop widths.",
+    "slug": "craftive",
+    "title": "Craftive",
+    "summary": "One platform. Every configuration. Blogs, HR portals, e-commerce or corporate sites — all powered by a single infrastructure.",
+    "description": "Craftive is a configurable multi-tenant platform that turns any idea into a digital product. Built with Clean Architecture, it ships a Spring Boot 3 backend with Database-per-Tenant isolation (Flyway, JWT, OWASP sanitization), an Angular 19 admin control panel (Signals, RxJS, ApexCharts), and a headless Next.js App Router storefront. Tenant storefronts are forked from the reference Next.js app — only the theme layer changes while the shared CMS and runtime contract stays intact. The full deployment pipeline runs on GitHub Actions CI/CD, served via Cloudflare, and hosted on DigitalOcean.",
+    "year": 2025,
+    "role": "Full-Stack Developer & DevOps",
+    "stack": ["Spring Boot", "Java 21", "Angular 19", "Next.js", "TypeScript", "MySQL", "Docker", "GitHub Actions", "Cloudflare", "DigitalOcean"],
+    "featured": true,
+    "status": "live",
+    "category": "saas",
     "links": [
       {
         "label": "Live",
-        "url": "https://example.com/nebula",
+        "url": "https://craftive.io/en/",
         "type": "live"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/yunusemreerkesikbas/Craftive",
+        "type": "repo"
       }
-    ],
-    "featured": true,
-    "status": "live",
-    "category": "saas"
+    ]
   },
   {
-    "slug": "chronos-ai",
-    "title": "Chronos AI",
-    "summary": "AI scheduling assistant that turns plain-language requests into calendar holds.",
-    "description": "TBD",
-    "year": 2025,
-    "role": "Frontend Developer",
-    "stack": ["Angular", "TypeScript", "RxJS"],
-    "cover": "/file.svg",
-    "gallery": ["/window.svg"],
-    "links": [],
-    "featured": false,
-    "status": "live",
-    "category": "tool"
-  },
-  {
-    "slug": "yemredev-portfolio",
+    "slug": "yemredev-com",
     "title": "yemredev.com",
-    "summary": "AI-powered personal portfolio with multi-language support.",
-    "description": "TBD - real description in Phase 4.",
+    "summary": "AI-powered multilingual portfolio with Next.js App Router and a live chat assistant.",
+    "description": "A personal portfolio site built with Next.js 16 App Router, featuring full EN/TR internationalization, a dark/light theme, and an AI chat assistant powered by GPT-4o mini via the Vercel AI SDK. The site serves as both a showcase and a live project.",
     "year": 2026,
     "role": "Designer & Developer",
-    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "next-intl"],
+    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "next-intl", "Vercel AI SDK"],
+    "featured": false,
+    "status": "wip",
+    "category": "tool",
     "links": [
       {
         "label": "Live",
         "url": "https://yemredev.com",
         "type": "live"
       }
-    ],
-    "featured": false,
-    "status": "wip",
-    "category": "client"
+    ]
   }
 ]

@@ -133,7 +133,7 @@ export function ProjectMediaCarousel({
             className="h-10 w-10 text-primary/70 motion-safe:animate-pulse-slow motion-reduce:animate-none"
             strokeWidth={1.5}
           />
-          <span className="font-mono text-[10px] font-medium uppercase tracking-wider text-white/45">
+          <span className="font-mono text-[10px] font-medium uppercase tracking-wider text-foreground/45">
             {previewLabel}
           </span>
         </div>
@@ -180,7 +180,7 @@ export function ProjectMediaCarousel({
               disabled={activeIndex <= 0}
               aria-label={t("prev")}
               className={cn(
-                "glass-card absolute left-2 top-1/2 z-10 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full text-white/90",
+                "glass-card absolute left-2 top-1/2 z-10 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full text-foreground/90 dark:text-white/90",
                 "transition-[transform,border-color,background-color,opacity] duration-200 ease-out",
                 "hover:border-primary/45 hover:bg-white/[0.1]",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
@@ -195,7 +195,7 @@ export function ProjectMediaCarousel({
               disabled={activeIndex >= total - 1}
               aria-label={t("next")}
               className={cn(
-                "glass-card absolute right-2 top-1/2 z-10 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full text-white/90",
+                "glass-card absolute right-2 top-1/2 z-10 inline-flex size-9 -translate-y-1/2 items-center justify-center rounded-full text-foreground/90 dark:text-white/90",
                 "transition-[transform,border-color,background-color,opacity] duration-200 ease-out",
                 "hover:border-primary/45 hover:bg-white/[0.1]",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",

@@ -30,9 +30,9 @@ const GROUP_TONE = {
 } as const;
 
 /**
- * Left-bottom bento cell. Three skill groups (Languages / Frameworks /
- * Tools), each with a small accent header and a chip list. Text-first —
- * no third-party brand-logo SVGs needed for Phase 3.
+ * Left-bottom bento cell (compact). Three skill groups (Languages / Frameworks /
+ * Tools), each with a small accent header and a chip list. Body scrolls vertically
+ * when it exceeds the grid cell (desktop single-viewport layout).
  */
 export function TechStack({ skills, className }: TechStackProps) {
   const t = useTranslations("home.techStack");
@@ -40,48 +40,48 @@ export function TechStack({ skills, className }: TechStackProps) {
   return (
     <BentoCard
       className={cn(
-        "lg:col-start-1 lg:col-span-1 lg:row-start-3 lg:row-span-4",
+        "min-h-0 lg:min-h-0 lg:col-start-1 lg:col-span-1 lg:row-start-4 lg:row-span-3",
         className,
       )}
     >
-      <header className="flex items-center justify-between">
-        <h2 className="font-mono text-[11px] font-semibold uppercase tracking-wider text-white/70">
+      <header className="flex shrink-0 items-center justify-between gap-2 border-b border-border pb-3 dark:border-white/10">
+        <h2 className="font-mono text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-[11px]">
           {t("title")}
         </h2>
         <Layers
           aria-hidden
-          className="h-4 w-4 text-primary/70"
+          className="h-3.5 w-3.5 shrink-0 text-primary/70 sm:h-4 sm:w-4"
           strokeWidth={1.75}
         />
       </header>
 
-      <div className="mt-4 flex flex-1 flex-col gap-5">
+      <div className="no-scrollbar flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto pt-3 sm:gap-3.5">
         {skills.map((group) => {
           const key = GROUP_KEY[group.group];
-          const tone = key ? GROUP_TONE[key] : "text-white/60";
+          const tone = key ? GROUP_TONE[key] : "text-muted-foreground";
           const heading = key ? t(`groups.${key}`) : group.group;
 
           return (
             <div key={group.group}>
-              <div className="mb-2 flex items-center gap-2">
+              <div className="mb-1.5 flex items-center gap-2">
                 <span
                   aria-hidden
                   className={cn("h-1 w-1 rounded-full bg-current", tone)}
                 />
                 <span
                   className={cn(
-                    "font-mono text-[10px] font-bold uppercase tracking-[0.18em]",
+                    "font-mono text-[9px] font-bold uppercase tracking-[0.16em] sm:text-[10px]",
                     tone,
                   )}
                 >
                   {heading}
                 </span>
               </div>
-              <ul className="flex list-none flex-wrap gap-1.5 p-0">
+              <ul className="flex list-none flex-wrap gap-1 p-0">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-md border border-white/12 bg-white/[0.08] px-2 py-1 text-xs font-semibold text-white/90"
+                    className="rounded-md border border-border bg-foreground/[0.06] px-1.5 py-0.5 text-[11px] font-semibold text-foreground/90 sm:px-2 sm:text-xs dark:border-white/12 dark:bg-white/[0.07] dark:text-white/88"
                   >
                     {item}
                   </li>

@@ -1,90 +1,118 @@
 {
-  "name": "Yemre Dev",
+  "name": "Yunus Emre Erkesikbaş",
   "initials": "YE",
-  "title": "Frontend Geliştirici",
-  "tagline": "Modern web teknolojileriyle özenli ve erişilebilir arayüzler kuruyorum.",
-  "bio": "TBD - gerçek biyografi Faz 3'ten önce eklenecek.",
+  "title": "Software Developer | SAP CX & Angular",
+  "tagline": "SAP CX, Angular ve Next.js ile performanslı e-ticaret arayüzleri geliştiriyorum — B2B/B2C Commerce, SEO optimizasyonu ve çok ülkeli, çok dövizli mağaza deneyiminde uzmanım.",
+  "bio": "Merhaba, ben Emre. JavaScript, React, Next.js, SAP Spartacus ve Angular konularında uzmanlaşmış bir Yazılım Geliştiriciyim. B2B/B2C SAP Commerce, çok dilli ve çok dövizli mağazalar, SEO optimizasyonu ve 3. parti entegrasyonlarda deneyimliyim. İşbirliği benim süper gücüm. Her zaman öğrenmeye, her zaman büyümeye devam ediyorum.",
   "location": "İstanbul, Türkiye",
   "availability": {
     "available": true,
-    "label": "Yeni projelere açığım"
+    "label": "Freelance / Yan projelere açığım"
   },
   "social": [
     {
       "platform": "github",
       "label": "GitHub",
-      "url": "https://github.com/yemredev"
+      "url": "https://github.com/yunusemreerkesikbas"
     },
     {
       "platform": "linkedin",
       "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/yemredev"
+      "url": "https://www.linkedin.com/in/yunusemreerkesikbas"
     },
     {
       "platform": "email",
       "label": "E-posta",
-      "url": "mailto:hello@yemredev.com"
+      "url": "mailto:erkesikbasyunusemre@gmail.com"
     }
   ],
   "education": [
     {
-      "school": "TBD Üniversitesi",
+      "school": "Konya Teknik Üniversitesi",
+      "degree": "Yüksek Lisans",
+      "field": "Bilgisayar Mühendisliği",
+      "start": "2026",
+      "end": "2028",
+      "location": "Konya, Türkiye"
+    },
+    {
+      "school": "Ondokuz Mayıs Üniversitesi",
       "degree": "Lisans",
       "field": "Bilgisayar Mühendisliği",
-      "start": "2018",
-      "end": "2022",
-      "location": "İstanbul, Türkiye"
+      "start": "2020",
+      "end": "2024",
+      "location": "Samsun, Türkiye"
     }
   ],
   "experience": [
     {
-      "company": "TBD Şirketi",
-      "role": "Frontend Geliştirici",
-      "start": "2023",
+      "company": "Haratres Teknoloji",
+      "role": "SAP CX Frontend Developer",
+      "start": "Kas 2024",
       "end": "present",
-      "location": "Uzaktan",
-      "highlights": [
-        "Yer tutucu öne çıkan 1 - gerçek içerik Faz 3'te",
-        "Yer tutucu öne çıkan 2"
-      ],
-      "stack": ["Angular", "TypeScript", "RxJS"]
-    },
-    {
-      "company": "Önceki Şirket",
-      "role": "Junior Frontend Geliştirici",
-      "start": "2022",
-      "end": "2023",
       "location": "İstanbul, Türkiye",
       "highlights": [
-        "Müşteriye dönük dashboard'u Angular signals ile yayına aldı.",
-        "Eski RxJS akışlarını tipli signal-tabanlı bir store'a taşıdı."
+        "SAP CX & Spartacus B2C/B2B Commerce projeleri",
+        "Çalışılan projeler: Yataş, Puffy, Enzahome"
       ],
-      "stack": ["Angular", "TypeScript", "Spring Boot"]
+      "stack": ["SAP CX Commerce", "SAP Spartacus", "Angular", "TypeScript", "JSP"]
+    },
+    {
+      "company": "enoca",
+      "role": "SAP CX Frontend Developer",
+      "start": "Şub 2023",
+      "end": "Kas 2024",
+      "location": "İstanbul, Türkiye",
+      "highlights": [
+        "Birden fazla marka için Hybris B2C ve B2B e-ticaret danışmanlığı",
+        "Çalışılan projeler: Penti, Klaud, CarrefourSA, Avansas",
+        "30+ küçük/büyük geliştirme ve 3. parti entegrasyon",
+        "Next.js B2C e-ticaret projesi entegrasyonu: SEO, Hesap, Sipariş, Ödeme akışları"
+      ],
+      "stack": ["SAP Commerce", "Hybris", "Angular", "Next.js", "JSP", "TypeScript"]
+    },
+    {
+      "company": "Post Ajans",
+      "role": "Web Geliştirici Stajyeri",
+      "start": "Tem 2022",
+      "end": "Eyl 2022",
+      "location": "Konya, Türkiye",
+      "highlights": [
+        "Müşteri web sitesi tasarım entegrasyonları",
+        "Frontend için Angular framework kullanımı",
+        "Backend ve API servisleri için PHP, Laravel ve CodeIgnite"
+      ],
+      "stack": ["Angular", "PHP", "Laravel", "CodeIgnite"]
+    },
+    {
+      "company": "metehan",
+      "role": "Freelance Web Geliştirici",
+      "start": "Oca 2022",
+      "end": "Mar 2022",
+      "location": "Konya, Türkiye",
+      "highlights": [
+        "UI entegrasyonu ve hata giderme",
+        "Backend ve API servisleri için PHP ve Laravel"
+      ],
+      "stack": ["PHP", "Laravel", "JavaScript"]
     }
   ],
   "skills": [
     {
-      "group": "Diller",
-      "items": ["TypeScript", "JavaScript", "Java"]
+      "group": "Frontend",
+      "items": ["JavaScript (ES6/ES7)", "TypeScript", "HTML5", "CSS3", "SCSS", "BEM"]
     },
     {
       "group": "Framework'ler",
-      "items": ["Angular", "Next.js", "Spring Boot"]
+      "items": ["Angular", "SAP Spartacus", "React.js", "Next.js", "Bootstrap"]
+    },
+    {
+      "group": "SAP",
+      "items": ["SAP CX Commerce", "Hybris", "Backoffice", "JSP"]
     },
     {
       "group": "Araçlar",
-      "items": ["Git", "Docker", "Figma"]
-    }
-  ],
-  "openSource": [
-    {
-      "name": "react-mesh-gradient",
-      "description": "Katmanlı radial-gradient mesh arka planları için küçük bir React yardımcısı. Bu sitenin kullandığı atmosferik desenin etrafına kuruldu.",
-      "repo": "https://github.com/yemredev/react-mesh-gradient",
-      "stars": 248,
-      "forks": 17,
-      "language": "TypeScript",
-      "primaryColor": "primary"
+      "items": ["Git", "Jira", "Figma", "Zeplin", "Google Tag Manager", "Google Analytics"]
     }
   ]
 }

@@ -37,11 +37,19 @@ yarn-error.log*
 # vercel
 .vercel
 
+# cloudflare / opennext
+.open-next/
+.wrangler/
+cloudflare-env.d.ts
+
 # IDE / editor config
 .idea/
 .vscode/
 *.swp
 *.swo
+
+# Claude Code local settings
+.claude/settings.local.json
 
 # typescript
 *.tsbuildinfo

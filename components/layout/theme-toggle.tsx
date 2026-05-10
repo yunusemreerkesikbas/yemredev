@@ -20,12 +20,20 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={handleClick}
       suppressHydrationWarning
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-md border border-foreground/10 bg-background text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40",
+        "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-background text-foreground shadow-sm transition-colors hover:bg-foreground/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-foreground/15 dark:bg-foreground/[0.06] dark:hover:bg-foreground/10 dark:shadow-none",
         className,
       )}
     >
-      <Sun aria-hidden className="block h-4 w-4 dark:hidden" />
-      <Moon aria-hidden className="hidden h-4 w-4 dark:block" />
+      <Sun
+        aria-hidden
+        className="block h-[1.125rem] w-[1.125rem] text-foreground dark:hidden"
+        strokeWidth={2}
+      />
+      <Moon
+        aria-hidden
+        className="hidden h-[1.125rem] w-[1.125rem] text-foreground dark:block"
+        strokeWidth={2}
+      />
     </button>
   );
 }

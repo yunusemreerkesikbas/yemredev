@@ -6,9 +6,8 @@ Defines the App Router shape, the locale-scoped layout, and the proxy that perfo
 
 ## Source of truth
 
-- Proxy + matcher: [proxy.ts](../../proxy.ts)
 - Root layout (passthrough): [app/layout.tsx](../../app/layout.tsx)
-- Locale layout (`<html>`, providers, header): [app/[locale]/layout.tsx](../../app/[locale]/layout.tsx)
+- Locale layout (`<html>`, providers): [app/[locale]/layout.tsx](../../app/[locale]/layout.tsx) — wraps page tree with [page-transition.tsx](../../components/layout/page-transition.tsx). Horizontal slide runs **only between app routes** (`/home`, `/projects`, `/contact`, …). Any transition that touches the AI landing route **`/`** skips the slide so full-viewport **iris** transitions stay correct; honors `prefers-reduced-motion`.
 - Page routes:
   - [app/[locale]/page.tsx](../../app/[locale]/page.tsx)
   - [app/[locale]/home/page.tsx](../../app/[locale]/home/page.tsx)

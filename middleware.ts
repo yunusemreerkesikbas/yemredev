@@ -36,7 +36,7 @@ function pathHasLocale(pathname: string): boolean {
   );
 }
 
-export default function proxy(request: NextRequest) {
+export default function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
   if (!pathHasLocale(pathname)) {
@@ -58,5 +58,11 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: [
+    /*
+     * Exclude static assets and Next metadata routes (`/icon`, `/apple-icon`)
+     * so they are not prefixed with a locale (breaks favicon / app icons).
+     */
+    "/((?!api|_next|_vercel|icon|apple-icon|.*\\..*).*)",
+  ],
 };

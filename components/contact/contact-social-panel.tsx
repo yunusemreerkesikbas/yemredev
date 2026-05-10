@@ -34,8 +34,8 @@ export async function ContactSocialPanel({
         id="contact-social-heading"
         className={
           beside
-            ? "w-full text-center text-[10px] font-semibold uppercase tracking-widest text-white/40"
-            : "mx-auto max-w-md text-center text-[10px] font-semibold uppercase tracking-widest text-white/40"
+            ? "w-full text-center text-[10px] font-semibold uppercase tracking-widest text-muted-foreground"
+            : "mx-auto max-w-md text-center text-[10px] font-semibold uppercase tracking-widest text-muted-foreground"
         }
       >
         {t("socialPanelTitle")}
@@ -75,7 +75,7 @@ function SocialIconLink({ social, description, newTabHint }: SocialIconLinkProps
       target={isEmail ? undefined : "_blank"}
       rel={isEmail ? undefined : "noopener noreferrer"}
       aria-label={social.label}
-      className="inline-flex h-12 w-12 items-center justify-center text-white/55 transition-colors duration-150 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
+      className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors duration-150 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <Icon aria-hidden className="h-[22px] w-[22px]" strokeWidth={1.6} />
     </a>

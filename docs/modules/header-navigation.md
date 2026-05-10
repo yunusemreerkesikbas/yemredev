@@ -9,11 +9,12 @@ Sticky top bar shown on every locale-scoped page. The site ships **two** header 
 | `LandingHeader` | `/[locale]` (AI assistant landing) | Logo + `⌘K` hint chip + "Skip Intro" CTA + LanguageSwitcher + ThemeToggle. No nav links — the whole screen *is* the nav. |
 | `AppHeader` | `/[locale]/home`, `/[locale]/projects`, `/[locale]/contact` | Logo + nav (Home / Projects / Contact) + LanguageSwitcher + ThemeToggle. Standard site header. |
 
-Each header is a **Server Component** that mounts two **Client Component** islands (`LanguageSwitcher` + `ThemeToggle`).
+Each header is a **Server Component** that mounts **three** client islands on the landing route (`LanguageSwitcher`, `ThemeToggle`, `SkipIntroTransitionLink`) and **two** on app routes (`LanguageSwitcher`, `ThemeToggle`).
 
 ## Source of truth
 
 - Landing header (server): [components/layout/landing-header.tsx](../../components/layout/landing-header.tsx)
+- Skip Intro transition (client): [components/layout/skip-intro-transition.tsx](../../components/layout/skip-intro-transition.tsx)
 - App header (server): [components/layout/app-header.tsx](../../components/layout/app-header.tsx)
 - Language switcher (client): [components/layout/language-switcher.tsx](../../components/layout/language-switcher.tsx)
 - Theme toggle (client): [components/layout/theme-toggle.tsx](../../components/layout/theme-toggle.tsx)
@@ -38,7 +39,7 @@ Each header is a **Server Component** that mounts two **Client Component** islan
 | --- | --- | --- | --- |
 | Initials box + name + role | `Link` to `/` | server | 32×32 rounded-lg with primary hover glow |
 | `⌘K` hint chip | inline `<div>` | server | Decorative; `aria-hidden`, hidden under `md:` |
-| Skip CTA | `Link` to `/home` | server | Ghost button, ArrowRight slides on hover |
+| Skip CTA | `SkipIntroTransitionLink` | **client** | Locale-aware `Link` to `/home`; primary click runs Motion iris → FAB proxy then `router.push`. Modifier keys preserve default link behavior. `prefers-reduced-motion` → immediate navigation. |
 | Language switcher | `LanguageSwitcher` | **client** | `useTransition` + typed `useRouter` |
 | Theme toggle | `ThemeToggle` | **client** | CSS-driven Sun/Moon, no React state |
 

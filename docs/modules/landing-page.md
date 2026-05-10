@@ -10,6 +10,8 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 
 - Page composition: [app/[locale]/page.tsx](../../app/[locale]/page.tsx)
 - Header variant: [components/layout/landing-header.tsx](../../components/layout/landing-header.tsx)
+- Skip Intro transition (client): [components/layout/skip-intro-transition.tsx](../../components/layout/skip-intro-transition.tsx) — Motion iris toward the home FAB before `router.push('/home')`; respects `prefers-reduced-motion`.
+- Iris overlay primitives (client): [components/layout/iris-transition-portal.tsx](../../components/layout/iris-transition-portal.tsx) — shared `toFab` / `toLanding` mask animation used by Skip Intro and the home FAB.
 - Background atmosphere: [components/layout/mesh-background.tsx](../../components/layout/mesh-background.tsx) (with `withCenterPulse`)
 - Sub-components:
   - [components/landing/landing-hero.tsx](../../components/landing/landing-hero.tsx)
@@ -42,7 +44,7 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 │   • AI Model: Coming in Phase 6     Press Enter (Phase 6)       │
 │                                                                 │
 ├─────────────────────────────────────────────────────────────────┤
-│  SYSTEM_READY              VERSION 0.1.0 / © YEAR YEMRE.DEV     │
+│  SYSTEM_READY              VERSION 0.1.0 / © YEAR YEMREDEV.COM  │
 │  LATENCY: --                                                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -73,13 +75,13 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 ### `LandingFooter`
 
 - Server component. Reads `landing.footer.*` translations.
-- Mono telemetry strip (`pointer-events-none`, `select-none`) — `SYSTEM_READY` / `LATENCY: --` left, `VERSION 0.1.0` / `© YEAR YEMRE.DEV` right.
+- Mono telemetry strip (`pointer-events-none`, `select-none`) — `SYSTEM_READY` / `LATENCY: --` left, `VERSION 0.1.0` / `© YEAR YEMREDEV.COM` right.
 - The `{year}` token in `landing.footer.copyright` is interpolated server-side from `new Date().getFullYear()`. Acceptable timezone drift because the footer is mono and decorative.
 
 ## Rules and invariants
 
 - **Single viewport.** The page wrapper uses `min-h-dvh overflow-hidden`. Don't add `<section>` blocks that overflow — the design intent is "everything fits".
-- **Server-only.** No client component on this page until Phase 6 except the two header islands (`LanguageSwitcher`, `ThemeToggle`).
+- **Server-first body.** Until Phase 6, keep the landing **body** server-only (hero, chips, input shell, footer). The header mounts **three** client islands: `LanguageSwitcher`, `ThemeToggle`, and `SkipIntroTransitionLink` (iris transition via [motion](https://motion.dev), portal overlay `z-index` above the header). With `prefers-reduced-motion: reduce`, Skip navigates immediately with no animation.
 - **Static input is real.** Don't replace `<input>` with `<div>` to "prevent typing". The real element gives the focus-within glow and matches what Phase 6 will render — fewer regressions.
 - **Profile drives the header, not the body.** Hero text, chips, and footer all come from i18n strings, not from `content/profile.*.json`. This decouples copy translation from data structure.
 - **Initials must be 2 characters.** Both `profile.en.json` and `profile.tr.json` set `initials: "YE"`. If the displayed name changes, update both files.
@@ -87,6 +89,10 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 ## Skip CTA naming
 
 The CTA reads "Skip Intro" (en) / "Girişi atla" (tr) and links to `/{locale}/home` — the bento dashboard. The earlier "Skip to Portfolio" / "Portfolyoya geç" wording was retired in Phase 3 alongside the `/portfolio` → `/projects` rename so a single neutral copy survives the route shuffle.
+
+On primary activation (no modifier keys), the control plays a short **iris / lens-close** transition: a masked overlay shrinks the visible hole from the viewport center to the same bottom-right geometry as [`FloatingAssistantFab`](../../components/home/floating-assistant-fab.tsx) (including `max(1rem, env(safe-area-inset-*))`), then reveals a transient FAB-styled `Bot` icon before navigation. Cmd/Ctrl/middle-click and similar keep native link behavior without intercepting the animation.
+
+The FAB uses the same overlay with variant **`toLanding`** (hole expands from the FAB anchor toward the viewport center) before returning to the landing route — the inverse timing of Skip Intro.
 
 ## Adding a new chip
 
