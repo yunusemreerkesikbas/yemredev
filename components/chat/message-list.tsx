@@ -36,7 +36,7 @@ export function MessageList({
       role="log"
       aria-label={t("ariaListLabel")}
       aria-live="polite"
-      className="flex w-full flex-1 min-h-0 flex-col gap-2 overflow-y-auto rounded-xl border border-border bg-foreground/[0.03] px-2 py-3 sm:px-3 dark:border-white/5 dark:bg-black/20"
+      className="flex w-full flex-col gap-2 rounded-xl border border-border bg-foreground/[0.03] px-2 py-3 sm:px-3 dark:border-white/5 dark:bg-black/20 lg:flex-1 lg:min-h-0 lg:overflow-y-auto"
     >
       {messages.map((message) => (
         <ChatMessage key={message.id} message={message} />

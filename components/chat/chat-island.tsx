@@ -86,7 +86,9 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
     <div
       className={cn(
         "flex w-full flex-col items-center",
-        hasMessages ? "flex-1 min-h-0 gap-4 py-4" : "h-full justify-center gap-6 py-10",
+        hasMessages
+          ? "gap-4 py-4 lg:flex-1 lg:min-h-0"
+          : "min-h-[calc(100dvh-5.5rem)] justify-center gap-6 py-10 lg:h-full lg:min-h-0",
       )}
     >
       <div

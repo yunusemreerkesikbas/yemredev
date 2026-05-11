@@ -75,15 +75,15 @@ export default async function ContactPage({
     : null;
 
   return (
-    <div className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden text-foreground selection:bg-primary/30 lg:min-h-0">
+    <div className="relative flex w-full max-lg:shrink-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
       <JsonLd
         schema={buildBreadcrumbSchema([
           { name: "Home", url: canonicalUrl(locale, "/home") },
           { name: t("title"), url: canonicalUrl(locale, "/contact") },
         ])}
       />
-      <main className="relative z-10 flex min-h-0 flex-1 flex-col items-center overflow-hidden px-4 py-4 sm:px-6 sm:py-5 md:px-8 lg:py-6">
-        <div className="my-auto flex min-h-0 w-full max-w-5xl min-w-0 flex-col items-center gap-8 py-2 sm:gap-9 lg:gap-10">
+      <main className="relative z-10 flex flex-col items-center overflow-x-hidden px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:min-h-0 lg:flex-1 lg:overflow-hidden lg:py-6">
+        <div className="flex w-full max-w-5xl min-w-0 flex-col items-center gap-8 sm:gap-9 lg:my-auto lg:min-h-0 lg:flex-1 lg:justify-center lg:gap-10">
           <header className="flex flex-col items-center text-center">
             {profile.availability ? (
               <div

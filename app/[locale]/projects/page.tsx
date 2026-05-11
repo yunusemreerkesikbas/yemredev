@@ -57,7 +57,7 @@ export default async function ProjectsPage({
   const projects = getProjects(locale);
 
   return (
-    <div className="relative flex min-h-0 w-full flex-1 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 lg:min-h-0 lg:overflow-hidden">
+    <div className="relative flex w-full max-lg:shrink-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
       <JsonLd
         schema={buildBreadcrumbSchema([
           { name: "Home", url: canonicalUrl(locale, "/home") },
@@ -67,9 +67,9 @@ export default async function ProjectsPage({
       {projects.map((p) => (
         <JsonLd key={p.slug} schema={buildProjectSchema(p, locale)} />
       ))}
-      <main className="relative z-10 flex min-h-0 flex-1 flex-col px-0 py-4 sm:py-5 lg:overflow-hidden lg:py-5">
+      <main className="relative z-10 flex flex-col px-0 py-4 sm:py-5 lg:flex-1 lg:min-h-0 lg:overflow-hidden lg:py-5">
         {projects.length === 0 ? (
-          <div className="mx-auto flex max-w-lg flex-1 flex-col items-center justify-center px-6 text-center lg:min-h-0">
+          <div className="mx-auto flex max-w-lg flex-col items-center justify-center px-6 py-16 text-center sm:py-24 lg:min-h-0 lg:flex-1">
             <h1 className="text-gradient-fade text-2xl font-bold tracking-tight sm:text-3xl">
               {t("empty.title")}
             </h1>
@@ -77,7 +77,7 @@ export default async function ProjectsPage({
           </div>
         ) : (
           <ProjectsCarousel
-            className="min-h-0 flex-1"
+            className="max-lg:shrink-0 lg:min-h-0 lg:flex-1"
             title={t("title")}
             subtitle={t("subtitle")}
             slideIds={projects.map((p) => p.slug)}

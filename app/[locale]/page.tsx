@@ -54,9 +54,9 @@ export default async function LandingPage({
   ) as Record<ChipKey, string>;
 
   return (
-    <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden text-foreground selection:bg-primary/30">
-      <main className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 min-h-0 flex-col overflow-hidden px-4 sm:px-6">
-        <div className="flex w-full flex-1 min-h-0 flex-col">
+    <div className="relative flex w-full max-lg:shrink-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
+      <main className="relative z-10 mx-auto flex w-full max-w-4xl flex-col px-4 sm:px-6 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
+        <div className="flex w-full flex-col lg:flex-1 lg:min-h-0">
           <ChatIsland locale={locale} prompts={prompts} />
         </div>
       </main>

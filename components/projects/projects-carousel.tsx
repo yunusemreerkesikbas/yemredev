@@ -138,7 +138,7 @@ export function ProjectsCarousel({
       aria-roledescription="carousel"
       aria-label={title}
       className={cn(
-        "mx-auto flex w-full max-w-[min(100%,92rem)] min-h-0 flex-1 flex-col px-3 pt-2 pb-8 sm:px-5 md:px-8 lg:pb-4",
+        "mx-auto flex w-full max-w-[min(100%,92rem)] max-lg:shrink-0 flex-col px-3 pt-2 pb-8 sm:px-5 md:px-8 lg:min-h-0 lg:flex-1 lg:pb-4",
         className,
       )}
     >
@@ -208,7 +208,7 @@ export function ProjectsCarousel({
         aria-label={t("trackLabel")}
         onKeyDown={onKeyDown}
         className={cn(
-          "no-scrollbar-webkit no-scrollbar flex min-h-0 flex-1 touch-pan-x gap-7 overflow-x-auto overflow-y-hidden scroll-smooth pb-2",
+          "no-scrollbar-webkit no-scrollbar flex touch-pan-x gap-7 overflow-x-auto overflow-y-visible scroll-smooth pb-2 lg:min-h-0 lg:flex-1 lg:overflow-y-hidden",
           "snap-x snap-mandatory scroll-pl-3 sm:scroll-pl-6 md:scroll-pl-8",
         )}
         style={{ scrollSnapType: "x mandatory" }}
@@ -217,13 +217,13 @@ export function ProjectsCarousel({
           <div
             key={slideIds[index] ?? `slide-${index}`}
             className={cn(
-              "flex h-full min-h-0 w-[min(90vw,72rem)] shrink-0 snap-start motion-safe:animate-fade-in",
+              "flex h-auto min-h-0 w-[min(90vw,72rem)] shrink-0 self-stretch snap-start motion-safe:animate-fade-in lg:h-full",
             )}
             style={{
               animationDelay: `${Math.min(index, 8) * 70}ms`,
             }}
           >
-            <div className="flex min-h-0 w-full min-w-0 flex-1 flex-col">
+            <div className="flex h-auto min-h-0 w-full min-w-0 flex-col lg:flex-1">
               {child}
             </div>
           </div>
