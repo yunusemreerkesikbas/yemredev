@@ -1,6 +1,6 @@
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 import { isAppLocale, type AppLocale } from "@/i18n/routing";
-import { getProfile } from "@/lib/data";
+import { getProfile, getProjects } from "@/lib/data";
 import { buildSystemPrompt } from "@/lib/ai/system-prompt";
 import { getChatModel, getModelName } from "@/lib/ai/openai";
 import { mapError } from "@/lib/ai/errors";
@@ -104,7 +104,8 @@ export async function POST(request: Request) {
     body.locale && isAppLocale(body.locale) ? body.locale : "en";
 
   const profile = getProfile(locale);
-  const system = buildSystemPrompt(profile, locale);
+  const projects = getProjects(locale);
+  const system = buildSystemPrompt(profile, locale, projects);
 
   try {
     const result = streamText({

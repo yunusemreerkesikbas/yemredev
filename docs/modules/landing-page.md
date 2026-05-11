@@ -35,7 +35,7 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 │             Hello. I'm Yemre's AI Assistant.                    │
 │       I can answer questions about frontend craft…              │
 │                                                                 │
-│   [⚡ Skills]  [</> GitHub]  [💼 Experience]  [📄 Resume]       │
+│   [Skills] [GitHub] [Experience] [Resume] [Craftive] [SAP]       │
 │                       ← QuickActionChips                        │
 │                                                                 │
 │   ┌───────────────────────────────────────────────┐             │
@@ -59,9 +59,8 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 
 ### `QuickActionChips`
 
-- Server component. Reads `landing.chips.*` translations.
-- Renders 4 chips driven by the local `CHIPS` const (key + lucide icon + accent class). Each chip is a `<div role="listitem">` — **not** a button — to make the static intent explicit. Hover lifts the chip; there's no click handler in Phase 2.
-- Phase 6 swap: convert the wrapping `<div role="list">` to a `<ul>` and each chip to a `<button>` that calls a client-side handler exposed via context. Preserve the icon → accent mapping.
+- Client component (`"use client"`). Reads `landing.chips.*` translations.
+- Renders 6 chips from the local `CHIPS` const (key + lucide icon + accent class). Each chip is a `<button>` inside a `<ul>`; clicking sends the matching `landing.chips.prompts.<key>` string through the parent `ChatIsland` handler.
 
 ### `ChatInputBar`
 

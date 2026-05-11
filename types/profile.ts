@@ -41,6 +41,24 @@ export type Availability = {
   label: string;
 };
 
+/**
+ * Optional public-safe personal blurbs for the AI assistant only (not shown
+ * as landing chips). Empty strings are omitted from the system prompt.
+ */
+export type ProfilePersonal = {
+  languages?: string;
+  hobbies?: string;
+  currentlyLearning?: string;
+  community?: string;
+  workValues?: string;
+  /** How you describe temperament & character for the assistant (keep public-safe). */
+  personality?: string;
+  /** Vendor exams, cloud, Scrum, etc. — omit or empty until you publish specifics. */
+  certifications?: string;
+  /** Freelance / collaboration scope, remote preference, time-zone hints. */
+  freelancePreferences?: string;
+};
+
 export type Profile = {
   name: string;
   initials: string;
@@ -55,6 +73,8 @@ export type Profile = {
   education: Education[];
   experience: Experience[];
   skills: SkillGroup[];
+  /** Optional lifestyle / soft facts for the chat assistant (no UI chips). */
+  personal?: ProfilePersonal;
   /** Optional OSS contributions surfaced by the home OpenSourceHighlight card. */
   openSource?: OpenSourceProject[];
 };

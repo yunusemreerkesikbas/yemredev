@@ -4,14 +4,14 @@
     "cover": "/craftive.png",
     "title": "Craftive",
     "summary": "One platform. Every configuration. Blogs, HR portals, e-commerce or corporate sites — all powered by a single infrastructure.",
-    "description": "Craftive is a configurable multi-tenant platform that turns any idea into a digital product. Built with Clean Architecture, it ships a Spring Boot 3 backend with Database-per-Tenant isolation (Flyway, JWT, OWASP sanitization), an Angular 19 admin control panel (Signals, RxJS, ApexCharts), and a headless Next.js App Router storefront. Tenant storefronts are forked from the reference Next.js app — only the theme layer changes while the shared CMS and runtime contract stays intact. The full deployment pipeline runs on GitHub Actions CI/CD, served via Cloudflare, and hosted on DigitalOcean.",
+    "description": "Craftive is a configurable multi-tenant platform (Clean Architecture) shipped as a monorepo: backend (Spring Boot 3.3, Java 21), Angular 19 admin under storefront, and a headless Next.js App Router reference storefront under storefront-nextjs — plus docker and docs. Database-per-tenant isolation uses Flyway migrations and tenant-scoped routing with HikariCP pools. The Angular admin uses Signals, RxJS, Material, ApexCharts, and Quill; public storefronts fork the shared Next.js base so only the theme layer changes. APIs are protected with Spring Security, JWT, OWASP-focused sanitization, and Resilience4j rate limiting; tests use JUnit 5 and Testcontainers. CI/CD runs on GitHub Actions, served via Cloudflare, hosted on DigitalOcean.",
     "detail": "Tenant routing maps each host to an isolated schema with per-tenant Flyway migrations. The Spring layer owns JWT auth, validation, and tenant context; the Angular admin leans on Signals for UI state and RxJS for API streams. Storefronts share one Next.js contract so themes can change without breaking the CMS pipeline. CI/CD on GitHub Actions deploys to DigitalOcean behind Cloudflare with cache and security policies aligned to production traffic.",
     "year": 2025,
     "role": "Founder, Full-Stack Developer & DevOps",
-    "stack": ["Spring Boot", "Java 21", "Angular 19", "Next.js", "TypeScript", "MySQL", "Docker", "GitHub Actions", "Cloudflare", "DigitalOcean"],
+    "stack": ["Spring Boot 3.3", "Java 21", "Spring Data JPA", "Hibernate", "Flyway", "MySQL", "HikariCP", "Spring Security", "JWT", "Resilience4j", "JUnit 5", "Testcontainers", "Angular 19", "Next.js", "TypeScript", "Tailwind CSS", "Docker", "GitHub Actions", "Cloudflare", "DigitalOcean"],
     "featured": true,
     "status": "live",
-    "category": "saas",
+    "category": "CMS",
     "links": [
       {
         "label": "Live",

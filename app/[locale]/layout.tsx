@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { canonicalUrl, hreflangAlternates, OG_IMAGE_URL } from "@/lib/seo";
@@ -32,6 +32,12 @@ const jetbrainsMono = JetBrains_Mono({
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export async function generateMetadata({
   params,

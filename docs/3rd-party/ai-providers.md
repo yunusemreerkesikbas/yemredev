@@ -42,7 +42,7 @@ In rough order of weight:
 
 ## Live integration shape
 
-- System prompt built per request from [content/profile.{en,tr}.json](../../content/) via [lib/ai/system-prompt.ts](../../lib/ai/system-prompt.ts) — pins the response language to the request locale, scopes answers to "about Yemre" only, and resists prompt-injection.
+- System prompt built per request from [content/profile.{en,tr}.json](../../content/profile.en.json) (including optional `personal` blurbs for lifestyle questions) and [content/projects.{en,tr}.json](../../content/projects.en.json) via [lib/ai/system-prompt.ts](../../lib/ai/system-prompt.ts) — pins the response language to the request locale, scopes answers to "about Yemre" only, lists the same portfolio entries as `/projects`, instructs the model to lead with Craftive when summarizing projects, and resists prompt-injection.
 - Model wiring centralized in [lib/ai/openai.ts](../../lib/ai/openai.ts) — provider swap is one file.
 - Error mapping in [lib/ai/errors.ts](../../lib/ai/errors.ts) — translates provider errors into one of `rate_limited \| provider_unavailable \| bad_request \| server_error`. Client maps the code to a localized string under `chat.errors.*`.
 - Rate limit in [lib/ratelimit.ts](../../lib/ratelimit.ts) — Upstash sliding window; missing env → null (warns once on prod build).

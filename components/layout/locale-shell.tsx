@@ -27,7 +27,7 @@ export function LocaleShell({ profile, children }: LocaleShellProps) {
   const landing = isLandingPath(pathname);
 
   return (
-    <div className="flex h-dvh w-full flex-col overflow-hidden">
+    <div className="flex h-dvh w-full min-w-0 flex-col overflow-hidden">
       <div className="shrink-0">
         {landing ? (
           <LandingHeader profile={profile} />
@@ -35,7 +35,7 @@ export function LocaleShell({ profile, children }: LocaleShellProps) {
           <AppHeader profile={profile} />
         )}
       </div>
-      <div className="relative flex min-h-0 flex-1 flex-col">
+      <div className="relative flex min-h-0 min-w-0 flex-1 flex-col">
         <div
           className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
           aria-hidden
@@ -47,7 +47,7 @@ export function LocaleShell({ profile, children }: LocaleShellProps) {
           )}
         </div>
 
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+        <div className="relative z-10 flex min-h-0 min-w-0 flex-1 flex-col">
           <PageTransition>{children}</PageTransition>
         </div>
       </div>

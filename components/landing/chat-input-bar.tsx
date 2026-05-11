@@ -2,7 +2,7 @@
 
 import { type FormEvent } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowUp, Mic, Sparkles } from "lucide-react";
+import { ArrowUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type ChatInputStatus = "idle" | "submitted" | "streaming" | "error";
@@ -34,38 +34,31 @@ export function ChatInputBar({
   return (
     <form
       onSubmit={handleSubmit}
-      className="group/search relative w-full"
+      className="group/search relative w-full min-w-0"
       aria-label={t("ariaLabel")}
     >
-      <div className="relative flex w-full items-center rounded-xl border border-border bg-card-dark p-1 transition-colors duration-300 group-focus-within/search:border-primary/45 dark:border-white/10">
-        <div className="flex items-center justify-center pl-4 pr-3 text-muted-foreground transition-colors duration-300 group-focus-within/search:text-primary">
+      <div className="relative flex w-full min-w-0 items-center rounded-xl border border-border bg-card-dark p-1 transition-colors duration-300 group-focus-within/search:border-primary/45 dark:border-white/10">
+        <div className="flex shrink-0 items-center justify-center pl-4 pr-3 text-muted-foreground transition-colors duration-300 group-focus-within/search:text-primary">
           <Sparkles aria-hidden className="h-5 w-5" strokeWidth={1.75} />
         </div>
 
-        <input
-          type="text"
-          name="prompt"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          autoComplete="off"
-          inputMode="text"
-          spellCheck={false}
-          disabled={isBusy}
-          placeholder={t("placeholder")}
-          aria-label={t("ariaLabel")}
-          className="caret-primary w-full border-none bg-transparent py-4 text-base font-medium tracking-tight text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-0 disabled:opacity-60 sm:text-lg"
-        />
+        <div className="min-w-0 flex-1">
+          <input
+            type="text"
+            name="prompt"
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+            autoComplete="off"
+            inputMode="text"
+            spellCheck={false}
+            disabled={isBusy}
+            placeholder={t("placeholder")}
+            aria-label={t("ariaLabel")}
+            className="caret-primary box-border w-full min-w-0 border-none bg-transparent py-4 text-base font-medium tracking-tight text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-0 disabled:opacity-60 sm:text-lg"
+          />
+        </div>
 
-        <div className="flex items-center gap-2 pr-2">
-          <button
-            type="button"
-            tabIndex={-1}
-            aria-label={t("micLabel")}
-            disabled
-            className="rounded-lg bg-foreground/[0.06] p-2 text-muted-foreground transition-colors hover:bg-foreground/[0.1] hover:text-foreground disabled:cursor-not-allowed dark:bg-white/5 dark:text-white/40 dark:hover:bg-white/10 dark:hover:text-white"
-          >
-            <Mic aria-hidden className="h-5 w-5" strokeWidth={1.75} />
-          </button>
+        <div className="flex shrink-0 items-center pr-2">
           <button
             type="submit"
             aria-label={t("sendLabel")}

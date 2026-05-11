@@ -66,19 +66,22 @@
         "skills": "Yemre'yi öne çıkaran ne?",
         "github": "GitHub'ını göster",
         "experience": "Kariyer öne çıkanları",
-        "resume": "Özgeçmişi al"
+        "resume": "Özgeçmişi al",
+        "craftive": "Craftive nedir?",
+        "sap": "SAP Commerce ve mağazalar"
       },
       "prompts": {
         "skills": "Yemre'nin öne çıkan teknik becerileri ve farklılıkları neler?",
         "github": "Yemre'nin GitHub profilini nerede bulabilirim?",
         "experience": "Yemre'nin kariyer öne çıkanlarını ve profesyonel deneyimini anlat.",
-        "resume": "Yemre'nin özgeçmişini nereden indirebilirim?"
+        "resume": "Yemre'nin özgeçmişini nereden indirebilirim?",
+        "craftive": "Yalnızca Portfolyo projeleri kataloğundaki \"craftive\" kaydına dayanarak Craftive'ı anlat: hangi problemi çözüyor, çok kiracılı mimari, monorepo yapısı, ana teknolojiler ve canlı site ya da repo linkleri. İlgisiz ürünlere kayma.",
+        "sap": "Yemre SAP Commerce, Hybris ve Spartacus ile nasıl çalıştı? B2B/B2C deneyimi ve profilde geçen örnek müşteri projelerinden bahset."
       }
     },
     "input": {
       "ariaLabel": "Yapay zeka asistanına sor",
       "placeholder": "Yemre hakkında istediğini sor…",
-      "micLabel": "Sesle giriş (yakında)",
       "sendLabel": "Mesaj gönder",
       "modelLabel": "Model: gpt-4o-mini",
       "enterHintBefore": "Göndermek için",

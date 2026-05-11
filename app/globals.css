@@ -130,6 +130,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  overflow-x: clip;
+}
+
 /* Tabular numerals helper for telemetry strips, code, and aligned columns. */
 .font-tabular {
   font-variant-numeric: tabular-nums;

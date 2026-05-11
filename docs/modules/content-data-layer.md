@@ -32,6 +32,7 @@ There is no database, no CMS, and no API. Editing content == editing JSON + a re
 | `education` | `Education[]` | `end` may be `"present"` |
 | `experience` | `Experience[]` | `highlights` is bullet list, `stack` optional |
 | `skills` | `SkillGroup[]` | grouped lists |
+| `personal` | `ProfilePersonal?` | Optional soft facts for the chat assistant only — keys: `languages`, `hobbies`, `currentlyLearning`, `community`, `workValues`, `personality`, `certifications`, `freelancePreferences` (all optional strings). Omitted keys or empty strings are not sent to the model. Not landing chips. |
 | `openSource` | `OpenSourceProject[]?` | One-shot OSS contribution list, surfaced by the home `OpenSourceHighlight` card. |
 
 `Project` ([types/project.ts](../../types/project.ts)):
@@ -133,3 +134,4 @@ The projects carousel follows the same rule: [`app/[locale]/projects/page.tsx`](
 - **`react.cache` scope is per-request.** Mutating the returned objects is forbidden — they are shared across all components in the same request.
 - **Project ordering** is currently insertion order in the JSON. If you need a different order, sort inside [lib/data.ts](../../lib/data.ts) (`featured` first, then `year` desc) so all consumers agree.
 - **Localized URLs in social links** — `mailto:` is locale-agnostic; if you ever need a localized website link, encode the locale in the URL path, not in the loader.
+- **`Profile.openSource` star/fork counts** are static in JSON — refresh them manually when you want the home OSS card to reflect GitHub; there is no runtime fetch yet (see [types/open-source.ts](../../types/open-source.ts)).

@@ -14,7 +14,7 @@ export function AppHeader({ profile: _profile }: AppHeaderProps) {
   const tHeader = useTranslations("header");
 
   return (
-    <header className="relative z-20 flex min-h-[64px] w-full items-center justify-between border-b border-border bg-background/90 px-4 py-2 backdrop-blur-md sm:px-6 md:min-h-[72px] md:px-8 dark:bg-background-dark/55">
+    <header className="relative z-20 flex min-h-[64px] min-w-0 w-full items-center justify-between gap-2 border-b border-border bg-background/90 px-4 py-2 backdrop-blur-md sm:px-6 md:min-h-[72px] md:px-8 dark:bg-background-dark/55">
       <HeaderLogo href="/home" ariaLabel={tHeader("logoAriaApp")} />
 
       <AppHeaderNav />
