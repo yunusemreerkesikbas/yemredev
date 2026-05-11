@@ -87,7 +87,7 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
       className={cn(
         "flex w-full flex-col items-center",
         hasMessages
-          ? "gap-4 py-4 lg:flex-1 lg:min-h-0"
+          ? "gap-4 py-4 max-lg:h-[calc(100dvh-5.5rem)] max-lg:min-h-0 max-lg:overflow-hidden lg:h-auto lg:min-h-0 lg:flex-1"
           : "min-h-[calc(100dvh-5.5rem)] justify-center gap-6 py-10 lg:h-full lg:min-h-0",
       )}
     >
@@ -111,19 +111,22 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
         />
       )}
 
-      <QuickActionChips
-        prompts={prompts}
-        onChipClick={handleChipClick}
-        disabled={isBusy}
-        hidden={hasMessages}
-      />
+      {!hasMessages ? (
+        <QuickActionChips
+          prompts={prompts}
+          onChipClick={handleChipClick}
+          disabled={isBusy}
+        />
+      ) : null}
 
-      <ChatInputBar
-        value={input}
-        onChange={setInput}
-        onSubmit={handleSubmit}
-        status={inputStatus}
-      />
+      <div className="w-full shrink-0">
+        <ChatInputBar
+          value={input}
+          onChange={setInput}
+          onSubmit={handleSubmit}
+          status={inputStatus}
+        />
+      </div>
     </div>
   );
 }
