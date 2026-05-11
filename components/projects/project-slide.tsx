@@ -89,7 +89,7 @@ export async function ProjectSlide({ project }: ProjectSlideProps) {
   return (
     <article
       aria-labelledby={`project-title-${project.slug}`}
-      className="glass-bento-surface relative flex min-h-0 flex-col rounded-2xl p-6 transition-[border-color] duration-300 ease-out hover:border-primary/55 motion-reduce:transition-none md:p-8 lg:h-full lg:overflow-hidden"
+      className="glass-bento-surface relative flex h-full min-h-0 flex-col overflow-hidden rounded-2xl p-6 transition-[border-color] duration-300 ease-out hover:border-primary/55 motion-reduce:transition-none md:p-8"
     >
       <div
         aria-hidden
@@ -118,15 +118,15 @@ export async function ProjectSlide({ project }: ProjectSlideProps) {
         </span>
       </header>
 
-      <div className="relative z-10 mt-5 grid min-h-0 grid-cols-1 gap-6 lg:flex-1 lg:grid-cols-[minmax(0,1.14fr)_minmax(0,0.86fr)] lg:gap-8 lg:overflow-hidden">
-        <div className="min-h-0">
+      <div className="relative z-10 mt-5 grid min-h-0 flex-1 grid-cols-1 grid-rows-[auto_minmax(0,1fr)] gap-6 overflow-hidden lg:grid-cols-[minmax(0,1.14fr)_minmax(0,0.86fr)] lg:grid-rows-1 lg:gap-8">
+        <div className="min-h-0 shrink-0 lg:min-h-0">
           <ProjectMediaCarousel
             slides={mediaSlides}
             previewLabel={t("previewPlaceholder")}
           />
         </div>
 
-        <div className="flex flex-col gap-4 pr-0.5 lg:min-h-0 lg:overflow-y-auto lg:overscroll-y-contain lg:pr-1">
+        <div className="thin-scrollbar flex min-h-0 flex-col gap-4 overflow-y-auto overscroll-y-contain pr-0.5 lg:pr-1">
           <h2
             id={`project-title-${project.slug}`}
             className="text-balance text-2xl font-bold tracking-tight text-foreground md:text-3xl md:leading-tight"
@@ -151,7 +151,7 @@ export async function ProjectSlide({ project }: ProjectSlideProps) {
               >
                 {t("detailTitle")}
               </h3>
-              <p className="mt-2 text-pretty text-sm font-medium leading-relaxed text-foreground/75 lg:max-h-[min(22vh,11rem)] lg:overflow-y-auto lg:overscroll-y-contain">
+              <p className="mt-2 text-pretty text-sm font-medium leading-relaxed text-foreground/75">
                 {detailText}
               </p>
             </section>

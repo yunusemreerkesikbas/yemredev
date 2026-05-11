@@ -208,8 +208,9 @@ export function ProjectsCarousel({
         aria-label={t("trackLabel")}
         onKeyDown={onKeyDown}
         className={cn(
-          "no-scrollbar-webkit no-scrollbar flex touch-pan-x gap-7 overflow-x-auto overflow-y-visible scroll-smooth pb-2 lg:min-h-0 lg:flex-1 lg:overflow-y-hidden",
+          "no-scrollbar-webkit no-scrollbar flex h-[clamp(26rem,min(66dvh,48rem),52rem)] touch-pan-x items-stretch gap-7 overflow-x-auto overflow-y-hidden scroll-smooth pb-2",
           "snap-x snap-mandatory scroll-pl-3 sm:scroll-pl-6 md:scroll-pl-8",
+          "lg:h-full lg:min-h-0 lg:flex-1",
         )}
         style={{ scrollSnapType: "x mandatory" }}
       >
@@ -217,13 +218,13 @@ export function ProjectsCarousel({
           <div
             key={slideIds[index] ?? `slide-${index}`}
             className={cn(
-              "flex h-auto min-h-0 w-[min(90vw,72rem)] shrink-0 self-stretch snap-start motion-safe:animate-fade-in lg:h-full",
+              "flex h-full min-h-0 w-[min(90vw,72rem)] shrink-0 snap-start motion-safe:animate-fade-in",
             )}
             style={{
               animationDelay: `${Math.min(index, 8) * 70}ms`,
             }}
           >
-            <div className="flex h-auto min-h-0 w-full min-w-0 flex-col lg:flex-1">
+            <div className="flex h-full min-h-0 w-full min-w-0 flex-col">
               {child}
             </div>
           </div>

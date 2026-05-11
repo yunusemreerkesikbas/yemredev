@@ -1,11 +1,13 @@
 [
   {
     "slug": "craftive",
+    "cover": "/craftive.png",
     "title": "Craftive",
     "summary": "Tek platform. Her yapılandırma. Blog, İK portalı, e-ticaret veya kurumsal site — hepsi tek bir altyapıyla.",
     "description": "Craftive, her fikri dijital ürüne dönüştüren yapılandırılabilir çok kiracılı bir platformdur. Clean Architecture ile inşa edilmiş Spring Boot 3 backend (Flyway migration, JWT kimlik doğrulama, OWASP girdi sanitasyonu), Angular Signals ve RxJS ile güçlendirilmiş Angular 19 admin paneli ve headless Next.js App Router mağaza arayüzü içermektedir. Tenant mağazaları referans Next.js uygulaması fork edilerek oluşturulur — yalnızca tema katmanı değişirken paylaşılan CMS ve çalışma zamanı sözleşmesi sabit kalır. Dağıtım pipeline'ı GitHub Actions CI/CD üzerinde çalışır, Cloudflare üzerinden sunulur ve DigitalOcean'da barındırılır.",
+    "detail": "Her istemci alanı adı yalıtılmış bir şemaya ve kiracı başına Flyway migrasyonlarına bağlanır. JWT kimlik doğrulama, doğrulama ve kiracı bağlamı Spring katmanındadır; Angular yönetim paneli arayüz durumu için Signals, API akışları için RxJS kullanır. Mağaza arayüzleri tek bir Next.js sözleşmesini paylaşır; böylece temalar değişirken CMS hattı bozulmaz. GitHub Actions üzerindeki CI/CD, üretim trafiğine uygun önbellek ve güvenlik politikalarıyla Cloudflare arkasındaki DigitalOcean'a dağıtır.",
     "year": 2025,
-    "role": "Full-Stack Developer & DevOps",
+    "role": "Kurucu, Full-Stack Developer ve DevOps",
     "stack": ["Spring Boot", "Java 21", "Angular 19", "Next.js", "TypeScript", "MySQL", "Docker", "GitHub Actions", "Cloudflare", "DigitalOcean"],
     "featured": true,
     "status": "live",
