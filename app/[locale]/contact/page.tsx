@@ -14,6 +14,11 @@ import {
 } from "@/lib/seo";
 import { isAppLocale } from "@/i18n/routing";
 import type { Profile } from "@/types/profile";
+import { cn } from "@/lib/utils";
+
+/** Icon column matches `h-11 w-11` (2.75rem); rows share this grid so mobile stays centered + aligned. */
+const CONTACT_ROW_GRID =
+  "mx-auto grid w-full max-w-[min(22.5rem,100%)] grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-x-4 sm:max-w-md md:mx-0 md:max-w-none md:w-full";
 
 function primaryEmailLink(profile: Profile) {
   return (
@@ -104,11 +109,14 @@ export default async function ContactPage({
           </header>
 
           <div className="flex w-full flex-col items-center gap-8 md:flex-row md:items-stretch md:justify-center md:gap-0">
-            <div className="flex w-full max-w-md flex-col gap-6 md:w-auto md:pr-10 lg:pr-12">
+            <div className="mx-auto flex w-full max-w-md flex-col items-center gap-6 md:mx-0 md:w-auto md:items-stretch md:pr-10 lg:pr-12">
               {emailLink && emailDisplay ? (
                 <a
                   href={emailLink.url}
-                  className="group/row flex min-w-0 w-full cursor-pointer items-center gap-4 rounded-xl outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/60"
+                  className={cn(
+                    CONTACT_ROW_GRID,
+                    "group/row cursor-pointer rounded-xl outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary/60",
+                  )}
                 >
                   <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-foreground/[0.05] transition-colors group-hover/row:border-primary/50 dark:border-white/10 dark:bg-white/5">
                     <Mail
@@ -121,14 +129,14 @@ export default async function ContactPage({
                     <span className="block text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
                       {t("emailLabel")}
                     </span>
-                    <span className="block truncate text-sm font-medium text-foreground/85">
+                    <span className="block break-words text-sm font-medium text-foreground/85">
                       {emailDisplay}
                     </span>
                   </span>
                 </a>
               ) : null}
 
-              <div className="group/row flex w-full min-w-0 items-center gap-4">
+              <div className={cn(CONTACT_ROW_GRID, "group/row")}>
                 <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-foreground/[0.05] transition-colors group-hover/row:border-accent-emerald/50 dark:border-white/10 dark:bg-white/5">
                   <MapPin
                     aria-hidden
@@ -149,7 +157,7 @@ export default async function ContactPage({
 
             <div
               aria-hidden
-              className="h-px w-full max-w-[14rem] shrink-0 bg-border md:hidden"
+              className="mx-auto h-px w-full max-w-[14rem] shrink-0 bg-border md:mx-0 md:hidden"
             />
 
             <div

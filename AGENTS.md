@@ -26,7 +26,7 @@ No backend service. All portfolio content lives in [content/](content/) as JSON.
 | [app/[locale]/layout.tsx](app/[locale]/layout.tsx) | Real layout: `<html lang>`, providers, header |
 | [app/[locale]/page.tsx](app/[locale]/page.tsx) | Phase 2 — AI Assistant landing |
 | [app/[locale]/home/page.tsx](app/[locale]/home/page.tsx) | Phase 3 — single-screen portfolio overview |
-| [app/[locale]/portfolio/page.tsx](app/[locale]/portfolio/page.tsx) | Phase 4 — carousel detail |
+| [app/[locale]/projects/page.tsx](app/[locale]/projects/page.tsx) | Phase 4 — carousel detail |
 | [app/[locale]/contact/page.tsx](app/[locale]/contact/page.tsx) | Phase 5 — contact form |
 | [app/api/chat/route.ts](app/api/chat/route.ts) | Phase 6 — Vercel AI SDK streaming endpoint (Node.js runtime, active) |
 | [app/api/contact/route.ts](app/api/contact/route.ts) | Phase 5 — contact submission (currently `501`) |
@@ -125,19 +125,20 @@ CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the same trio on 
 
 | Phase | Scope | Status |
 | --- | --- | --- |
-| 1 | Core scaffold, i18n, theme, docs | **current** |
-| 1.5 | Fill [DESIGN.md](DESIGN.md) from user-supplied design example, refine tokens & fonts | pending example |
-| 2 | AI Assistant landing UI (input, skip button) | pending |
-| 3 | Single-screen portfolio overview (no scroll) | pending |
-| 4 | Portfolio detail carousel | pending |
-| 5 | Contact form + delivery provider decision | pending |
-| 6 | AI provider decision + Vercel AI SDK streaming | **done** (OpenAI gpt-4o-mini) |
+| 1 | Core scaffold, i18n, theme, docs | **done** |
+| 1.5 | Visual tokens, fonts (Space Grotesk + JetBrains Mono), design system | **done** |
+| 2 | AI Assistant landing UI (input, skip button, iris transition) | **done** |
+| 3 | Single-screen portfolio overview (bento grid) | **done** |
+| 4 | Portfolio detail carousel (`/projects`) | **done** |
+| 5 | Contact page — formless social/email links | **done** |
+| 6 | AI provider + Vercel AI SDK streaming, security hardening | **done** (OpenAI gpt-4o-mini) |
+| 7 | Deploy to Cloudflare Workers, custom domain, CI/CD | **done** |
 
-## 13. Decisions Pending
+## 13. Decisions Made
 
-- **Contact delivery** (Phase 5): Resend / Formspree / EmailJS / mailto.
-- **Deploy target**: Vercel / DigitalOcean / Cloudflare / self-host. CI runs lint+build only; deploy job will be appended to [.github/workflows/ci.yml](.github/workflows/ci.yml) after the choice.
-- **Final visual tokens & font**: blocked on user-supplied design example.
+- **Deploy target**: Cloudflare Workers via `@opennextjs/cloudflare`. Manual deploy via `workflow_dispatch` in [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
+- **Contact delivery** (Phase 5): Formless — direct email + social links. No form submission endpoint needed.
+- **Visual tokens & fonts**: Space Grotesk (display) + JetBrains Mono (mono). Tokens in [app/globals.css](app/globals.css).
 
 ## 14. Don'ts
 
@@ -145,5 +146,6 @@ CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the same trio on 
 - Don't bypass [i18n/navigation.ts](i18n/navigation.ts) for in-app links.
 - Don't put data fetching in Client Components — move it up to a Server Component and pass props.
 - Don't import server-only modules (`lib/data.ts`) from any `"use client"` file.
-- Don't add new fonts before [DESIGN.md](DESIGN.md) is filled.
 - Don't commit `.env.local`.
+- Don't add `export const runtime = "edge"` to any route handler — breaks the Cloudflare Workers adapter.
+- Don't rename `middleware.ts` to `proxy.ts` — Next.js 16 compiles `proxy.ts` as Node.js; Edge middleware must be in `middleware.ts`.

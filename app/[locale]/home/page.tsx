@@ -79,7 +79,7 @@ export default async function HomePage({
   const hasOpenSource = openSource.length > 0;
 
   return (
-    <div className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden text-foreground selection:bg-primary/30 lg:min-h-0 lg:overflow-hidden">
+    <div className="relative flex w-full min-w-0 min-h-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 max-lg:flex-none lg:flex-1 lg:overflow-hidden">
       <h1 className="sr-only">{profile.name}</h1>
       <JsonLd schema={buildPersonSchema(profile, locale)} />
       <JsonLd
@@ -87,7 +87,7 @@ export default async function HomePage({
           { name: "Home", url: canonicalUrl(locale, "/home") },
         ])}
       />
-      <main className="relative z-10 flex min-h-0 flex-1 flex-col p-[10px] lg:overflow-hidden">
+      <main className="relative z-10 flex min-w-0 min-h-0 flex-col p-[10px] max-lg:flex-none lg:flex-1 lg:overflow-hidden">
         <BentoGrid>
           <StatusBlock profile={profile} />
           <FeaturedProject

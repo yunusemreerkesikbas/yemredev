@@ -237,6 +237,29 @@ body {
   }
 }
 
+/* Thin branded scrollbar — use instead of no-scrollbar on scrollable regions
+   that benefit from a visible affordance (sidebars, timelines, card lists).
+   3 px track, primary-color thumb on hover, transparent when idle. */
+@utility thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    transition: background 0.2s ease;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 184, 247, 0.5);
+  }
+}
+
 /* Light theme: tone down the mesh so it doesn't clash with the bright
    surface. Landing page polish stays dark-first; light is functional. */
 :root.light .bg-mesh-gradient {
@@ -286,6 +309,16 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.85) inset,
     0 1px 0 rgba(255, 255, 255, 0.65) inset,
     0 18px 44px -22px rgba(15, 23, 42, 0.14);
+}
+
+:root.light .thin-scrollbar {
+  scrollbar-color: rgba(10, 10, 10, 0.14) transparent;
+}
+:root.light .thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.14);
+}
+:root.light .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 184, 247, 0.55);
 }
 
 /* Headings using `text-gradient-fade` must stay dark-on-light readable. */

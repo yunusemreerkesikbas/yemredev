@@ -36,7 +36,7 @@ export function EducationCTA({ education, className }: EducationCTAProps) {
         </h2>
       </header>
 
-      <ul className="no-scrollbar min-h-0 flex-1 list-none space-y-3 overflow-y-auto py-3 p-0">
+      <ul className="thin-scrollbar list-none space-y-3 py-3 p-0 max-lg:flex-none max-lg:overflow-visible lg:min-h-0 lg:flex-1 lg:overflow-y-auto">
         {education.map((entry) => (
           <li key={`${entry.school}-${entry.start}`}>
             <p className="text-sm font-semibold leading-tight text-foreground">

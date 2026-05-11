@@ -24,7 +24,7 @@ Defines the App Router shape, the locale-scoped layout, and the proxy that perfo
 | `/{locale}/home` | [app/[locale]/home/page.tsx](../../app/[locale]/home/page.tsx) | 3 | Static (SSG) |
 | `/{locale}/projects` | [app/[locale]/projects/page.tsx](../../app/[locale]/projects/page.tsx) | 4 | Static (SSG) — carousel shipped |
 | `/{locale}/contact` | [app/[locale]/contact/page.tsx](../../app/[locale]/contact/page.tsx) | 5 | Static (SSG) — formless social cards |
-| `/api/chat` | [app/api/chat/route.ts](../../app/api/chat/route.ts) | 6 | Dynamic (`runtime = "edge"`) |
+| `/api/chat` | [app/api/chat/route.ts](../../app/api/chat/route.ts) | 6 | Dynamic (Node.js runtime) |
 | `/api/contact` | [app/api/contact/route.ts](../../app/api/contact/route.ts) | 5 | Dynamic (Node) |
 
 `{locale}` ∈ `{en, tr}`, fixed by [i18n/routing.ts](../../i18n/routing.ts) and prerendered via `generateStaticParams` in the locale layout.
@@ -44,13 +44,15 @@ flowchart TB
 
 The **root** layout intentionally renders nothing but `children` so the locale layout can own `<html>` and `<body>` with a proper `lang` attribute. This pattern is the canonical next-intl recipe and is required for static rendering both locales.
 
-## Proxy contract
+## Middleware contract
 
-[proxy.ts](../../proxy.ts) is the Next 16 file convention (formerly `middleware.ts`). It:
+[middleware.ts](../../middleware.ts) is the Next.js Edge middleware entry point. It:
 
 1. Matches every path except `/api/*`, `/_next/*`, `/_vercel/*`, and any path containing a dot (assets).
 2. If the path **already** carries a locale prefix → delegates to next-intl's middleware untouched.
-3. Otherwise resolves the locale via `cookie → country header → Accept-Language → en`, sets the `NEXT_LOCALE` cookie (1-year), and 302-redirects to `/{locale}{originalPath}`.
+3. Otherwise resolves the locale via `cookie → cf-ipcountry header → Accept-Language → en`, sets the `NEXT_LOCALE` cookie (1-year), and 302-redirects to `/{locale}{originalPath}`.
+
+`cf-ipcountry` is injected by Cloudflare on every request — no extra IP lookup service required.
 
 See [global/i18n.md](../global/i18n.md) for the full resolution table.
 
@@ -96,3 +98,5 @@ See [global/i18n.md](../global/i18n.md) for the full resolution table.
 - **Edge runtime disables ISR for that route.** `/api/chat` shows up as `ƒ` in the build summary, which is expected.
 - **`/` is never a final URL.** All in-app links must use the typed `Link` so the locale prefix is added.
 - **`params` is a Promise** in Next 16 — always `await params` before reading.
+- **Do not rename `middleware.ts` to `proxy.ts`.** Next.js 16 compiles `proxy.ts` as Node.js runtime; the Cloudflare adapter requires Edge middleware at `middleware.ts`.
+- **Do not add `export const runtime = "edge"` to API route handlers.** The adapter's `cloudflare-node` wrapper is incompatible with route-level edge exports.

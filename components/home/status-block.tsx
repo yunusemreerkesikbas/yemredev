@@ -53,8 +53,8 @@ export function StatusBlock({ profile, className }: StatusBlockProps) {
         </div>
       </div>
 
-      <div className="no-scrollbar flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto py-4">
-        <p className="text-pretty max-w-prose text-[15px] font-medium leading-relaxed text-foreground/85 sm:text-base">
+      <div className="thin-scrollbar flex flex-col gap-5 py-4 max-lg:flex-none max-lg:overflow-visible lg:min-h-0 lg:flex-1 lg:overflow-y-auto">
+        <p className="text-pretty text-[15px] font-normal leading-[1.65] tracking-[0.01em] text-foreground/70 sm:text-[15.5px]">
           {profile.tagline}
         </p>
 

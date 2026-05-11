@@ -15,28 +15,28 @@ The app has **no backend service**. All portfolio data is static JSON shipped wi
 ## Source of truth
 
 - Next.js config: [next.config.ts](../../next.config.ts)
-- Locale-aware proxy: [proxy.ts](../../proxy.ts)
+- Edge middleware (locale detection): [middleware.ts](../../middleware.ts)
 - Root layout (passthrough): [app/layout.tsx](../../app/layout.tsx)
 - Locale layout (`<html>`, providers, header): [app/[locale]/layout.tsx](../../app/[locale]/layout.tsx)
 - Tailwind v4 token sheet: [app/globals.css](../../app/globals.css)
-- API placeholders: [app/api/chat/route.ts](../../app/api/chat/route.ts), [app/api/contact/route.ts](../../app/api/contact/route.ts)
+- API routes: [app/api/chat/route.ts](../../app/api/chat/route.ts) (active), [app/api/contact/route.ts](../../app/api/contact/route.ts) (501 stub)
 
 ## Request flow
 
 ```mermaid
 flowchart LR
-    Visitor -->|GET /| Proxy[proxy.ts]
-    Visitor -->|GET /tr or /en| Proxy
-    Proxy -->|no locale prefix| Detect{Locale<br/>resolver}
+    Visitor -->|GET /| MW[middleware.ts]
+    Visitor -->|GET /tr or /en| MW
+    MW -->|no locale prefix| Detect{Locale<br/>resolver}
     Detect -->|cookie| Cookie[NEXT_LOCALE]
-    Detect -->|country header| Country[x-vercel-ip-country / cf-ipcountry]
+    Detect -->|country header| Country[cf-ipcountry]
     Detect -->|accept-language| AL[Accept-Language]
     Detect -->|fallback| EN[en]
     Cookie --> Redirect[302 to /<locale>/...]
     Country --> Redirect
     AL --> Redirect
     EN --> Redirect
-    Proxy -->|locale prefix already present| IntlMW[next-intl middleware]
+    MW -->|locale prefix already present| IntlMW[next-intl middleware]
     IntlMW --> RootLayout[app/layout.tsx]
     RootLayout --> LocaleLayout[app/[locale]/layout.tsx]
     LocaleLayout -->|providers| Page[Server Component pages]
@@ -56,7 +56,7 @@ API requests bypass the proxy via the matcher and hit the route handlers directl
 | [app/[locale]/home/page.tsx](../../app/[locale]/home/page.tsx) | home | Phase 3 — single-screen overview |
 | [app/[locale]/projects/page.tsx](../../app/[locale]/projects/page.tsx) | projects | Phase 4 — horizontal carousel (shipped) |
 | [app/[locale]/contact/page.tsx](../../app/[locale]/contact/page.tsx) | contact | Phase 5 — contact form |
-| [app/api/chat/route.ts](../../app/api/chat/route.ts) | landing | Phase 6 — streaming AI endpoint (`501`) |
+| [app/api/chat/route.ts](../../app/api/chat/route.ts) | landing | Phase 6 — streaming AI endpoint (active, Node.js runtime) |
 | [app/api/contact/route.ts](../../app/api/contact/route.ts) | contact | Phase 5 — contact submission (`501`) |
 | [components/layout/](../../components/layout/) | platform | Header, ThemeToggle, LanguageSwitcher |
 | [components/providers/](../../components/providers/) | platform | Client-only context providers |
@@ -64,9 +64,13 @@ API requests bypass the proxy via the matcher and hit the route handlers directl
 | [content/](../../content/) | content | Per-locale JSON content |
 | [i18n/](../../i18n/) | platform | next-intl routing, request, navigation |
 | [messages/](../../messages/) | platform | UI string catalogs |
+| [lib/ai/](../../lib/ai/) | landing | System prompt builder, OpenAI model wiring, error mapper |
+| [lib/ratelimit.ts](../../lib/ratelimit.ts) | landing | Upstash sliding window rate limiter for `/api/chat` |
 | [lib/data.ts](../../lib/data.ts) | platform | Server-only data loaders |
 | [lib/utils.ts](../../lib/utils.ts) | platform | `cn()` helper |
-| [proxy.ts](../../proxy.ts) | platform | Locale detection + redirect |
+| [middleware.ts](../../middleware.ts) | platform | Edge middleware — locale detection + redirect |
+| [open-next.config.ts](../../open-next.config.ts) | platform | Cloudflare Workers adapter config |
+| [wrangler.jsonc](../../wrangler.jsonc) | platform | Cloudflare Worker definition |
 | [types/](../../types/) | platform | Shared content types |
 
 ## Rules and invariants
@@ -85,5 +89,7 @@ API requests bypass the proxy via the matcher and hit the route handlers directl
 ## Gotchas
 
 - **Stale `.next` cache after deleting routes** — Next.js generates a `validator.ts` referencing old `app/page.tsx`. Wipe `.next` then rebuild after restructuring routes.
-- **`middleware.ts` deprecated in Next 16.** The file is named [proxy.ts](../../proxy.ts) and the export is `proxy`, not `middleware`. Build emits a deprecation warning if reverted.
+- **`middleware.ts` is the Edge entry point.** Next.js 16 compiles this file as Edge runtime. The Cloudflare adapter requires Edge middleware; do not rename it to `proxy.ts` (that would compile as Node.js and break the adapter).
+- **No `export const runtime = "edge"` in route handlers.** The `@opennextjs/cloudflare` adapter wraps routes in `cloudflare-node`; route-level edge exports conflict with the adapter and will cause build or runtime errors.
 - **Multiple lockfiles** — a parent-directory `package-lock.json` will hijack the Turbopack root inference. Pinned via `turbopack.root` in [next.config.ts](../../next.config.ts).
+- **Security headers** (CSP, HSTS, X-Frame-Options, etc.) are configured in [next.config.ts](../../next.config.ts) `headers()` — no separate middleware or Cloudflare Transform Rules needed.

@@ -1,30 +1,31 @@
 {
   "metadata": {
-    "title": "yemredev.com — AI-Powered Portfolio",
-    "description": "Frontend developer portfolio with an AI assistant that knows me.",
-    "siteName": "yemredev.com",
+    "title": "Yunus Emre Erkesikbaş — AI-Powered Portfolio",
+    "description": "Personal portfolio of Yunus Emre Erkesikbaş — frontend developer with an AI assistant that knows my work.",
+    "siteName": "Yunus Emre Erkesikbaş",
     "twitterHandle": "@yunusemre_dev",
     "pages": {
       "landing": {
-        "title": "yemredev.com — AI Portfolio Assistant & Developer Showcase",
+        "title": "Yunus Emre Erkesikbaş — AI Portfolio Assistant & Developer Showcase",
         "description": "Chat with an AI assistant that knows Yemre's full profile — projects, skills, experience, and open-source work. The fastest way to explore a developer portfolio."
       },
       "home": {
-        "title": "Portfolio Overview — Yunus Emre Erkesikbaş | yemredev.com",
+        "title": "Portfolio Overview — Yunus Emre Erkesikbaş",
         "description": "Explore Yunus Emre Erkesikbaş's professional background, featured projects, and tech expertise. Frontend developer specializing in SAP CX, Angular, and Next.js."
       },
       "projects": {
-        "title": "Projects & Case Studies — Yunus Emre Erkesikbaş | yemredev.com",
+        "title": "Projects & Case Studies — Yunus Emre Erkesikbaş",
         "description": "Delivered work by Yunus Emre Erkesikbaş — multi-tenant SaaS platforms, SAP Commerce storefronts, Angular dashboards, and Next.js applications."
       },
       "contact": {
-        "title": "Contact Yunus Emre Erkesikbaş — yemredev.com",
+        "title": "Contact — Yunus Emre Erkesikbaş",
         "description": "Get in touch with Yunus Emre Erkesikbaş for frontend development, SAP CX consulting, or collaboration. Available for freelance from Istanbul, Turkey."
       }
     }
   },
   "header": {
-    "logo": "yemredev.com",
+    "logoAriaLanding": "Yunus Emre Erkesikbaş — AI assistant, yemredev.com",
+    "logoAriaApp": "Yunus Emre Erkesikbaş — portfolio overview, yemredev.com",
     "language": {
       "label": "Language",
       "tr": "Turkish",
@@ -43,36 +44,40 @@
       "projects": "Projects",
       "contact": "Contact"
     },
-    "resume": "Resume"
+    "resume": "Resume",
+    "menu": {
+      "open": "Open menu",
+      "close": "Close menu",
+      "title": "Menu"
+    }
   },
   "landing": {
     "header": {
-      "skip": "Skip Intro",
-      "cmdkHint": "⌘K"
+      "skip": "Skip Intro"
     },
     "hero": {
       "avatarAlt": "Yemre's AI Assistant avatar",
-      "title": "Hello. I'm Yemre's AI Assistant.",
-      "subtitle": "I can answer questions about frontend craft, Angular signals, Spring Boot, or guide you through selected case studies."
+      "title": "Hi. I'm Yemre's AI Assistant.",
+      "subtitle": "Ask me about frontend development, Angular, Next.js, or Spring Boot — or let me walk you through Yemre's projects."
     },
     "chips": {
       "listLabel": "Suggested questions",
       "items": {
-        "skills": "What are your top skills?",
-        "github": "Show me your GitHub",
-        "experience": "Experience highlights",
-        "resume": "View Resume"
+        "skills": "What makes Yemre stand out?",
+        "github": "Show me his GitHub",
+        "experience": "Career highlights",
+        "resume": "Get the Resume"
       },
       "prompts": {
-        "skills": "What are Yemre's top technical skills?",
+        "skills": "What are Yemre's standout technical skills and differentiators?",
         "github": "Where can I find Yemre's GitHub profile?",
-        "experience": "Walk me through Yemre's professional experience.",
+        "experience": "Give me the highlights of Yemre's career and professional experience.",
         "resume": "Where can I download Yemre's resume?"
       }
     },
     "input": {
       "ariaLabel": "Ask the AI assistant",
-      "placeholder": "Ask anything about my stack…",
+      "placeholder": "Ask anything about Yemre…",
       "micLabel": "Voice input (coming soon)",
       "sendLabel": "Send message",
       "modelLabel": "Model: gpt-4o-mini",
@@ -83,7 +88,7 @@
     "footer": {
       "ready": "SYSTEM_READY",
       "latency": "LATENCY: --",
-      "version": "VERSION 0.1.0",
+      "version": "VERSION 1.0.0",
       "copyright": "© {year} YEMREDEV.COM"
     }
   },

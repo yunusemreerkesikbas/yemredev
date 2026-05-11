@@ -1,8 +1,8 @@
 {
   "name": "Yunus Emre Erkesikbaş",
   "initials": "YE",
-  "title": "Software Developer | SAP CX & Angular",
-  "tagline": "SAP CX, Angular ve Next.js ile performanslı e-ticaret arayüzleri geliştiriyorum — B2B/B2C Commerce, SEO optimizasyonu ve çok ülkeli, çok dövizli mağaza deneyiminde uzmanım.",
+  "title": "Software Developer | SAP CX & Angular & Next.js",
+  "tagline": "Yüksek performanslı e-ticaret arayüzleri geliştiriyorum — B2B/B2C enterprise için SAP CX & Angular, SEO odaklı global mağazalar için Next.js. Fullstack'e aktif olarak büyüyorum; backend tarafına odaklanıyorum.",
   "bio": "Merhaba, ben Emre. JavaScript, React, Next.js, SAP Spartacus ve Angular konularında uzmanlaşmış bir Yazılım Geliştiriciyim. B2B/B2C SAP Commerce, çok dilli ve çok dövizli mağazalar, SEO optimizasyonu ve 3. parti entegrasyonlarda deneyimliyim. İşbirliği benim süper gücüm. Her zaman öğrenmeye, her zaman büyümeye devam ediyorum.",
   "location": "İstanbul, Türkiye",
   "availability": {
@@ -53,7 +53,7 @@
       "location": "İstanbul, Türkiye",
       "highlights": [
         "SAP CX & Spartacus B2C/B2B Commerce projeleri",
-        "Çalışılan projeler: Yataş, Puffy, Enzahome"
+        "Çalışılan projeler: Yataş, Puffy, Vakko, Mavi"
       ],
       "stack": ["SAP CX Commerce", "SAP Spartacus", "Angular", "TypeScript", "JSP"]
     },
@@ -65,7 +65,7 @@
       "location": "İstanbul, Türkiye",
       "highlights": [
         "Birden fazla marka için Hybris B2C ve B2B e-ticaret danışmanlığı",
-        "Çalışılan projeler: Penti, Klaud, CarrefourSA, Avansas",
+        "Çalışılan projeler: Klaud, CarrefourSA, Avansas",
         "30+ küçük/büyük geliştirme ve 3. parti entegrasyon",
         "Next.js B2C e-ticaret projesi entegrasyonu: SEO, Hesap, Sipariş, Ödeme akışları"
       ],
@@ -78,15 +78,15 @@
       "end": "Eyl 2022",
       "location": "Konya, Türkiye",
       "highlights": [
-        "Müşteri web sitesi tasarım entegrasyonları",
+        "Müşteri web sitesi tasarım entegrasyonları ve frontend geliştirme",
         "Frontend için Angular framework kullanımı",
         "Backend ve API servisleri için PHP, Laravel ve CodeIgnite"
       ],
       "stack": ["Angular", "PHP", "Laravel", "CodeIgnite"]
     },
     {
-      "company": "metehan",
-      "role": "Freelance Web Geliştirici",
+      "company": "Feel Media",
+      "role": "Web Geliştirici Stajyeri",
       "start": "Oca 2022",
       "end": "Mar 2022",
       "location": "Konya, Türkiye",

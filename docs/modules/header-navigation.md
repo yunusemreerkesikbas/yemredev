@@ -99,7 +99,7 @@ Same chrome on the right side; the middle holds nav links from `appHeader.nav.*`
 
 1. Drop the SVG into [public/](../../public/).
 2. Replace the initials `<div>` in both header components with `<Image>` from `next/image`. Keep the same `Link` wrapper.
-3. Add an `aria-label` on the `<Link>` (already in place via `tHeader("logo")`).
+3. Add an `aria-label` on the `<Link>` (via `tHeader("logoAriaLanding")` / `tHeader("logoAriaApp")` — full name plus context; visible mark is the image).
 
 ## Gotchas
 

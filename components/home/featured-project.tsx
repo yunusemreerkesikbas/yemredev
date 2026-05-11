@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -23,10 +24,9 @@ const CATEGORY_TINT = {
 } as const;
 
 /**
- * Center bento cell. Browser-chrome mockup + flagship project metadata.
+ * Center bento cell. Banner preview image + flagship project metadata.
  * Whole tile is a `<Link href="/projects">` so a single primary CTA owns
- * navigation. Mockup interior is a CSS skeleton — no real screenshot
- * required for Phase 3 ship.
+ * navigation.
  *
  * If `project` is null (empty content), renders an empty-state placeholder
  * so the grid still feels intentional.
@@ -98,15 +98,24 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
         </span>
       </header>
 
-      <div className="relative z-10 mt-4 flex-1">
-        <BrowserMockup ariaLabel={t("mockupAlt")} />
+      <div className="relative z-10 mt-4 w-full max-lg:flex-none lg:min-h-0 lg:flex-1">
+        <div className="relative h-[200px] w-full overflow-hidden rounded-xl border border-white/14 bg-[#efece6] shadow-[0_12px_40px_-12px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] sm:h-[240px] md:h-[260px] lg:h-full lg:min-h-[280px]">
+          <Image
+            src="/craftive.png"
+            alt={project.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 960px"
+            className="object-contain object-center motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.02]"
+            priority
+          />
+        </div>
       </div>
 
       <div className="relative z-10 mt-5 space-y-2">
         <h3 className="text-balance text-2xl font-bold tracking-tight text-foreground sm:text-[28px] sm:leading-[1.15]">
           {project.title}
         </h3>
-        <p className="text-pretty line-clamp-2 text-sm font-medium leading-relaxed text-foreground/78 sm:text-base">
+        <p className="text-pretty text-sm font-medium leading-relaxed text-foreground/78 sm:text-base lg:line-clamp-2">
           {project.summary}
         </p>
       </div>
@@ -133,55 +142,5 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
         </span>
       </div>
     </Link>
-  );
-}
-
-/**
- * Browser-chrome mockup with skeleton placeholders. Decorative — does not
- * represent a real screenshot. Pure server JSX, no animations beyond
- * pulse-slow on the largest skeleton block.
- */
-function BrowserMockup({ ariaLabel }: { ariaLabel: string }) {
-  return (
-    <div
-      role="img"
-      aria-label={ariaLabel}
-      className="relative h-full min-h-[140px] overflow-hidden rounded-xl border border-white/14 bg-gradient-to-br from-zinc-950/90 via-zinc-950/70 to-black/80 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.75),inset_0_1px_0_rgba(255,255,255,0.06)]"
-    >
-      <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.06] px-3 py-2">
-        <span aria-hidden className="h-2 w-2 rounded-full bg-white/25" />
-        <span aria-hidden className="h-2 w-2 rounded-full bg-white/25" />
-        <span aria-hidden className="h-2 w-2 rounded-full bg-white/25" />
-        <div
-          aria-hidden
-          className="ml-3 hidden h-1.5 w-1/2 rounded-full bg-white/10 sm:block"
-        />
-      </div>
-
-      <div className="grid h-[calc(100%-30px)] grid-cols-5 gap-2 p-3">
-        <div className="col-span-1 space-y-1.5">
-          <div aria-hidden className="h-2 rounded-sm bg-white/10" />
-          <div aria-hidden className="h-2 rounded-sm bg-white/[0.07]" />
-          <div aria-hidden className="h-2 rounded-sm bg-white/10" />
-          <div aria-hidden className="h-2 rounded-sm bg-white/[0.07]" />
-          <div aria-hidden className="h-2 rounded-sm bg-white/10" />
-        </div>
-        <div className="col-span-4 grid grid-rows-3 gap-2">
-          <div
-            aria-hidden
-            className="animate-pulse-slow rounded-md bg-gradient-to-r from-primary/22 via-primary/10 to-accent-purple/18"
-          />
-          <div className="grid grid-cols-2 gap-2">
-            <div aria-hidden className="rounded-md bg-white/[0.08]" />
-            <div aria-hidden className="rounded-md bg-white/[0.08]" />
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <div aria-hidden className="rounded-md bg-white/[0.07]" />
-            <div aria-hidden className="rounded-md bg-white/[0.07]" />
-            <div aria-hidden className="rounded-md bg-white/[0.07]" />
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }

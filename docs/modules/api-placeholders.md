@@ -15,7 +15,7 @@ Two route handlers were scaffolded so future phases could ship UI against a stab
 | Aspect | Value |
 | --- | --- |
 | Methods | `POST` (streaming), `GET` (status probe) |
-| Runtime | `edge` |
+| Runtime | Node.js (default — `edge` export removed for Cloudflare Workers compatibility) |
 | Phase | 6 |
 | Current behavior | `POST` → streams an AI message via `toUIMessageStreamResponse()`; `GET` → `200 { status: "active", phase: 6, ready: true, model }` |
 | Cost guard | `maxOutputTokens: 500` |
@@ -32,15 +32,24 @@ Two route handlers were scaffolded so future phases could ship UI against a stab
 
 `messages` is the `UIMessage[]` array sent by `useChat` from `@ai-sdk/react`. `locale` is optional (defaults to `"en"`); it must be one of the app locales (`en` / `tr`) and is used to pin the system prompt language.
 
+### Input limits
+
+- Max messages per request: **20**
+- Max content length per message part: **4 000 characters**
+
+Requests exceeding either limit receive `400 bad_request`.
+
 ### Error responses
 
 All non-streaming errors return JSON with one of these `error` codes — the client maps each to a localized `chat.errors.<code>` string:
 
 | HTTP | `error` code | Cause |
 | --- | --- | --- |
-| 400 | `bad_request` | Invalid JSON body or empty `messages` array |
+| 400 | `bad_request` | Invalid JSON body, empty `messages` array, or exceeds message/length limits |
+| 403 | _(plain text "Forbidden")_ | Request `Origin` header not in allowed list |
 | 429 | `rate_limited` | Upstash limit exceeded; includes `Retry-After` header |
 | 502 | `provider_unavailable` | OpenAI returned 5xx / 401 / 403 |
+| 503 | `service_unavailable` | Upstash env vars missing in production (rate limiter not initialized) |
 | 500 | `server_error` | Unexpected exception |
 
 ## `/api/contact` (scaffold — Phase 5)
@@ -54,9 +63,9 @@ All non-streaming errors return JSON with one of these `error` codes — the cli
 
 ## Rules and invariants
 
-- **`/api/*` is excluded from the proxy matcher** in [proxy.ts](../../proxy.ts). Don't add any locale logic to API routes — the client sends `locale` in the body.
-- **Response shape always JSON.** Even error responses return JSON so the client can parse uniformly.
-- **Edge runtime for `/api/chat`** is fixed because it streams. Don't switch to Node without revisiting the streaming pattern.
+- **`/api/*` is excluded from the middleware matcher** in [middleware.ts](../../middleware.ts). Don't add any locale logic to API routes — the client sends `locale` in the body.
+- **Response shape always JSON.** Even error responses return JSON so the client can parse uniformly (exception: 403 Forbidden is plain text).
+- **No `export const runtime = "edge"` in route handlers.** The `@opennextjs/cloudflare` adapter uses `cloudflare-node` wrapper; edge exports break the build. Streaming works fine with Node.js runtime.
 - **`runtime` is per-route**, not per-method. Splitting GET to Node and POST to Edge in the same file is not supported — pick one.
 
 ## Implementation guide
@@ -79,14 +88,17 @@ Done as of 2026-05-10. See [3rd-party/ai-providers.md](../3rd-party/ai-providers
 
 There are no tenants. Treat both endpoints as public:
 
-- **Rate-limit** `/api/chat` via Upstash; `/api/contact` should add the same when activated.
-- **Validate input** — both routes must reject empty / oversized payloads.
+- **CORS origin validation** — `/api/chat` rejects requests whose `Origin` header is not in `ALLOWED_ORIGINS` (`https://yemredev.com` + `http://localhost:3000` in dev). Returns `403 Forbidden`.
+- **Rate-limit** `/api/chat` via Upstash (10 req / 60 s per IP); `/api/contact` should add the same when activated.
+- **IP detection priority** in `lib/ratelimit.ts`: `cf-connecting-ip` → `x-forwarded-for` → `x-real-ip` → `"unknown"`. Cloudflare-injected headers are trusted; user-supplied `X-Forwarded-For` is treated as untrusted fallback.
+- **Validate input** — reject empty / oversized payloads (20 messages max, 4 000 chars per part).
 - **Secrets in env only.** Never inline an API key.
-- **Origin check** for `/api/contact` if abuse is observed; not required for `/api/chat` because the rate limit + cost guard already cover it.
-- **Never log message content** in `/api/chat` — only `{ status, code, model }` on errors.
+- **Rate limiter fail-safe** — if Upstash env vars are missing in production, the endpoint returns `503 service_unavailable` rather than serving unrated.
+- **Never log message content** in `/api/chat` — only `{ status, code }` on errors (model name excluded from logs).
 
 ## Gotchas
 
 - **AI SDK v6 message shape** — `messages` arrives as `UIMessage[]` (with `parts`), must be awaited through `convertToModelMessages()` before the model call. The route currently does this; copy-paste from older AI SDK docs at your peril.
 - **Edge runtime imports differ from Node** — Node-only SDKs (e.g. `nodemailer`) won't work on `/api/chat`. Stick to fetch-based or Edge-compatible SDKs there. `@upstash/redis` is fetch-based and verified.
-- **Upstash env unset** — `lib/ratelimit.ts` falls back to `null` and logs a one-time warn on prod build. Acceptable for local dev only; missing in production = unrated endpoint.
+- **Upstash env unset in production** — `lib/ratelimit.ts` logs `console.error` and returns `null`; the route handler then returns `503 service_unavailable`. Acceptable for local dev (rate limiter silently skipped); always fatal in production.
+- **`/api/*` excluded from middleware** in [middleware.ts](../../middleware.ts) — no locale prefix handling for API routes.

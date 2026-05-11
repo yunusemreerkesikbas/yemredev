@@ -55,7 +55,7 @@ export function TechStack({ skills, className }: TechStackProps) {
         />
       </header>
 
-      <div className="no-scrollbar flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto pt-3 sm:gap-3.5">
+      <div className="no-scrollbar flex flex-col gap-3 pt-3 max-lg:flex-none max-lg:overflow-visible sm:gap-3.5 lg:min-h-0 lg:flex-1 lg:overflow-y-auto">
         {skills.map((group) => {
           const key = GROUP_KEY[group.group];
           const tone = key ? GROUP_TONE[key] : "text-muted-foreground";

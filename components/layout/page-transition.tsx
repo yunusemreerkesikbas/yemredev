@@ -19,6 +19,8 @@ export function PageTransition({ children }: PageTransitionProps) {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-0 w-full flex-1 flex-col">{children}</div>
+    <div className="flex min-h-0 w-full flex-1 flex-col overflow-x-hidden overflow-y-auto overscroll-y-contain">
+      {children}
+    </div>
   );
 }

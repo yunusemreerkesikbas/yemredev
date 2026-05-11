@@ -19,9 +19,10 @@ type ExperienceTimelineProps = {
 };
 
 /**
- * Right column bento cell, full vertical span. Internal scroll only (DESIGN.md §7.2).
- * Scroll-linked timeline rail: accent fill grows with list scroll; active node follows
- * the focal line in the viewport. Honors `prefers-reduced-motion`.
+ * Right column bento cell, full vertical span on desktop. Internal scroll with
+ * scroll-linked timeline rail (`scaleY` from scroll progress). Below `lg`,
+ * list height is capped (`min(26rem,52dvh)`) so the card stays compact while
+ * entries scroll inside the list.
  */
 export function ExperienceTimeline({
   experience,
@@ -79,7 +80,7 @@ export function ExperienceTimeline({
   return (
     <section
       className={cn(
-        "glass-bento-surface relative flex min-h-0 flex-col overflow-hidden rounded-2xl lg:col-start-4 lg:col-span-1 lg:row-start-1 lg:row-span-4",
+        "glass-bento-surface relative flex min-h-0 flex-col rounded-2xl max-lg:h-auto max-lg:overflow-hidden lg:min-h-0 lg:overflow-hidden lg:col-start-4 lg:col-span-1 lg:row-start-1 lg:row-span-4",
         className,
       )}
     >
@@ -102,7 +103,13 @@ export function ExperienceTimeline({
         />
       </header>
 
-      <div className="relative flex-1 overflow-hidden">
+      <div
+        className={cn(
+          "relative flex min-h-0 flex-col overflow-hidden",
+          "max-lg:h-[min(26rem,52dvh)]",
+          "lg:min-h-0 lg:flex-1",
+        )}
+      >
         {/* Track */}
         <span
           aria-hidden
@@ -119,7 +126,7 @@ export function ExperienceTimeline({
 
         <ol
           ref={scrollRef}
-          className="no-scrollbar relative h-full list-none overflow-y-auto px-5 py-4"
+          className="thin-scrollbar relative min-h-0 flex-1 list-none overflow-y-auto px-5 py-4"
         >
           {experience.map((entry, idx) => {
             const state =

@@ -1,8 +1,8 @@
 {
   "name": "Yunus Emre Erkesikbaş",
   "initials": "YE",
-  "title": "Software Developer | SAP CX & Angular",
-  "tagline": "Building performant e-commerce frontends with SAP CX, Angular, and Next.js — experienced across B2B/B2C Commerce, SEO optimization, and multi-country, multi-currency storefronts.",
+  "title": "Software Developer | SAP CX & Angular & Next.js",
+  "tagline": "I engineer high-performance e-commerce frontends — SAP CX & Angular for B2B/B2C enterprise, Next.js for SEO-driven global storefronts. Actively growing into fullstack, with a sharpening focus on backend.",
   "bio": "I'm Emre, a Software Developer proficient in JavaScript, React, Next.js, SAP Spartacus, and Angular. I craft captivating e-commerce frontends — experienced across B2B/B2C SAP Commerce, multi-country/multi-currency storefronts, SEO optimization, and 3rd-party integrations. Collaboration is my superpower. Always learning, always growing.",
   "location": "Istanbul, Turkey",
   "availability": {
@@ -53,7 +53,7 @@
       "location": "Istanbul, Turkey",
       "highlights": [
         "SAP CX & Spartacus B2C/B2B Commerce projects",
-        "Client projects: Yataş, Puffy, Enzahome"
+        "Client projects: Yataş, Puffy, Vakko, Mavi"
       ],
       "stack": ["SAP CX Commerce", "SAP Spartacus", "Angular", "TypeScript", "JSP"]
     },
@@ -65,7 +65,7 @@
       "location": "Istanbul, Turkey",
       "highlights": [
         "Hybris B2C and B2B e-commerce consultant across multiple brands",
-        "Client projects: Penti, Klaud, CarrefourSA, Avansas",
+        "Client projects: Klaud, CarrefourSA, Avansas",
         "30+ minor/major feature developments and 3rd-party integrations",
         "Next.js B2C e-commerce project integration including SEO, Account, Order, and Payment flows"
       ],
@@ -85,14 +85,14 @@
       "stack": ["Angular", "PHP", "Laravel", "CodeIgnite"]
     },
     {
-      "company": "metehan",
-      "role": "Freelance Web Developer",
+      "company": "Feel Media",
+      "role": "Web Development Intern",
       "start": "Jan 2022",
       "end": "Mar 2022",
       "location": "Konya, Turkey",
       "highlights": [
-        "UI integration and bugfix development",
-        "PHP, Laravel for backend and API services"
+        "UI integration and bug fixing development",
+        "Backend and API services with PHP and Laravel"
       ],
       "stack": ["PHP", "Laravel", "JavaScript"]
     }

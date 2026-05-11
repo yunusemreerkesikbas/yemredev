@@ -49,7 +49,7 @@ export async function generateMetadata({
     ),
     title: {
       default: t("title"),
-      template: "%s | yemredev.com",
+      template: "%s | Yunus Emre Erkesikbaş",
     },
     description: t("description"),
     alternates: {

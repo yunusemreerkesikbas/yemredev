@@ -66,7 +66,7 @@ export function OpenSourceHighlight({
         className="pointer-events-none absolute -bottom-16 -left-12 h-44 w-44 rounded-full bg-accent-emerald/16 blur-2xl"
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-3">
+      <div className="relative z-10 flex flex-col gap-3 max-lg:h-auto lg:h-full">
         <header className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="font-mono text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -81,7 +81,7 @@ export function OpenSourceHighlight({
           </span>
         </header>
 
-        <p className="text-pretty line-clamp-3 text-sm font-medium leading-relaxed text-foreground/78">
+        <p className="text-pretty text-sm font-medium leading-relaxed text-foreground/78 lg:line-clamp-3">
           {project.description}
         </p>
 

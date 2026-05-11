@@ -2,81 +2,73 @@
 
 ## Purpose
 
-`yemredev.com` is a static-first Next.js app with two API routes (one Edge, one Node). The hosting target is **not yet selected** — this page tracks the candidates and the constraints the choice must satisfy.
-
-CI is provider-agnostic today; a `deploy` job will be appended to [.github/workflows/ci.yml](../../.github/workflows/ci.yml) once the host is chosen.
+`yemredev.com` is a static-first Next.js app with two API routes (both Node.js runtime). Hosted on **Cloudflare Workers** via the `@opennextjs/cloudflare` adapter. Deployed manually via GitHub Actions `workflow_dispatch`.
 
 ## Status
 
 | | |
 | --- | --- |
-| Selected host | _none_ |
-| Domain | `yemredev.com` |
-| CI | [.github/workflows/ci.yml](../../.github/workflows/ci.yml) (lint / typecheck / build only) |
-| Deploy step | not yet wired |
+| Selected host | **Cloudflare Workers** |
+| Adapter | `@opennextjs/cloudflare` ^1.19.8 |
+| Worker name | `yemredev` |
+| Domain | `yemredev.com`, `www.yemredev.com` (custom domain on Worker) |
+| DNS | Cloudflare (brian.ns / serena.ns) |
+| CI | [.github/workflows/ci.yml](../../.github/workflows/ci.yml) (lint / typecheck / build) |
+| Deploy | [.github/workflows/deploy.yml](../../.github/workflows/deploy.yml) (`workflow_dispatch`) |
+| Secrets | `wrangler secret put` — `OPENAI_API_KEY`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` |
 
-## Candidates
+## Deployment setup
 
-| Host | Strengths | Weaknesses |
-| --- | --- | --- |
-| **Vercel** | Native Next.js DX, Edge runtime, `x-vercel-ip-country` header out of the box, ISR, generous hobby tier, instant previews on PRs | Vendor lock-in for some Next.js features (ISR, Edge config) |
-| **Cloudflare Pages / Workers** | Cheapest at scale, fast Edge, `cf-ipcountry` header, free SSL | Some Next.js features need adapters or are unsupported (full ISR, image optimization) |
-| **DigitalOcean App Platform** | Predictable pricing, MCP integration already configured locally, no vendor surprises | Cold starts, no built-in geolocation header (would need an IP service), Turbopack support is community-tested |
-| **Self-host (Docker + VPS)** | Full control, lowest theoretical cost | All operational work (TLS, scaling, monitoring) is on us, no built-in geolocation, slow iteration |
+### Key files
 
-## Decision criteria
+| File | Purpose |
+| --- | --- |
+| [open-next.config.ts](../../open-next.config.ts) | Adapter config: `cloudflare-node` wrapper, `dummy` cache/queue for Workers |
+| [wrangler.jsonc](../../wrangler.jsonc) | Worker name, entry point (`.open-next/worker.js`), assets binding, `nodejs_compat` flag |
+| [.github/workflows/deploy.yml](../../.github/workflows/deploy.yml) | Build → Deploy Worker → Sync secrets (manual trigger) |
 
-In rough order of weight:
+### Build & deploy commands
 
-1. **Native support for Next.js 16 + Turbopack production builds.**
-2. **Geolocation header** — [proxy.ts](../../proxy.ts) currently checks `x-vercel-ip-country` and `cf-ipcountry`. Picking a host without one means adding an IP-to-country service (paid) or losing automatic Turkish locale routing.
-3. **Edge runtime support** — `/api/chat` is on Edge (Phase 6).
-4. **Custom domain + automatic TLS.**
-5. **Preview deploys on PRs** — speeds up reviews.
-6. **Cost** at portfolio-volume traffic should be free or near-free.
+```bash
+npm run cf:build    # opennextjs-cloudflare build
+npm run cf:preview  # wrangler dev (local preview)
+npm run cf:deploy   # wrangler deploy --config wrangler.jsonc
+```
 
-## Integration plan (per host)
+### Deploy workflow steps
 
-### Vercel
+1. `npm ci` — clean install with Node 22
+2. `npm run cf:build` — builds Next.js output into `.open-next/`
+3. `npx wrangler deploy --config wrangler.jsonc` — uploads Worker
+4. `echo "$SECRET" | npx wrangler secret put SECRET_NAME --name yemredev` — syncs each secret
 
-1. Connect the GitHub repo via the Vercel dashboard.
-2. Add env vars (eventually `OPENAI_API_KEY` etc.) in the Vercel project settings.
-3. Vercel deploys on every push to `master`; PRs get auto-previews — no GitHub Actions deploy step required.
-4. Point `yemredev.com` DNS to Vercel.
-5. Verify `proxy.ts` reads `x-vercel-ip-country` correctly with a TR-located test.
+### Triggering a deploy
 
-### Cloudflare Pages
+GitHub → Actions → **Deploy** → **Run workflow** → `master`.
 
-1. Install the `@cloudflare/next-on-pages` adapter and update `package.json` build script.
-2. Connect the GitHub repo via Cloudflare Pages dashboard.
-3. Add env vars in Cloudflare dashboard.
-4. Verify `proxy.ts` reads `cf-ipcountry` correctly (already supported in [proxy.ts](../../proxy.ts)).
+### Adding / rotating a secret
 
-### DigitalOcean App Platform
+```bash
+echo "new-value" | npx wrangler secret put SECRET_NAME --name yemredev
+```
 
-1. Create an App pointing at the GitHub repo.
-2. Add a deploy step to [.github/workflows/ci.yml](../../.github/workflows/ci.yml) using `digitalocean/app_action`.
-3. Add an IP-geolocation lookup (e.g. Cloudflare's free GeoIP via a fetch in `proxy.ts`) since the platform doesn't inject a country header.
-4. Add env vars via DO App Platform UI.
+Or update the GitHub Actions secret and re-run the Deploy workflow (the "Sync secrets" step runs on every deploy).
 
-### Self-host
+## Geolocation
 
-1. Add a multi-stage `Dockerfile` (`node:20-alpine` build + `node:20-alpine` runtime).
-2. Add a `docker-compose.yml` with a reverse proxy (Caddy / Nginx).
-3. Wire LetsEncrypt for TLS.
-4. Add a deploy step to CI that pushes the image to a registry and SSHes to the VPS to pull.
-5. Inject country via an IP service (no header from the OS).
+`middleware.ts` reads `cf-ipcountry` for automatic Turkish locale routing — this header is injected by Cloudflare on every request at no extra cost.
 
 ## Operational concerns
 
-- **Secrets**: never in source. Each host has a secrets store; pick one and use it.
-- **Logs**: keep request logs to investigate locale-detection bugs; never log message bodies from `/api/contact`.
-- **Uptime**: free tier hosts can cold-start. The landing should remain interactive even before `/api/chat` warms up.
-- **Region**: deploy to a Europe edge first since the primary visitor base is TR; the AI provider's region should match where possible.
+- **Secrets**: never in source. Managed via `wrangler secret put`; mirrored as GitHub Actions secrets for the deploy workflow.
+- **Logs**: available in Cloudflare Dashboard → Workers → `yemredev` → Logs. Never log message bodies from `/api/chat` or `/api/contact`.
+- **Cold starts**: Workers have near-zero cold start time — no warm-up needed.
+- **Region**: Cloudflare routes to the nearest edge PoP automatically; primary TR traffic hits Istanbul or Frankfurt.
 
 ## Gotchas
 
-- **Geolocation header lock-in.** [proxy.ts](../../proxy.ts) currently reads two header names. If the chosen host emits a third (or none), it must be added — silently falling back to `Accept-Language` is acceptable but reduces accuracy.
-- **Edge-runtime compatibility differs by host.** `/api/chat` will need a smoke test on the chosen host before Phase 6.
-- **Image optimization** is a paid feature on Vercel beyond hobby; not used today, but Phase 4 will load project covers — pick the host knowing this.
-- **DNS propagation** can take hours; book the domain switch at least a day before any milestone.
+- **`nodejs_compat` flag is required** in `wrangler.jsonc`. Without it, Node built-ins (crypto, buffer) used by the adapter are unavailable.
+- **`edge` runtime exports break the adapter.** All route handlers must use default (Node.js) runtime. Do not add `export const runtime = "edge"` to any route.
+- **`wrangler secret bulk` hangs** if piped no input. Use `echo "$VAR" | wrangler secret put VAR_NAME` per secret instead.
+- **Custom domain DNS records** must be deleted before adding a domain as a Worker custom domain — Cloudflare rejects the addition if a conflicting A/AAAA/CNAME exists.
+- **Image optimization** via `next/image` works on Workers with the `nodejs_compat` flag; no additional config required for the current `qualities: [75, 100]` setup.
