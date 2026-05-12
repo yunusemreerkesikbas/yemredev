@@ -24,7 +24,7 @@ type ProjectsCarouselProps = {
 
 /**
  * Horizontal snap carousel for `/projects`. Wraps each child in a wide snap
- * target (~90vw, capped). Prev/next use DESIGN.md glass-card arrows; dots match
+ * target (~85vw, capped). Prev/next use DESIGN.md glass-card arrows; dots match
  * the frozen inactive/active sizes. Active index syncs via `scroll` (rAF
  * throttled) + `scrollend` when available.
  */
@@ -142,18 +142,18 @@ export function ProjectsCarousel({
         className,
       )}
     >
-      <div className="mb-4 flex shrink-0 flex-col gap-3 sm:mb-5 sm:flex-row sm:items-end sm:justify-between lg:mb-4">
-        <div>
+      <div className="mb-4 flex shrink-0 flex-col items-center gap-3 text-center sm:mb-5 sm:flex-row sm:items-end sm:justify-between sm:text-left lg:mb-4">
+        <div className="w-full sm:w-auto">
           <h1 className="text-gradient-fade text-3xl font-bold tracking-tight sm:text-4xl">
             {title}
           </h1>
           {subtitle ? (
-            <p className="mt-1 max-w-2xl text-sm font-medium text-foreground/72 sm:text-base">
+            <p className="mx-auto mt-1 max-w-2xl text-sm font-medium text-foreground/72 sm:mx-0 sm:text-base">
               {subtitle}
             </p>
           ) : null}
         </div>
-        <div className="flex shrink-0 items-center gap-2.5 self-start sm:self-auto">
+        <div className="flex shrink-0 items-center justify-center gap-2.5 sm:self-auto">
           <button
             type="button"
             onClick={onPrev}
@@ -208,8 +208,8 @@ export function ProjectsCarousel({
         aria-label={t("trackLabel")}
         onKeyDown={onKeyDown}
         className={cn(
-          "no-scrollbar-webkit no-scrollbar flex h-[clamp(26rem,min(66dvh,48rem),52rem)] touch-pan-x items-stretch gap-7 overflow-x-auto overflow-y-hidden scroll-smooth pb-2",
-          "snap-x snap-mandatory scroll-pl-3 sm:scroll-pl-6 md:scroll-pl-8",
+          "no-scrollbar-webkit no-scrollbar flex h-[clamp(31rem,min(82dvh,58rem),60rem)] touch-pan-x items-stretch gap-6 overflow-x-auto overflow-y-hidden scroll-smooth pb-2 sm:gap-7",
+          "snap-x snap-mandatory max-lg:scroll-px-[max(0.75rem,calc((100%-min(85vw,72rem))/2))] lg:scroll-px-8",
           "lg:h-full lg:min-h-0 lg:flex-1",
         )}
         style={{ scrollSnapType: "x mandatory" }}
@@ -218,7 +218,7 @@ export function ProjectsCarousel({
           <div
             key={slideIds[index] ?? `slide-${index}`}
             className={cn(
-              "flex h-full min-h-0 w-[min(90vw,72rem)] shrink-0 snap-start motion-safe:animate-fade-in",
+              "flex h-full min-h-0 w-[min(85vw,72rem)] shrink-0 snap-start motion-safe:animate-fade-in",
             )}
             style={{
               animationDelay: `${Math.min(index, 8) * 70}ms`,

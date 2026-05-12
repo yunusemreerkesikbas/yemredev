@@ -1,26 +1,21 @@
+"use client";
+
+import { useEffect } from "react";
+import { motion, useMotionValue, useSpring, useReducedMotion } from "motion/react";
+
 /**
- * Decorative floating sparkles for the landing hero. CSS-only, server
- * component, no JS bundle cost. Lives behind content (z-0) and is
- * pointer-events disabled. Animation honors prefers-reduced-motion via
- * the global media query in app/globals.css (animation duration → 0.01ms).
- *
- * Per-instance position / color / delay / duration are passed via inline
- * style. Tailwind would not pick up dynamic string concat (e.g. `bg-${x}`)
- * during JIT scan, so we set background-color from the literal hex tokens
- * defined in app/globals.css. Keep this list short — too many particles
- * pollute the canvas and degrade perceived focus.
+ * Decorative sparkle field for the landing mesh. Each dot runs the global
+ * `sparkle-wander` keyframe (drift + twinkle). The whole layer eases slightly
+ * toward the pointer for depth — disabled when `prefers-reduced-motion` is set
+ * (global CSS also collapses animation durations).
  */
 
 type Sparkle = {
   top: string;
   left: string;
-  /** Pixel size for both width & height. */
   size: number;
-  /** Literal CSS color (rgba/hex). Mirrors design tokens. */
   color: string;
-  /** Animation delay (s). */
   delay: string;
-  /** Animation duration (s). Stagger across the field for organic feel. */
   duration: string;
 };
 
@@ -33,18 +28,37 @@ const SPARKLES: Sparkle[] = [
   { top: "32%", left: "62%", size: 4, color: "rgba(251, 191, 36, 0.4)", delay: "1.8s", duration: "7.5s" },
   { top: "88%", left: "48%", size: 4, color: "rgba(16, 185, 129, 0.5)", delay: "2.8s", duration: "8.5s" },
   { top: "8%", left: "72%", size: 3, color: "rgba(59, 184, 247, 0.4)", delay: "0.3s", duration: "9.5s" },
+  { top: "52%", left: "38%", size: 3, color: "rgba(192, 132, 252, 0.38)", delay: "4.1s", duration: "11s" },
+  { top: "18%", left: "42%", size: 2, color: "rgba(59, 184, 247, 0.35)", delay: "2.4s", duration: "8.2s" },
 ];
 
 export function SparkleParticles() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-    >
+  const reducedMotion = useReducedMotion();
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const springX = useSpring(mx, { stiffness: 52, damping: 28, mass: 0.35 });
+  const springY = useSpring(my, { stiffness: 52, damping: 28, mass: 0.35 });
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const onMove = (e: PointerEvent) => {
+      const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+      mx.set(nx * 22);
+      my.set(ny * 16);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, [reducedMotion, mx, my]);
+
+  const dots = (
+    <>
       {SPARKLES.map((s, i) => (
         <span
           key={i}
-          className="animate-float absolute rounded-full"
+          className="landing-sparkle-dot absolute rounded-full"
           style={{
             top: s.top,
             left: s.left,
@@ -52,12 +66,32 @@ export function SparkleParticles() {
             height: `${s.size}px`,
             backgroundColor: s.color,
             boxShadow: `0 0 ${s.size * 3}px ${s.color}`,
-            animationDelay: s.delay,
             animationDuration: s.duration,
-            willChange: "transform, opacity",
+            animationDelay: s.delay,
           }}
         />
       ))}
-    </div>
+    </>
+  );
+
+  if (reducedMotion) {
+    return (
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        {dots}
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden will-change-transform"
+      style={{ x: springX, y: springY }}
+    >
+      {dots}
+    </motion.div>
   );
 }

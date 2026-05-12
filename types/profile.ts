@@ -1,5 +1,3 @@
-import type { OpenSourceProject } from "./open-source";
-
 export type SocialLink = {
   platform: "github" | "linkedin" | "twitter" | "email" | "website";
   label: string;
@@ -75,6 +73,4 @@ export type Profile = {
   skills: SkillGroup[];
   /** Optional lifestyle / soft facts for the chat assistant (no UI chips). */
   personal?: ProfilePersonal;
-  /** Optional OSS contributions surfaced by the home OpenSourceHighlight card. */
-  openSource?: OpenSourceProject[];
 };

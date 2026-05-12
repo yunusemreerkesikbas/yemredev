@@ -16,9 +16,9 @@ import { isAppLocale } from "@/i18n/routing";
 import type { Profile } from "@/types/profile";
 import { cn } from "@/lib/utils";
 
-/** Icon column matches `h-11 w-11` (2.75rem); rows share this grid so mobile stays centered + aligned. */
+/** Icon column `h-11 w-11` (2.75rem); fills parent width (parent caps width on mobile for centering). */
 const CONTACT_ROW_GRID =
-  "mx-auto grid w-full max-w-[min(22.5rem,100%)] grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-x-4 sm:max-w-md md:mx-0 md:max-w-none md:w-full";
+  "grid w-full grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-x-4";
 
 function primaryEmailLink(profile: Profile) {
   return (
@@ -75,15 +75,14 @@ export default async function ContactPage({
     : null;
 
   return (
-    <div className="relative flex w-full max-lg:shrink-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
+    <main className="relative z-10 flex min-h-0 w-full min-w-0 flex-1 flex-col items-center overflow-x-hidden px-4 py-6 sm:px-6 sm:py-8 md:px-8 max-lg:justify-center max-lg:items-center lg:overflow-hidden lg:py-6">
       <JsonLd
         schema={buildBreadcrumbSchema([
           { name: "Home", url: canonicalUrl(locale, "/home") },
           { name: t("title"), url: canonicalUrl(locale, "/contact") },
         ])}
       />
-      <main className="relative z-10 flex flex-col items-center overflow-x-hidden px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:min-h-0 lg:flex-1 lg:overflow-hidden lg:py-6">
-        <div className="flex w-full max-w-5xl min-w-0 flex-col items-center gap-8 sm:gap-9 lg:my-auto lg:min-h-0 lg:flex-1 lg:justify-center lg:gap-10">
+      <div className="flex w-full max-w-5xl min-w-0 flex-col items-center gap-8 sm:gap-9 lg:my-auto lg:min-h-0 lg:flex-1 lg:justify-center lg:gap-10">
           <header className="flex flex-col items-center text-center">
             {profile.availability ? (
               <div
@@ -109,7 +108,7 @@ export default async function ContactPage({
           </header>
 
           <div className="flex w-full flex-col items-center gap-8 md:flex-row md:items-stretch md:justify-center md:gap-0">
-            <div className="mx-auto flex w-full max-w-md flex-col items-center gap-6 md:mx-0 md:w-auto md:items-stretch md:pr-10 lg:pr-12">
+            <div className="flex w-full min-w-0 max-w-full flex-col gap-6 max-lg:max-w-[min(20rem,calc(100%-1.5rem))] max-lg:self-center md:mx-0 md:w-auto md:max-w-md md:shrink-0 md:pr-10 lg:pr-12">
               {emailLink && emailDisplay ? (
                 <a
                   href={emailLink.url}
@@ -157,7 +156,7 @@ export default async function ContactPage({
 
             <div
               aria-hidden
-              className="mx-auto h-px w-full max-w-[14rem] shrink-0 bg-border md:mx-0 md:hidden"
+              className="h-px w-full max-w-[min(20rem,calc(100%-1.5rem))] shrink-0 bg-border max-lg:self-center md:hidden"
             />
 
             <div
@@ -170,7 +169,6 @@ export default async function ContactPage({
             </div>
           </div>
         </div>
-      </main>
-    </div>
+    </main>
   );
 }

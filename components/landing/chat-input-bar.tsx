@@ -34,7 +34,7 @@ export function ChatInputBar({
   return (
     <form
       onSubmit={handleSubmit}
-      className="group/search relative w-full min-w-0"
+      className="group/search relative z-10 w-full min-w-0 touch-manipulation"
       aria-label={t("ariaLabel")}
     >
       <div className="relative flex w-full min-w-0 items-center rounded-xl border border-border bg-card-dark p-1 transition-colors duration-300 group-focus-within/search:border-primary/45 dark:border-white/10">
@@ -54,7 +54,7 @@ export function ChatInputBar({
             disabled={isBusy}
             placeholder={t("placeholder")}
             aria-label={t("ariaLabel")}
-            className="caret-primary box-border w-full min-w-0 border-none bg-transparent py-4 text-base font-medium tracking-tight text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-0 disabled:opacity-60 sm:text-lg"
+            className="caret-primary box-border w-full min-w-0 touch-manipulation border-none bg-transparent py-4 text-base font-medium tracking-tight text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-0 disabled:opacity-60 sm:text-lg"
           />
         </div>
 
@@ -63,7 +63,7 @@ export function ChatInputBar({
             type="submit"
             aria-label={t("sendLabel")}
             disabled={!canSend}
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground text-background transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+            className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-lg bg-foreground text-background transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-gray-200"
           >
             <ArrowUp aria-hidden className="h-5 w-5" strokeWidth={2} />
           </button>

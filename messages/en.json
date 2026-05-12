@@ -138,13 +138,6 @@
       "presentLabel": "Present",
       "scrollHint": "Scroll for more"
     },
-    "openSource": {
-      "eyebrow": "Open Source",
-      "viewRepo": "View repo",
-      "starsLabel": "Stars",
-      "forksLabel": "Forks",
-      "emptyState": "Open-source highlights coming soon."
-    },
     "education": {
       "title": "Education"
     },

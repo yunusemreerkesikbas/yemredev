@@ -29,6 +29,18 @@ type IrisSession = {
 
 const FALLBACK_CLEAR_MS = 12_000;
 
+/** Stable full-viewport size on mobile (URL bar / WebKit quirks). */
+function readViewportSize(): { vw: number; vh: number } {
+  if (typeof window === "undefined") return { vw: 0, vh: 0 };
+  const vw = window.innerWidth;
+  const docH = document.documentElement?.clientHeight ?? 0;
+  const innerH = window.innerHeight;
+  const vv = window.visualViewport;
+  const vvH = vv ? vv.height + (vv.offsetTop ?? 0) : 0;
+  const vh = Math.max(innerH, docH, vvH || 0);
+  return { vw, vh };
+}
+
 function pathnameMatchesTarget(
   pathname: string | null,
   targetPath: IrisNavTarget,
@@ -85,9 +97,10 @@ export function IrisTransitionProvider({ children }: { children: ReactNode }) {
   const beginSkipToHome = useCallback(() => {
     hasPushedRef.current = false;
     setIrisDone(false);
+    const { vw, vh } = readViewportSize();
     setSession({
-      vw: window.innerWidth,
-      vh: window.innerHeight,
+      vw,
+      vh,
       variant: "toFab",
       targetPath: "/home",
     });
@@ -96,9 +109,10 @@ export function IrisTransitionProvider({ children }: { children: ReactNode }) {
   const beginFabToLanding = useCallback(() => {
     hasPushedRef.current = false;
     setIrisDone(false);
+    const { vw, vh } = readViewportSize();
     setSession({
-      vw: window.innerWidth,
-      vh: window.innerHeight,
+      vw,
+      vh,
       variant: "toLanding",
       targetPath: "/",
     });

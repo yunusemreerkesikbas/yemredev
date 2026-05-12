@@ -4,7 +4,7 @@
   "title": "Software Developer | SAP CX & Angular & Next.js",
   "tagline": "Yüksek performanslı e-ticaret arayüzleri geliştiriyorum — B2B/B2C enterprise için SAP CX & Angular, SEO odaklı global mağazalar için Next.js. Fullstack'e aktif olarak büyüyorum; backend tarafına odaklanıyorum.",
   "bio": "Merhaba, ben Emre. JavaScript, React, Next.js, SAP Spartacus ve Angular konularında uzmanlaşmış bir Yazılım Geliştiriciyim. B2B/B2C SAP Commerce, çok dilli ve çok dövizli mağazalar, SEO optimizasyonu ve 3. parti entegrasyonlarda deneyimliyim. İşbirliği benim süper gücüm. Her zaman öğrenmeye, her zaman büyümeye devam ediyorum.",
-  "location": "İstanbul, Türkiye (iş) · Yüksek lisans: Konya Teknik Üniversitesi",
+  "location": "İstanbul, Türkiye",
   "availability": {
     "available": true,
     "label": "Freelance / Yan projelere açığım"
@@ -101,7 +101,7 @@
   "skills": [
     {
       "group": "Frontend",
-      "items": ["JavaScript (ES6/ES7)", "TypeScript", "HTML5", "CSS3", "SCSS", "BEM"]
+      "items": ["JavaScript", "TypeScript", "HTML5", "CSS3", "SCSS", "BEM"]
     },
     {
       "group": "Framework'ler",
@@ -125,25 +125,5 @@
     "personality": "Public biyografi ve notlardan özet: ekip odaklı ve öğrenmeye açık; büyük e-ticaret projelerinde kapsam bilinciyle pragmatik; mesai dışında spor, gezi, müzik ve kişisel kod projeleriyle meraklı, elle üreten taraf. Burada formal kişilik testi sonucu yok.",
     "certifications": "Bu public profilde henüz adı geçen sınav veya satıcı sertifikası yok.",
     "freelancePreferences": "Freelance ve yan projelere açık (availability etiketi ile uyumlu). SAP CX mağaza cephesi, Angular veya Next.js uygulamaları ya da Craftive çizgisinde Spring/Next teslimi gibi net kapsamlı işleri tercih eder. Uzaktan / asenkron iş birliğine uyum sağlar; ücret, süre ve saat dilimi e-posta veya LinkedIn üzerinden netleştirilmelidir."
-  },
-  "openSource": [
-    {
-      "name": "yemredev",
-      "description": "Next.js kişisel portfolyo — yapay zeka asistanı, i18n ve proje vitrinleri.",
-      "repo": "https://github.com/yunusemreerkesikbas/yemredev",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "primaryColor": "primary"
-    },
-    {
-      "name": "OMUChatbot",
-      "description": "Dart tabanlı chatbot projesi — fork alan açık kaynak depo.",
-      "repo": "https://github.com/yunusemreerkesikbas/OMUChatbot",
-      "stars": 2,
-      "forks": 3,
-      "language": "Dart",
-      "primaryColor": "purple"
-    }
-  ]
+  }
 }

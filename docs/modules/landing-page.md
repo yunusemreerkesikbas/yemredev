@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The first thing every visitor sees: a single-viewport, console-grade introduction to "Yemre's AI Assistant". The screen is **static in Phase 2** — the visual language is final, but the chat input and chips are non-interactive. Phase 6 will swap the static input for a real chat session backed by `/api/chat`.
+The first thing every visitor sees: a single-viewport, console-grade introduction to "Yemre's AI Assistant". **Quick chips** and the **chat bar** are live: suggested prompts stream through [`ChatIsland`](../../components/chat/chat-island.tsx) to `/api/chat` (see [app/api/chat/route.ts](../../app/api/chat/route.ts)).
 
 A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't care about AI a one-click escape to the bento dashboard at `/[locale]/home`.
 
@@ -13,13 +13,14 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 - Skip Intro transition (client): [components/layout/skip-intro-transition.tsx](../../components/layout/skip-intro-transition.tsx) — Motion iris toward the home FAB before `router.push('/home')`; respects `prefers-reduced-motion`.
 - Iris overlay primitives (client): [components/layout/iris-transition-portal.tsx](../../components/layout/iris-transition-portal.tsx) — shared `toFab` / `toLanding` mask animation used by Skip Intro and the home FAB.
 - Background atmosphere: [components/layout/mesh-background.tsx](../../components/layout/mesh-background.tsx) (with `withCenterPulse`)
+- Chat + streaming (client): [components/chat/chat-island.tsx](../../components/chat/chat-island.tsx)
 - Sub-components:
   - [components/landing/landing-hero.tsx](../../components/landing/landing-hero.tsx)
   - [components/landing/quick-action-chips.tsx](../../components/landing/quick-action-chips.tsx)
   - [components/landing/chat-input-bar.tsx](../../components/landing/chat-input-bar.tsx)
   - [components/landing/landing-footer.tsx](../../components/landing/landing-footer.tsx)
 - String catalog: `landing.*` keys in [messages/en.json](../../messages/en.json) / [messages/tr.json](../../messages/tr.json)
-- Future API endpoint: [app/api/chat/route.ts](../../app/api/chat/route.ts) (Phase 6)
+- Chat API: [app/api/chat/route.ts](../../app/api/chat/route.ts)
 
 ## Anatomy
 
@@ -64,12 +65,12 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 
 ### `ChatInputBar`
 
-- Server component. Reads `landing.input.*` translations.
-- Renders a real `<input type="text" readOnly tabIndex={-1}>` plus mic + send buttons (`disabled`, `tabIndex={-1}`). The input is `aria-readonly` and the buttons carry localized `aria-label`s that say "coming in Phase 6", so assistive tech doesn't promise functionality the page can't deliver.
+- Client component (`"use client"`). Reads `landing.input.*` via `useTranslations`.
+- Renders a controlled `<input type="text">` (value from parent) and a send `<button type="submit">`; wired through [`ChatIsland`](../../components/chat/chat-island.tsx) with `@ai-sdk/react` `useChat` (POST to `/api/chat` with `{ locale }` body).
+- Mobile hardening: `touch-manipulation` on the form / input / send control (reduces double-tap zoom / delayed tap quirks on WebKit), `text-base` minimum on the field (16px — avoids iOS focus zoom), and the parent island adds safe-area bottom padding + `z-20` on the input stack so the bar stays above decorative layers.
 - Visual states match the reference:
   - default: hairline border, near-black surface
   - focus-within: cyan box-shadow + primary border (via `glow-input` patterns inline)
-- Phase 6 swap: add `"use client"`, remove `readOnly`/`tabIndex`/`disabled`, attach `useState` for input value + `useTransition` for submit, POST to `/api/chat`.
 
 ### `LandingFooter`
 
@@ -80,7 +81,7 @@ A persistent "Skip to Portfolio" CTA in the top-right gives visitors who don't c
 ## Rules and invariants
 
 - **Single viewport.** The page wrapper uses `min-h-dvh overflow-hidden`. Don't add `<section>` blocks that overflow — the design intent is "everything fits".
-- **Server-first body.** Until Phase 6, keep the landing **body** server-only (hero, chips, input shell, footer). The header mounts **three** client islands: `LanguageSwitcher`, `ThemeToggle`, and `SkipIntroTransitionLink` (iris transition via [motion](https://motion.dev), portal overlay `z-index` above the header). With `prefers-reduced-motion: reduce`, Skip navigates immediately with no animation.
+- **Server-first shell, client chat.** The page shell (`page.tsx`) stays a server component; the interactive block is [`ChatIsland`](../../components/chat/chat-island.tsx) (client). The header mounts **three** client islands: `LanguageSwitcher`, `ThemeToggle`, and `SkipIntroTransitionLink` (iris transition via [motion](https://motion.dev), portal overlay `z-index` above the header). With `prefers-reduced-motion: reduce`, Skip navigates immediately with no animation.
 - **Static input is real.** Don't replace `<input>` with `<div>` to "prevent typing". The real element gives the focus-within glow and matches what Phase 6 will render — fewer regressions.
 - **Profile drives the header, not the body.** Hero text, chips, and footer all come from i18n strings, not from `content/profile.*.json`. This decouples copy translation from data structure.
 - **Initials must be 2 characters.** Both `profile.en.json` and `profile.tr.json` set `initials: "YE"`. If the displayed name changes, update both files.
@@ -107,3 +108,4 @@ The FAB uses the same overlay with variant **`toLanding`** (hole expands from th
 - **Mesh background sits at z-0.** All page content must have `relative z-10` (the page wrapper handles it for direct children — but if you add an absolutely-positioned overlay, set `z-10` or `z-20` explicitly).
 - **Footer is `pointer-events-none`.** Decorative only. Don't put a real link in there.
 - **Don't import client components for icons.** lucide icons are server-safe. Treating them as client islands would inflate the bundle.
+- **Mobile taps on the chat field.** If a full-screen layer (e.g. iris portal) uses `pointer-events: auto` before its geometry is ready, some WebKit builds can leave an invisible hit target over the page — the portal now gates `pointerEvents` until FAB center is known. After messages stream in, the collapsed hero uses `pointer-events-none` so a zero-opacity block cannot steal touches during the height transition.

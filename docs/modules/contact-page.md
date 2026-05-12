@@ -6,6 +6,7 @@ The **reach-out** surface at `/{locale}/contact`. There is **no HTML form** and 
 
 ## Source of truth
 
+- Route shell (flex / overflow, `/contact` only): [`app/[locale]/contact/layout.tsx`](../../app/%5Blocale%5D/contact/layout.tsx)
 - Page: [`app/[locale]/contact/page.tsx`](../../app/%5Blocale%5D/contact/page.tsx)
 - Social icon panel (server): [`components/contact/contact-social-panel.tsx`](../../components/contact/contact-social-panel.tsx)
 - Shared social icons: [`lib/social-icons.tsx`](../../lib/social-icons.tsx) (also used by [`components/home/status-block.tsx`](../../components/home/status-block.tsx))

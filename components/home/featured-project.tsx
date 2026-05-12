@@ -35,7 +35,7 @@ export function FeaturedProject({ project, className }: FeaturedProjectProps) {
   const t = useTranslations("home.featured");
 
   const positionClasses =
-    "lg:col-start-2 lg:col-span-2 lg:row-start-1 lg:row-span-4";
+    "lg:col-start-2 lg:col-span-2 lg:row-start-1 lg:row-span-6";
 
   if (!project) {
     return (

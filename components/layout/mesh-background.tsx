@@ -19,8 +19,9 @@ type MeshBackgroundProps = {
    */
   withNoise?: boolean;
   /**
-   * Atmospheric+ pass: floating accent dots scattered across the viewport.
-   * CSS-only, motion-safe (animation halted by global reduced-motion query).
+   * Atmospheric+ pass: floating accent dots across the viewport. Per-dot CSS
+   * wander + optional pointer parallax (client `SparkleParticles`). Honours
+   * `prefers-reduced-motion` via globals + `useReducedMotion` in the component.
    * Default: disabled — opt in per page.
    */
   withSparkles?: boolean;
@@ -35,7 +36,7 @@ type MeshBackgroundProps = {
  * Layer order (bottom → top):
  *   1. mesh gradient (3-stop radial)
  *   2. center pulse orb (landing) OR corner accents (bento/contact)
- *   3. sparkles (landing only)
+ *   3. sparkles (landing only — wander + pointer parallax)
  *   4. noise overlay (Atmospheric+ grain, blends via soft-light)
  *
  * Placement: routed behind page content from `LocaleShell` (landing vs app variant).

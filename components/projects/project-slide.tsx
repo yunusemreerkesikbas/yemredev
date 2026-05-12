@@ -89,7 +89,7 @@ export async function ProjectSlide({ project }: ProjectSlideProps) {
   return (
     <article
       aria-labelledby={`project-title-${project.slug}`}
-      className="glass-bento-surface relative flex h-full min-h-0 flex-col overflow-hidden rounded-2xl p-6 transition-[border-color] duration-300 ease-out hover:border-primary/55 motion-reduce:transition-none md:p-8"
+      className="glass-bento-surface relative flex h-full min-h-0 flex-col overflow-hidden rounded-2xl p-6 pb-8 transition-[border-color] duration-300 ease-out hover:border-primary/55 motion-reduce:transition-none max-sm:px-5 sm:p-7 sm:pb-8 md:p-8"
     >
       <div
         aria-hidden
@@ -118,7 +118,7 @@ export async function ProjectSlide({ project }: ProjectSlideProps) {
         </span>
       </header>
 
-      <div className="relative z-10 mt-5 grid min-h-0 flex-1 grid-cols-1 grid-rows-[auto_minmax(0,1fr)] gap-6 overflow-hidden lg:grid-cols-[minmax(0,1.14fr)_minmax(0,0.86fr)] lg:grid-rows-1 lg:gap-8">
+      <div className="relative z-10 mt-5 grid min-h-0 flex-1 grid-cols-1 grid-rows-[auto_minmax(0,1fr)] gap-6 overflow-hidden max-lg:min-h-[12rem] lg:grid-cols-[minmax(0,1.14fr)_minmax(0,0.86fr)] lg:grid-rows-1 lg:gap-8">
         <div className="min-h-0 shrink-0 lg:min-h-0">
           <ProjectMediaCarousel
             slides={mediaSlides}
@@ -126,17 +126,17 @@ export async function ProjectSlide({ project }: ProjectSlideProps) {
           />
         </div>
 
-        <div className="thin-scrollbar flex min-h-0 flex-col gap-4 overflow-y-auto overscroll-y-contain pr-0.5 lg:pr-1">
+        <div className="thin-scrollbar flex min-h-0 flex-col gap-5 overflow-y-auto overscroll-y-contain pr-0.5 max-lg:min-h-[13rem] max-lg:gap-6 max-lg:pb-2 lg:gap-5 lg:pr-1">
           <h2
             id={`project-title-${project.slug}`}
-            className="text-balance text-2xl font-bold tracking-tight text-foreground md:text-3xl md:leading-tight"
+            className="text-balance text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl md:leading-tight"
           >
             {project.title}
           </h2>
-          <p className="text-pretty text-base font-semibold leading-relaxed text-foreground/85">
+          <p className="text-pretty text-sm font-semibold leading-relaxed text-foreground/85 sm:text-base">
             {project.summary}
           </p>
-          <p className="text-pretty text-sm font-medium leading-relaxed text-foreground/75 md:text-base">
+          <p className="text-pretty text-sm font-medium leading-relaxed text-foreground/80 md:text-base md:leading-relaxed">
             {project.description}
           </p>
 
@@ -151,13 +151,13 @@ export async function ProjectSlide({ project }: ProjectSlideProps) {
               >
                 {t("detailTitle")}
               </h3>
-              <p className="mt-2 text-pretty text-sm font-medium leading-relaxed text-foreground/75">
+              <p className="mt-2 text-pretty text-xs font-medium leading-relaxed text-foreground/75 sm:text-sm">
                 {detailText}
               </p>
             </section>
           ) : null}
 
-          <dl className="grid gap-2 text-sm">
+          <dl className="grid gap-2 text-xs sm:text-sm">
             <div className="flex flex-wrap gap-x-2">
               <dt className="font-mono text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 {t("roleLabel")}

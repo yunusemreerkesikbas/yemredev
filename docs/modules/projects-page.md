@@ -6,6 +6,7 @@ The **case-study / portfolio detail** surface at `/{locale}/projects`. Visitors 
 
 ## Source of truth
 
+- Route shell (flex / overflow, `/projects` only): [`app/[locale]/projects/layout.tsx`](../../app/%5Blocale%5D/projects/layout.tsx)
 - Page: [`app/[locale]/projects/page.tsx`](../../app/%5Blocale%5D/projects/page.tsx)
 - Carousel chrome (client): [`components/projects/projects-carousel.tsx`](../../components/projects/projects-carousel.tsx)
 - In-card media gallery (client): [`components/projects/project-media-carousel.tsx`](../../components/projects/project-media-carousel.tsx)
@@ -52,5 +53,5 @@ The **case-study / portfolio detail** surface at `/{locale}/projects`. Visitors 
 
 ## Changing carousel behaviour
 
-- **Slide width:** edit the wrapper class in [`projects-carousel.tsx`](../../components/projects/projects-carousel.tsx) (`w-[min(90vw,72rem)]`).
+- **Slide width:** edit the wrapper class in [`projects-carousel.tsx`](../../components/projects/projects-carousel.tsx) (`w-[min(88vw,72rem)]`).
 - **Scroll sync:** overlap logic lives in `syncActiveFromScroll`; tweak if slide widths or gaps change materially.

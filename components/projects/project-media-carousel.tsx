@@ -120,7 +120,7 @@ export function ProjectMediaCarousel({
       <div
         role="img"
         aria-label={previewLabel}
-        className="relative flex aspect-[4/3] w-full flex-col overflow-hidden rounded-xl border border-white/12 bg-gradient-to-br from-zinc-950/90 via-zinc-950/70 to-black/85 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+        className="relative flex aspect-[3/2] w-full flex-col overflow-hidden rounded-xl border border-white/12 bg-gradient-to-br from-zinc-950/90 via-zinc-950/70 to-black/85 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] lg:aspect-[4/3]"
       >
         <div className="flex items-center gap-1.5 border-b border-white/10 pb-3">
           <span aria-hidden className="h-2 w-2 rounded-full bg-white/25" />
@@ -143,7 +143,7 @@ export function ProjectMediaCarousel({
 
   return (
     <div className="relative w-full">
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-white/12 bg-black/40 shadow-inner">
+      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-white/12 bg-black/40 shadow-inner lg:aspect-[4/3]">
         <div
           ref={scrollerRef}
           tabIndex={total > 1 ? 0 : undefined}
@@ -165,7 +165,7 @@ export function ProjectMediaCarousel({
                 alt={slide.alt}
                 fill
                 className="object-cover"
-                sizes="(min-width: 1024px) 40vw, 90vw"
+                sizes="(min-width: 1024px) 40vw, 85vw"
                 priority={false}
               />
             </div>

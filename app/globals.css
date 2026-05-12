@@ -65,6 +65,30 @@
   }
 }
 
+@keyframes sparkle-wander {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.32;
+  }
+  17% {
+    transform: translate3d(12px, -20px, 0) scale(1.22);
+    opacity: 0.95;
+  }
+  38% {
+    transform: translate3d(-10px, -10px, 0) scale(0.86);
+    opacity: 0.42;
+  }
+  58% {
+    transform: translate3d(16px, 12px, 0) scale(1.1);
+    opacity: 0.88;
+  }
+  78% {
+    transform: translate3d(-14px, 14px, 0) scale(0.94);
+    opacity: 0.5;
+  }
+}
+
 @keyframes blink {
   0%,
   100% {
@@ -227,6 +251,43 @@ html {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Landing AI hero: accent line under headline (motion-safe shimmer via opacity). */
+@utility landing-hero-accent-line {
+  height: 2px;
+  width: min(12rem, 55vw);
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 184, 247, 0.35),
+    rgba(192, 132, 252, 0.45),
+    rgba(59, 184, 247, 0.35),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: landing-accent-shimmer 7s ease-in-out infinite;
+}
+
+@keyframes landing-accent-shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.55;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+}
+
+/* Landing sparkle field: per-dot duration/delay via inline style. */
+@utility landing-sparkle-dot {
+  animation-name: sparkle-wander;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
 }
 
 /* Hide scrollbars where the design intentionally suppresses them. */

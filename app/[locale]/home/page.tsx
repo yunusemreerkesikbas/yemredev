@@ -6,15 +6,10 @@ import { EducationCTA } from "@/components/home/education-cta";
 import { ExperienceTimeline } from "@/components/home/experience-timeline";
 import { FeaturedProject } from "@/components/home/featured-project";
 import { FloatingAssistantFab } from "@/components/home/floating-assistant-fab";
-import { OpenSourceHighlight } from "@/components/home/open-source-highlight";
 import { StatusBlock } from "@/components/home/status-block";
 import { TechStack } from "@/components/home/tech-stack";
 import { JsonLd } from "@/components/seo/json-ld";
-import {
-  getFeaturedProject,
-  getOpenSource,
-  getProfile,
-} from "@/lib/data";
+import { getFeaturedProject, getProfile } from "@/lib/data";
 import {
   buildBreadcrumbSchema,
   buildPersonSchema,
@@ -75,8 +70,6 @@ export default async function HomePage({
 
   const profile = getProfile(locale);
   const featured = getFeaturedProject(locale);
-  const openSource = getOpenSource(locale);
-  const hasOpenSource = openSource.length > 0;
 
   return (
     <div className="relative flex w-full min-w-0 min-h-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 max-lg:flex-none lg:flex-1 lg:overflow-hidden">
@@ -90,13 +83,9 @@ export default async function HomePage({
       <main className="relative z-10 flex min-w-0 min-h-0 flex-col p-[10px] max-lg:flex-none lg:flex-1 lg:overflow-hidden">
         <BentoGrid>
           <StatusBlock profile={profile} />
-          <FeaturedProject
-            project={featured}
-            className={!hasOpenSource ? "lg:row-span-6" : undefined}
-          />
+          <FeaturedProject project={featured} />
           <TechStack skills={profile.skills} />
           <ExperienceTimeline experience={profile.experience} />
-          {hasOpenSource && <OpenSourceHighlight project={openSource[0]} />}
           <EducationCTA education={profile.education} />
         </BentoGrid>
       </main>

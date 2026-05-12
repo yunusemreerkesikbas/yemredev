@@ -2,7 +2,6 @@ import "server-only";
 
 import { cache } from "react";
 import type { AppLocale } from "@/i18n/routing";
-import type { OpenSourceProject } from "@/types/open-source";
 import type { Profile } from "@/types/profile";
 import type { Project } from "@/types/project";
 import profileEn from "@/content/profile.en.json";
@@ -44,15 +43,5 @@ export const getFeaturedProject = cache(
     const list = projectsByLocale[locale];
     if (list.length === 0) return null;
     return list.find((p) => p.featured) ?? list[0];
-  },
-);
-
-/**
- * Returns the OSS contributions list for the given locale. Always an array
- * (never undefined) so the home bento can render an empty state safely.
- */
-export const getOpenSource = cache(
-  (locale: AppLocale): OpenSourceProject[] => {
-    return profileByLocale[locale].openSource ?? [];
   },
 );

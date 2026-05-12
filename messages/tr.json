@@ -138,13 +138,6 @@
       "presentLabel": "Şu an",
       "scrollHint": "Daha fazlası için kaydır"
     },
-    "openSource": {
-      "eyebrow": "Açık Kaynak",
-      "viewRepo": "Depoyu gör",
-      "starsLabel": "Yıldız",
-      "forksLabel": "Fork",
-      "emptyState": "Açık kaynak öne çıkanları yakında."
-    },
     "education": {
       "title": "Eğitim"
     },

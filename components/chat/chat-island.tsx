@@ -94,7 +94,9 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
       <div
         className={cn(
           "grid w-full transition-all duration-500 ease-in-out",
-          hasMessages ? "grid-rows-[0fr] opacity-0" : "grid-rows-[1fr] opacity-100",
+          hasMessages
+            ? "pointer-events-none grid-rows-[0fr] opacity-0"
+            : "grid-rows-[1fr] opacity-100",
         )}
       >
         <div className="overflow-hidden">
@@ -119,7 +121,7 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
         />
       ) : null}
 
-      <div className="w-full shrink-0">
+      <div className="relative z-20 w-full max-lg:pb-[max(0.5rem,env(safe-area-inset-bottom))] shrink-0">
         <ChatInputBar
           value={input}
           onChange={setInput}

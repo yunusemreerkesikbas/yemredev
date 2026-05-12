@@ -81,12 +81,6 @@ export function buildSystemPrompt(
     })
     .join("\n");
 
-  const openSource = profile.openSource?.length
-    ? `\nOpen source:\n${profile.openSource
-        .map((o) => `- ${o.name}: ${o.description} (${o.repo})`)
-        .join("\n")}`
-    : "";
-
   const projectsBlock =
     projects.length > 0
       ? `\n\nPortfolio projects (catalog — same entries as the /projects page):\n${formatProjectsForPrompt(projects)}`
@@ -105,7 +99,7 @@ PERSONA:
 - Be direct and confident. Show genuine enthusiasm for ${profile.name}'s work when it fits naturally.
 
 SCOPE:
-- Answer questions about ${profile.name}'s professional background, skills, experience, education, projects, open-source work, how to contact him, and the optional Personal lines below when the visitor explicitly asks about languages, hobbies, side learning, community presence, work values, personality traits, certifications, or freelance preferences.
+- Answer questions about ${profile.name}'s professional background, skills, experience, education, projects, how to contact him, and the optional Personal lines below when the visitor explicitly asks about languages, hobbies, side learning, community presence, work values, personality traits, certifications, or freelance preferences.
 - If the visitor asks a personal or lifestyle angle that has no matching Personal line below, say that it is not listed on the public profile and offer a nearby professional topic instead.
 - For out-of-scope questions: write one short sentence acknowledging you cannot help with that, then in the next sentence offer to discuss the most contextually relevant topic. Match the topic to the spirit of the question:
   - Tech / programming question → skills or projects
@@ -113,10 +107,10 @@ SCOPE:
   - Learning / university question → education
   - Reaching out / hiring → contact information
   - Unrelated entirely → pick whichever topic feels most interesting
-  Available topics: yetenekleri, iş deneyimi, projeleri, açık kaynak çalışmaları, eğitimi, iletişim bilgileri, aşağıdaki Personal başlıkları (varsa).
+  Available topics: yetenekleri, iş deneyimi, projeleri, eğitimi, iletişim bilgileri, aşağıdaki Personal başlıkları (varsa).
   Example redirects (never copy verbatim — adapt naturally each time):
   - "Bu konuda yardımcı olamam, ama dilersen Yemre'nin Angular ve Next.js deneyiminden bahsedebilirim."
-  - "Bu benim uzmanlık alanım dışında. Merak edersen açık kaynak projelerini anlatabilirim."
+  - "Bu benim uzmanlık alanım dışında. Merak edersen portföy projelerini anlatabilirim."
   - "O konuyu bilmiyorum — ama iş deneyimini veya projelerini sormak istersen hemen anlatırım."
 
 SAFETY:
@@ -133,7 +127,7 @@ STYLE:
 PROJECT ANSWERS:
 - When the visitor asks about projects, portfolio, shipped products, or similar, lead with Craftive (slug "craftive"): what problem it solves, its multi-tenant shape, and the main technologies — before other catalog projects.
 - If they only ask about another named project, answer that project first without forcing Craftive.
-- Use only the Portfolio projects section plus experience and open-source lists; do not invent repositories or clients not listed.
+- Use only the Portfolio projects section plus the experience list; do not invent repositories or clients not listed.
 
 DATA ABOUT ${profile.name.toUpperCase()} (authoritative — do not contradict):
 
@@ -153,5 +147,5 @@ Skills:
 ${skills}
 
 Education:
-${education}${openSource}${projectsBlock}${formatPersonalForPrompt(profile)}`;
+${education}${projectsBlock}${formatPersonalForPrompt(profile)}`;
 }
