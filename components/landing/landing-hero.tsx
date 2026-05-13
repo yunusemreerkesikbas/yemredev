@@ -13,7 +13,7 @@ export function LandingHero() {
   return (
     <div className="flex w-full flex-col items-center text-center">
       <motion.div
-        className="group relative mb-7 flex h-[68px] w-[68px] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-gray-800 to-black shadow-[0_8px_40px_-12px_rgba(59,184,247,0.45),0_0_0_1px_rgba(255,255,255,0.04)_inset]"
+        className="group relative mb-[10px] flex h-[68px] w-[68px] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-gray-800 to-black shadow-[0_8px_40px_-12px_rgba(59,184,247,0.45),0_0_0_1px_rgba(255,255,255,0.04)_inset] md:mb-7"
         role="img"
         aria-label={t("avatarAlt")}
         initial={reducedMotion ? false : { opacity: 0, scale: 0.92, y: 8 }}
@@ -51,7 +51,7 @@ export function LandingHero() {
           }}
         >
           <h1
-            className="text-gradient-fade text-balance pb-1 text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] md:text-[3.5rem] md:leading-[1.02]"
+            className="text-gradient-fade text-balance pb-1 text-[30px] font-extrabold leading-[1.15] tracking-[-0.04em] md:text-[3.5rem] md:leading-[1.02]"
             style={{ fontFeatureSettings: '"ss01" 1, "ss02" 1, "kern" 1' }}
           >
             {t("title")}
@@ -59,7 +59,7 @@ export function LandingHero() {
           <div className="landing-hero-accent-line motion-reduce:animate-none" />
         </motion.div>
         <motion.p
-          className="text-pretty mx-auto max-w-lg text-base font-normal leading-relaxed tracking-tight text-muted-foreground sm:text-lg"
+          className="text-pretty mx-auto max-w-lg text-[14px] font-normal leading-relaxed tracking-tight text-muted-foreground md:text-lg"
           initial={reducedMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{

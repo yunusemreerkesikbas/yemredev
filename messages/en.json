@@ -64,19 +64,15 @@
       "listLabel": "Suggested questions",
       "items": {
         "skills": "What makes Yemre stand out?",
-        "github": "Show me his GitHub",
         "experience": "Career highlights",
-        "resume": "Get the Resume",
-        "craftive": "What is Craftive?",
-        "sap": "SAP Commerce & storefronts"
+        "resume": "Download résumé",
+        "craftive": "What is Craftive?"
       },
       "prompts": {
         "skills": "What are Yemre's standout technical skills and differentiators?",
-        "github": "Where can I find Yemre's GitHub profile?",
         "experience": "Give me the highlights of Yemre's career and professional experience.",
         "resume": "Where can I download Yemre's resume?",
-        "craftive": "Explain the Craftive project (slug \"craftive\") from the Portfolio projects catalog only: what problem it solves, multi-tenant architecture, monorepo layout, main technologies, and where to try the live site or repo. Do not drift to unrelated products.",
-        "sap": "How has Yemre worked with SAP Commerce, Hybris, and Spartacus? Mention B2B/B2C experience and example clients if they appear in his profile."
+        "craftive": "Explain the Craftive project (slug \"craftive\") from the Portfolio projects catalog only: what problem it solves, multi-tenant architecture, monorepo layout, main technologies, and where to try the live site or repo. Do not drift to unrelated products."
       }
     },
     "input": {

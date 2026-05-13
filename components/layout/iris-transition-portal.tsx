@@ -190,13 +190,9 @@ export function IrisTransitionPortal({
 
   return (
     <div
-      className="fixed inset-0 touch-none overscroll-contain"
+      className="fixed inset-0 pointer-events-none overscroll-contain"
       style={{
         zIndex: OVERLAY_Z,
-        // Until FAB center is measured, avoid a full-screen hit target — some
-        // mobile WebKit builds keep the first composited frame and block taps
-        // on the route underneath (e.g. landing chat input).
-        pointerEvents: fabCenter !== null ? "auto" : "none",
       }}
       aria-hidden
     >
@@ -221,7 +217,7 @@ export function IrisTransitionPortal({
 
           <motion.div
             aria-hidden
-            className="absolute inset-0 will-change-[mask-image]"
+            className="pointer-events-none absolute inset-0 will-change-[mask-image]"
             style={{
               backgroundColor: "rgba(9, 9, 11, 0.94)",
               maskImage: dimMask,

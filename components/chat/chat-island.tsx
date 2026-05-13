@@ -16,6 +16,9 @@ import type { AppLocale } from "@/i18n/routing";
 import type { ChatErrorCode } from "@/lib/ai/errors";
 import { MessageList } from "./message-list";
 
+const CV_PDF_HREF = "/yunus_emre_erkesikbas_cv.pdf";
+const CV_PDF_FILENAME = "yunus_emre_erkesikbas_cv.pdf";
+
 const ERROR_CODES: ReadonlySet<ChatErrorCode> = new Set<ChatErrorCode>([
   "rate_limited",
   "provider_unavailable",
@@ -73,8 +76,18 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
     setInput("");
   }
 
-  function handleChipClick(prompt: string) {
+  function handleChipClick(key: ChipKey, prompt: string) {
     if (isBusy) return;
+    if (key === "resume") {
+      const link = document.createElement("a");
+      link.href = CV_PDF_HREF;
+      link.download = CV_PDF_FILENAME;
+      link.rel = "noopener";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      return;
+    }
     sendMessage({ text: prompt }, { body: { locale } });
   }
 
@@ -85,43 +98,59 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
   return (
     <div
       className={cn(
-        "flex w-full min-w-0 flex-col items-center",
+        "flex w-full min-w-0 flex-col items-center max-lg:pb-0",
         hasMessages
-          ? "gap-4 py-4 max-lg:h-[calc(100dvh-5.5rem)] max-lg:min-h-0 max-lg:overflow-hidden lg:h-auto lg:min-h-0 lg:flex-1"
-          : "min-h-[calc(100dvh-5.5rem)] justify-center gap-6 py-10 lg:h-full lg:min-h-0",
+          ? "min-h-0 flex-1 gap-4 overflow-hidden pt-4 lg:py-4 lg:min-h-0 lg:flex-1"
+          : "w-full shrink-0 gap-4 pt-4 lg:min-h-0 lg:flex-1 lg:py-4",
       )}
     >
-      <div
-        className={cn(
-          "grid w-full transition-all duration-500 ease-in-out",
-          hasMessages
-            ? "pointer-events-none grid-rows-[0fr] opacity-0"
-            : "grid-rows-[1fr] opacity-100",
-        )}
-      >
-        <div className="overflow-hidden">
-          <LandingHero />
+      {!hasMessages ? (
+        <div className="flex w-full flex-col lg:min-h-0 lg:flex-1">
+          <div
+            className={cn(
+              "flex w-full flex-col items-center gap-4 max-lg:flex-none",
+              "lg:min-h-0 lg:flex-1 lg:justify-center lg:gap-6",
+            )}
+          >
+            <div
+              className={cn(
+                "grid w-full transition-all duration-500 ease-in-out",
+                "grid-rows-[1fr] opacity-100",
+              )}
+            >
+              <div className="overflow-hidden">
+                <LandingHero />
+              </div>
+            </div>
+            <QuickActionChips
+              prompts={prompts}
+              onChipClick={handleChipClick}
+              disabled={isBusy}
+            />
+          </div>
         </div>
-      </div>
-
-      {hasMessages && (
-        <MessageList
-          messages={messages}
-          isStreaming={isBusy}
-          errorCode={errorCode}
-          onRetry={handleRetry}
-        />
+      ) : (
+        <>
+          <div
+            className={cn(
+              "grid w-full transition-all duration-500 ease-in-out",
+              "pointer-events-none grid-rows-[0fr] opacity-0",
+            )}
+          >
+            <div className="overflow-hidden">
+              <LandingHero />
+            </div>
+          </div>
+          <MessageList
+            messages={messages}
+            isStreaming={isBusy}
+            errorCode={errorCode}
+            onRetry={handleRetry}
+          />
+        </>
       )}
 
-      {!hasMessages ? (
-        <QuickActionChips
-          prompts={prompts}
-          onChipClick={handleChipClick}
-          disabled={isBusy}
-        />
-      ) : null}
-
-      <div className="relative z-20 w-full max-lg:pb-[max(0.5rem,env(safe-area-inset-bottom))] shrink-0">
+      <div className="relative z-50 w-full max-lg:pb-[max(0.5rem,env(safe-area-inset-bottom))] shrink-0">
         <ChatInputBar
           value={input}
           onChange={setInput}

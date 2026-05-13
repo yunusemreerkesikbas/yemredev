@@ -38,11 +38,9 @@ export async function generateMetadata({
 
 const CHIP_KEYS: ChipKey[] = [
   "skills",
-  "github",
   "experience",
   "resume",
   "craftive",
-  "sap",
 ];
 
 export default async function LandingPage({
@@ -61,9 +59,9 @@ export default async function LandingPage({
   ) as Record<ChipKey, string>;
 
   return (
-    <div className="relative flex w-full min-w-0 max-lg:shrink-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
-      <main className="relative z-10 mx-auto flex w-full min-w-0 max-w-4xl flex-col px-4 sm:px-6 lg:flex-1 lg:min-h-0 lg:overflow-hidden">
-        <div className="flex w-full min-w-0 flex-col lg:flex-1 lg:min-h-0">
+    <div className="relative flex min-h-full w-full min-w-0 shrink-0 flex-col overflow-x-hidden text-foreground selection:bg-primary/30">
+      <main className="relative z-10 mx-auto flex min-h-0 w-full min-w-0 max-w-4xl flex-1 flex-col px-4 sm:px-6">
+        <div className="flex min-h-0 w-full min-w-0 flex-1 flex-col items-center justify-center">
           <ChatIsland locale={locale} prompts={prompts} />
         </div>
       </main>

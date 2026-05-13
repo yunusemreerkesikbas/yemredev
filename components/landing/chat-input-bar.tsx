@@ -34,7 +34,7 @@ export function ChatInputBar({
   return (
     <form
       onSubmit={handleSubmit}
-      className="group/search relative z-10 w-full min-w-0 touch-manipulation"
+      className="group/search relative z-50 w-full min-w-0 touch-manipulation"
       aria-label={t("ariaLabel")}
     >
       <div className="relative flex w-full min-w-0 items-center rounded-xl border border-border bg-card-dark p-1 transition-colors duration-300 group-focus-within/search:border-primary/45 dark:border-white/10">
@@ -60,10 +60,14 @@ export function ChatInputBar({
 
         <div className="flex shrink-0 items-center pr-2">
           <button
-            type="submit"
+            type="button"
             aria-label={t("sendLabel")}
             disabled={!canSend}
-            className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-lg bg-foreground text-background transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+            onClick={() => {
+              if (!canSend) return;
+              onSubmit();
+            }}
+            className="flex h-11 min-h-11 w-11 min-w-11 touch-manipulation items-center justify-center rounded-lg bg-foreground text-background transition-colors hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-gray-200 sm:h-10 sm:min-h-10 sm:w-10 sm:min-w-10"
           >
             <ArrowUp aria-hidden className="h-5 w-5" strokeWidth={2} />
           </button>
