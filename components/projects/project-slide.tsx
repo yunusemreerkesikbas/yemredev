@@ -28,6 +28,7 @@ const CATEGORY_BG: Record<ProjectCategory, string> = {
   tool: "from-accent-emerald/18 via-transparent to-primary/12",
   "open-source": "from-accent-purple/20 via-transparent to-primary/12",
   client: "from-primary/15 via-transparent to-accent-amber/12",
+  cms: "from-accent-amber/16 via-transparent to-primary/14",
 };
 
 function linkIcon(type: ProjectLink["type"]) {

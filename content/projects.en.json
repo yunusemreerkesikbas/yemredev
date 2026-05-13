@@ -11,7 +11,7 @@
     "stack": ["Spring Boot 3.3", "Java 21", "Spring Data JPA", "Hibernate", "Flyway", "MySQL", "HikariCP", "Spring Security", "JWT", "Resilience4j", "JUnit 5", "Testcontainers", "Angular 19", "Next.js", "TypeScript", "Tailwind CSS", "Docker", "GitHub Actions", "Cloudflare", "DigitalOcean"],
     "featured": true,
     "status": "live",
-    "category": "CMS",
+    "category": "cms",
     "links": [
       {
         "label": "Live",

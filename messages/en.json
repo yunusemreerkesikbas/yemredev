@@ -178,7 +178,8 @@
         "saas": "SaaS",
         "tool": "Tool",
         "open-source": "Open source",
-        "client": "Client"
+        "client": "Client",
+        "cms": "CMS"
       },
       "roleLabel": "Role",
       "clientLabel": "Client",

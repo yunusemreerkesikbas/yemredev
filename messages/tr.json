@@ -178,7 +178,8 @@
         "saas": "SaaS",
         "tool": "Araç",
         "open-source": "Açık kaynak",
-        "client": "Müşteri"
+        "client": "Müşteri",
+        "cms": "CMS"
       },
       "roleLabel": "Rol",
       "clientLabel": "Müşteri",

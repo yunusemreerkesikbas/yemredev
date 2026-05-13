@@ -14,7 +14,12 @@ export type ProjectStatus = "live" | "wip" | "archived";
  * Project category. Used by the home bento `FeaturedProject` card to colour
  * the accent orb and by the Phase 4 carousel to group projects.
  */
-export type ProjectCategory = "saas" | "tool" | "open-source" | "client";
+export type ProjectCategory =
+  | "saas"
+  | "tool"
+  | "open-source"
+  | "client"
+  | "cms";
 
 export type Project = {
   slug: string;

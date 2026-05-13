@@ -21,6 +21,7 @@ const CATEGORY_TINT = {
   tool: "from-accent-emerald/25 via-accent-emerald/0 to-primary/20",
   "open-source": "from-accent-purple/30 via-accent-purple/0 to-primary/20",
   client: "from-primary/25 via-primary/0 to-accent-amber/15",
+  cms: "from-accent-amber/22 via-accent-amber/0 to-primary/18",
 } as const;
 
 /**
