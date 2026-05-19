@@ -26,6 +26,7 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: "1"
           NEXT_PUBLIC_SITE_URL: https://yemredev.com
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
 
       - name: Deploy Worker
         run: npx wrangler deploy --config wrangler.jsonc
