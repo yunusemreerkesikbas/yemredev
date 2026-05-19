@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { MapPin } from "lucide-react";
 import type { Profile } from "@/types/profile";
 import { SOCIAL_PLATFORM_ICON } from "@/lib/social-icons";
@@ -15,8 +15,8 @@ type StatusBlockProps = {
  * Top-left bento cell (taller). Identity header + footer stay fixed; tagline and
  * availability scroll when vertical space is tight (`lg` dashboard viewport).
  */
-export function StatusBlock({ profile, className }: StatusBlockProps) {
-  const t = useTranslations("home.status");
+export async function StatusBlock({ profile, className }: StatusBlockProps) {
+  const t = await getTranslations("home.status");
 
   return (
     <BentoCard

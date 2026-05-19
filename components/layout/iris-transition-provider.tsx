@@ -97,24 +97,28 @@ export function IrisTransitionProvider({ children }: { children: ReactNode }) {
   const beginSkipToHome = useCallback(() => {
     hasPushedRef.current = false;
     setIrisDone(false);
-    const { vw, vh } = readViewportSize();
-    setSession({
-      vw,
-      vh,
-      variant: "toFab",
-      targetPath: "/home",
+    requestAnimationFrame(() => {
+      const { vw, vh } = readViewportSize();
+      setSession({
+        vw,
+        vh,
+        variant: "toFab",
+        targetPath: "/home",
+      });
     });
   }, []);
 
   const beginFabToLanding = useCallback(() => {
     hasPushedRef.current = false;
     setIrisDone(false);
-    const { vw, vh } = readViewportSize();
-    setSession({
-      vw,
-      vh,
-      variant: "toLanding",
-      targetPath: "/",
+    requestAnimationFrame(() => {
+      const { vw, vh } = readViewportSize();
+      setSession({
+        vw,
+        vh,
+        variant: "toLanding",
+        targetPath: "/",
+      });
     });
   }, []);
 

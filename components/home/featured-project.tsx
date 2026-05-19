@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Project } from "@/types/project";
@@ -32,8 +32,11 @@ const CATEGORY_TINT = {
  * If `project` is null (empty content), renders an empty-state placeholder
  * so the grid still feels intentional.
  */
-export function FeaturedProject({ project, className }: FeaturedProjectProps) {
-  const t = useTranslations("home.featured");
+export async function FeaturedProject({
+  project,
+  className,
+}: FeaturedProjectProps) {
+  const t = await getTranslations("home.featured");
 
   const positionClasses =
     "lg:col-start-2 lg:col-span-2 lg:row-start-1 lg:row-span-6";

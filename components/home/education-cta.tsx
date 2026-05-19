@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { ArrowRight, GraduationCap } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Education } from "@/types/profile";
@@ -14,9 +14,9 @@ type EducationCTAProps = {
  * Bottom-right bento cell. Education list scrolls when needed; primary CTA stays
  * pinned at the bottom of the card.
  */
-export function EducationCTA({ education, className }: EducationCTAProps) {
-  const tEdu = useTranslations("home.education");
-  const tCta = useTranslations("home.cta");
+export async function EducationCTA({ education, className }: EducationCTAProps) {
+  const tEdu = await getTranslations("home.education");
+  const tCta = await getTranslations("home.cta");
 
   return (
     <BentoCard

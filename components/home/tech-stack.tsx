@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Layers } from "lucide-react";
 import type { SkillGroup } from "@/types/profile";
 import { BentoCard } from "./bento-card";
@@ -34,8 +34,8 @@ const GROUP_TONE = {
  * Tools), each with a small accent header and a chip list. Body scrolls vertically
  * when it exceeds the grid cell (desktop single-viewport layout).
  */
-export function TechStack({ skills, className }: TechStackProps) {
-  const t = useTranslations("home.techStack");
+export async function TechStack({ skills, className }: TechStackProps) {
+  const t = await getTranslations("home.techStack");
 
   return (
     <BentoCard

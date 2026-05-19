@@ -7,7 +7,7 @@ import { animate, motion, useMotionTemplate, useMotionValue } from "motion/react
 /** Full iris sweep — slightly longer so acceleration reads legibly at the end. */
 export const IRIS_DURATION = 1.14;
 
-export const OVERLAY_Z = 100;
+export const OVERLAY_Z = 9999;
 
 const HOLE_R_FINAL = 28;
 
@@ -54,9 +54,7 @@ export function IrisTransitionPortal({
 }: IrisTransitionPortalProps) {
   void _maskId;
   const probeRef = useRef<HTMLDivElement>(null);
-  const [fabCenter, setFabCenter] = useState<{ cx: number; cy: number } | null>(
-    null,
-  );
+  const [fabCenter, setFabCenter] = useState(() => fallbackFabCenter(vw, vh));
   const finishedRef = useRef(false);
 
   const { cxMid, cyMid, rLarge } = irisGeometry(vw, vh);
@@ -106,7 +104,6 @@ export function IrisTransitionPortal({
   }, [vw, vh]);
 
   useLayoutEffect(() => {
-    if (!fabCenter) return;
     if (variant === "toFab") {
       cxMv.set(cxMid);
       cyMv.set(cyMid);
@@ -120,8 +117,6 @@ export function IrisTransitionPortal({
   }, [fabCenter, variant, cxMid, cyMid, rLarge, cxMv, cyMv, rMv, focusPeripheryOpacity]);
 
   useEffect(() => {
-    if (!fabCenter) return;
-
     let cancelled = false;
 
     const target =
@@ -190,9 +185,13 @@ export function IrisTransitionPortal({
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none overscroll-contain"
+      className="pointer-events-none fixed inset-0 overscroll-contain"
       style={{
         zIndex: OVERLAY_Z,
+        height: "100dvh",
+        width: "100%",
+        isolation: "isolate",
+        transform: "translateZ(0)",
       }}
       aria-hidden
     >
@@ -202,93 +201,90 @@ export function IrisTransitionPortal({
         aria-hidden
       />
 
-      {fabCenter !== null ? (
-        <>
-          {variant === "toFab" ? (
-            <motion.div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 will-change-[opacity]"
-              style={{
-                opacity: focusPeripheryOpacity,
-                backgroundImage: `radial-gradient(circle ${Math.max(vw, vh) * 0.92}px at ${fabCenter.cx}px ${fabCenter.cy}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 11%, rgba(9,9,11,0.42) 46%, rgba(9,9,11,0.72) 72%, rgba(6,7,12,0.88) 100%)`,
-              }}
-            />
-          ) : null}
-
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 will-change-[mask-image]"
-            style={{
-              backgroundColor: "rgba(9, 9, 11, 0.94)",
-              maskImage: dimMask,
-              WebkitMaskImage: dimMask,
-              maskSize: "100% 100%",
-              WebkitMaskSize: "100% 100%",
-              maskRepeat: "no-repeat",
-              WebkitMaskRepeat: "no-repeat",
-              maskPosition: "0 0",
-              WebkitMaskPosition: "0 0",
-            }}
-          />
-
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 mix-blend-screen will-change-[background-image]"
-            style={{
-              backgroundImage: rimGlow,
-              opacity: 0.85,
-            }}
-          />
-
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 shadow-[inset_0_0_min(45vw,420px)_rgba(0,0,0,0.55)]"
-          />
-
-          {variant === "toFab" ? (
-            <motion.div
-              aria-hidden
-              className="pointer-events-none fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[100] flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary/55 shadow-[0_0_36px_4px_rgba(59,184,247,0.45),0_0_0_1px_rgba(255,255,255,0.08)_inset]"
-              initial={{ scale: 0.78, opacity: 0 }}
-              animate={{
-                scale: [0.78, 1.12, 1],
-                opacity: [0, 1, 0.55],
-              }}
-              transition={{
-                duration: IRIS_DURATION * 0.5,
-                times: [0, 0.52, 1],
-                ease: [0.2, 0.9, 0.2, 1],
-              }}
-            />
-          ) : null}
-
-          {variant === "toFab" ? (
-            <motion.div
-              className={FAB_REPLICA_CLASS}
-              initial={{ opacity: 1, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: IRIS_DURATION * 0.55,
-                ease: EASE_LENS,
-              }}
-            >
-              <FabReplicaInner />
-            </motion.div>
-          ) : (
-            <motion.div
-              className={FAB_REPLICA_CLASS}
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{ opacity: 0, scale: 0.86 }}
-              transition={{
-                duration: IRIS_DURATION * 0.38,
-                ease: [0.22, 1, 0.34, 1],
-              }}
-            >
-              <FabReplicaInner />
-            </motion.div>
-          )}
-        </>
+      {variant === "toFab" ? (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 will-change-[opacity]"
+          style={{
+            opacity: focusPeripheryOpacity,
+            backgroundImage: `radial-gradient(circle ${Math.max(vw, vh) * 0.92}px at ${fabCenter.cx}px ${fabCenter.cy}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 11%, rgba(9,9,11,0.42) 46%, rgba(9,9,11,0.72) 72%, rgba(6,7,12,0.88) 100%)`,
+          }}
+        />
       ) : null}
+
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 will-change-[mask-image,-webkit-mask-image]"
+        style={{
+          backgroundColor: "rgba(9, 9, 11, 0.94)",
+          maskImage: dimMask,
+          WebkitMaskImage: dimMask,
+          maskSize: "100% 100%",
+          WebkitMaskSize: "100% 100%",
+          maskRepeat: "no-repeat",
+          WebkitMaskRepeat: "no-repeat",
+          maskPosition: "0 0",
+          WebkitMaskPosition: "0 0",
+          transform: "translateZ(0)",
+        }}
+      />
+
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 will-change-[background-image] md:mix-blend-screen"
+        style={{
+          backgroundImage: rimGlow,
+          opacity: 0.85,
+        }}
+      />
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 shadow-[inset_0_0_min(45vw,420px)_rgba(0,0,0,0.55)]"
+      />
+
+      {variant === "toFab" ? (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[100] flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary/55 shadow-[0_0_36px_4px_rgba(59,184,247,0.45),0_0_0_1px_rgba(255,255,255,0.08)_inset]"
+          initial={{ scale: 0.78, opacity: 0 }}
+          animate={{
+            scale: [0.78, 1.12, 1],
+            opacity: [0, 1, 0.55],
+          }}
+          transition={{
+            duration: IRIS_DURATION * 0.5,
+            times: [0, 0.52, 1],
+            ease: [0.2, 0.9, 0.2, 1],
+          }}
+        />
+      ) : null}
+
+      {variant === "toFab" ? (
+        <motion.div
+          className={FAB_REPLICA_CLASS}
+          initial={{ opacity: 1, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: IRIS_DURATION * 0.55,
+            ease: EASE_LENS,
+          }}
+        >
+          <FabReplicaInner />
+        </motion.div>
+      ) : (
+        <motion.div
+          className={FAB_REPLICA_CLASS}
+          initial={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 0, scale: 0.86 }}
+          transition={{
+            duration: IRIS_DURATION * 0.38,
+            ease: [0.22, 1, 0.34, 1],
+          }}
+        >
+          <FabReplicaInner />
+        </motion.div>
+      )}
     </div>
   );
 }

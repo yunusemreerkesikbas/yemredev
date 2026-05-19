@@ -1,15 +1,18 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { Bot } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useIrisTransition } from "@/components/layout/iris-transition-provider";
 
-function shouldLetBrowserHandleClick(
-  e: React.MouseEvent<HTMLAnchorElement>,
-): boolean {
+type ActivatablePointerEvent = Pick<
+  React.MouseEvent<HTMLAnchorElement>,
+  "metaKey" | "ctrlKey" | "shiftKey" | "altKey" | "button" | "preventDefault"
+>;
+
+function shouldLetBrowserHandleClick(e: ActivatablePointerEvent): boolean {
   return (
     e.metaKey ||
     e.ctrlKey ||
@@ -29,22 +32,44 @@ export function FloatingAssistantFab() {
   const router = useRouter();
   const reduceMotionPreference = useReducedMotion();
   const { beginFabToLanding, fabAriaBusy } = useIrisTransition();
+  const touchHandledRef = useRef(false);
 
   const navigateLanding = useCallback(() => {
     router.push("/");
   }, [router]);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (shouldLetBrowserHandleClick(e)) return;
+  const activateLandingTransition = useCallback(
+    (e?: ActivatablePointerEvent) => {
+      if (e && shouldLetBrowserHandleClick(e)) return false;
+      e?.preventDefault?.();
 
-    if (reduceMotionPreference === true) {
+      if (reduceMotionPreference === true) {
+        navigateLanding();
+        return true;
+      }
+
+      beginFabToLanding();
+      return true;
+    },
+    [reduceMotionPreference, navigateLanding, beginFabToLanding],
+  );
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (touchHandledRef.current) {
       e.preventDefault();
-      navigateLanding();
+      touchHandledRef.current = false;
       return;
     }
 
-    e.preventDefault();
-    beginFabToLanding();
+    activateLandingTransition(e);
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLAnchorElement>) => {
+    if (e.pointerType !== "touch" || e.button !== 0) return;
+    if (shouldLetBrowserHandleClick(e)) return;
+
+    touchHandledRef.current = true;
+    activateLandingTransition(e);
   };
 
   const prefetchLanding = useCallback(() => {
@@ -59,6 +84,7 @@ export function FloatingAssistantFab() {
       title={t("tooltip")}
       aria-busy={fabAriaBusy || undefined}
       onClick={handleClick}
+      onPointerDown={handlePointerDown}
       onPointerEnter={prefetchLanding}
       className="group fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-30 inline-flex h-14 w-14 touch-manipulation items-center justify-center rounded-full border border-white/16 bg-gradient-to-br from-zinc-900/95 via-zinc-950/95 to-black/95 text-white shadow-[0_10px_40px_-10px_rgba(59,184,247,0.42),0_0_0_1px_rgba(0,0,0,0.35)_inset,0_1px_0_rgba(255,255,255,0.1)_inset] backdrop-blur-xl transition-[transform,opacity,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-primary/55 hover:shadow-[0_16px_48px_-12px_rgba(59,184,247,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
     >

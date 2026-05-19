@@ -100,8 +100,8 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
       className={cn(
         "flex w-full min-w-0 flex-col items-center max-lg:pb-0",
         hasMessages
-          ? "min-h-0 flex-1 gap-4 overflow-hidden pt-4 lg:py-4 lg:min-h-0 lg:flex-1"
-          : "w-full shrink-0 gap-4 pt-4 lg:min-h-0 lg:flex-1 lg:py-4",
+          ? "min-h-0 max-h-full flex-1 gap-4 overflow-hidden pt-4 lg:min-h-0 lg:flex-1 lg:py-4"
+          : "w-full shrink-0 gap-4 pt-4 lg:min-h-0 lg:flex-1 lg:justify-center lg:py-4",
       )}
     >
       {!hasMessages ? (
@@ -141,12 +141,14 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
               <LandingHero />
             </div>
           </div>
-          <MessageList
-            messages={messages}
-            isStreaming={isBusy}
-            errorCode={errorCode}
-            onRetry={handleRetry}
-          />
+          <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden">
+            <MessageList
+              messages={messages}
+              isStreaming={isBusy}
+              errorCode={errorCode}
+              onRetry={handleRetry}
+            />
+          </div>
         </>
       )}
 
