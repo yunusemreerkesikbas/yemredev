@@ -12,6 +12,7 @@ import type { KeyboardEvent, ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
 
 type ProjectsCarouselProps = {
   title: string;
@@ -42,6 +43,16 @@ export function ProjectsCarousel({
 
   const items = Children.toArray(children).filter(isValidElement);
   const total = items.length;
+  const isFirstProjectRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstProjectRender.current) {
+      isFirstProjectRender.current = false;
+      return;
+    }
+    const slug = slideIds[activeIndex];
+    if (slug) trackEvent("project_viewed", { project_slug: slug });
+  }, [activeIndex, slideIds]);
 
   const syncActiveFromScroll = useCallback(() => {
     const root = scrollerRef.current;

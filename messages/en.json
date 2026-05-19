@@ -210,6 +210,14 @@
       "default": "Opens your default app or browser."
     }
   },
+  "analytics": {
+    "banner": {
+      "title": "Cookie Preferences",
+      "description": "We use analytics cookies to understand how visitors use this site. No personal data is collected.",
+      "accept": "Accept",
+      "decline": "Decline"
+    }
+  },
   "common": {
     "back": "Back",
     "next": "Next",

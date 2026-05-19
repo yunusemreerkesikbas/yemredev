@@ -6,6 +6,7 @@ import { useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useIrisTransition } from "@/components/layout/iris-transition-provider";
+import { trackEvent } from "@/lib/analytics";
 
 type ActivatablePointerEvent = Pick<
   React.MouseEvent<HTMLAnchorElement>,
@@ -37,6 +38,8 @@ export function SkipIntroTransitionLink() {
     (e?: ActivatablePointerEvent) => {
       if (e && shouldLetBrowserHandleClick(e)) return false;
       e?.preventDefault?.();
+
+      trackEvent("skip_intro_clicked");
 
       if (reduceMotionPreference === true) {
         navigateHome();

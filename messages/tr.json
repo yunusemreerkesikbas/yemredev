@@ -210,6 +210,14 @@
       "default": "Varsayılan uygulama veya tarayıcını açar."
     }
   },
+  "analytics": {
+    "banner": {
+      "title": "Çerez Tercihleri",
+      "description": "Bu siteyi ziyaretçilerin nasıl kullandığını anlamak için analitik çerezler kullanıyoruz. Kişisel veri toplanmaz.",
+      "accept": "Kabul Et",
+      "decline": "Reddet"
+    }
+  },
   "common": {
     "back": "Geri",
     "next": "İleri",

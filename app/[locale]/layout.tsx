@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { ConsentBanner } from "@/components/analytics/consent-banner";
+import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 import { canonicalUrl, hreflangAlternates, OG_IMAGE_URL } from "@/lib/seo";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -125,19 +127,21 @@ export default async function LocaleLayout({
               <LocaleShell profile={profile}>{children}</LocaleShell>
             </IrisTransitionProvider>
           </ThemeProvider>
+          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <ConsentBanner />}
+          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <AnalyticsProvider />}
         </NextIntlClientProvider>
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <>
+            <Script id="ga4-init" strategy="afterInteractive">{`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', { analytics_storage: 'denied' });
+              gtag('js', new Date());
+            `}</Script>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
               strategy="afterInteractive"
             />
-            <Script id="ga4-init" strategy="afterInteractive">{`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', { page_path: window.location.pathname });
-            `}</Script>
           </>
         )}
       </body>

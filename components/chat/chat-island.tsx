@@ -12,6 +12,7 @@ import {
 } from "@/components/landing/quick-action-chips";
 import { LandingHero } from "@/components/landing/landing-hero";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
 import type { AppLocale } from "@/i18n/routing";
 import type { ChatErrorCode } from "@/lib/ai/errors";
 import { MessageList } from "./message-list";
@@ -72,6 +73,7 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
   function handleSubmit() {
     const trimmed = input.trim();
     if (!trimmed || isBusy) return;
+    trackEvent("chat_message_sent", { locale });
     sendMessage({ text: trimmed }, { body: { locale } });
     setInput("");
   }
@@ -88,6 +90,7 @@ export function ChatIsland({ locale, prompts }: ChatIslandProps) {
       link.remove();
       return;
     }
+    trackEvent("chat_message_sent", { locale, source: "chip" });
     sendMessage({ text: prompt }, { body: { locale } });
   }
 
