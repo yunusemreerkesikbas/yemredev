@@ -5,6 +5,7 @@ import {
   GithubIcon,
   LinkedinIcon,
   TwitterIcon,
+  WhatsappIcon,
 } from "@/components/icons/brand-icons";
 
 type SocialIconComponent = ComponentType<SVGProps<SVGSVGElement>>;
@@ -18,5 +19,6 @@ export const SOCIAL_PLATFORM_ICON: Record<
   linkedin: LinkedinIcon,
   twitter: TwitterIcon,
   email: Mail,
+  whatsapp: WhatsappIcon,
   website: Globe,
 };

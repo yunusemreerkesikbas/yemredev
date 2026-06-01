@@ -10,6 +10,19 @@ type ContactSocialPanelProps = {
   layout?: "standalone" | "besideContact";
 };
 
+/** Contact panel shows WhatsApp instead of the profile email slot. */
+const CONTACT_PANEL_WHATSAPP: SocialLink = {
+  platform: "whatsapp",
+  label: "WhatsApp",
+  url: "https://wa.me/905394204255",
+};
+
+function contactPanelSocialLinks(social: SocialLink[]): SocialLink[] {
+  return social.flatMap((link) =>
+    link.platform === "email" ? [CONTACT_PANEL_WHATSAPP] : [link],
+  );
+}
+
 /**
  * Social destinations as a plain icon strip (no card grid). Icons from
  * [`lib/social-icons`](../../lib/social-icons.tsx).
@@ -43,7 +56,7 @@ export async function ContactSocialPanel({
       <ul
         className={`flex list-none flex-wrap items-center gap-2 p-0 sm:gap-3 ${beside ? "justify-center" : "mt-5 justify-center"}`}
       >
-        {profile.social.map((social, index) => (
+        {contactPanelSocialLinks(profile.social).map((social, index) => (
           <li key={`${social.platform}-${index}`}>
             <SocialIconLink
               social={social}
@@ -65,15 +78,15 @@ type SocialIconLinkProps = {
 
 function SocialIconLink({ social, description, newTabHint }: SocialIconLinkProps) {
   const Icon = SOCIAL_PLATFORM_ICON[social.platform];
-  const isEmail = social.platform === "email";
-  const title = isEmail ? description : `${description} (${newTabHint})`;
+  const opensInSameTab = social.platform === "email";
+  const title = opensInSameTab ? description : `${description} (${newTabHint})`;
 
   return (
     <a
       href={social.url}
       title={title}
-      target={isEmail ? undefined : "_blank"}
-      rel={isEmail ? undefined : "noopener noreferrer"}
+      target={opensInSameTab ? undefined : "_blank"}
+      rel={opensInSameTab ? undefined : "noopener noreferrer"}
       aria-label={social.label}
       className="inline-flex h-12 w-12 items-center justify-center text-muted-foreground transition-colors duration-150 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
